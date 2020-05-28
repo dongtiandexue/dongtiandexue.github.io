@@ -12,7 +12,7 @@
 
 
 
-<title>Mybatis Plus 系列之 MP 简介 | Hexo</title>
+<title>第3天 互联网公司中新版SpringBoot2.X开发规范解读 | Hexo</title>
 
 
 
@@ -177,7 +177,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Mybatis Plus 系列之 MP 简介</h1>
+            <h1 class="post-title">第3天 互联网公司中新版SpringBoot2.X开发规范解读</h1>
             
                 <div class="post-meta">
                     
@@ -186,14 +186,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">May 12, 2020&nbsp;&nbsp;22:46:24</a>
+                        Date: <a href="#">May 28, 2020&nbsp;&nbsp;8:11:36</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">数据存储</a>
+                                <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/">项目开发</a>
                             
                         </span>
                     
@@ -202,36 +202,61 @@
         </header>
 
         <div class="post-content">
-            <p><img src="http://img.gorun996.com/images/relationship-with-mybatis.png" alt="relationship-with-mybatis"></p>
-<h2 id="Mybatis-Plus-是什么？"><a href="#Mybatis-Plus-是什么？" class="headerlink" title="Mybatis Plus 是什么？"></a>Mybatis Plus 是什么？</h2><p>Mybatis Plus 不是一个新的连接数据库的发明创造，它是在 Mybatis 的基础上的封装，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。它不是一个必选项，但使用它会让你更加容易进行项目开发。</p>
-<h2 id="Mybatis-Plus-使用感受"><a href="#Mybatis-Plus-使用感受" class="headerlink" title="Mybatis Plus 使用感受"></a>Mybatis Plus 使用感受</h2><p>Mybatis Plus 是基于 Mybatis 框架的封装，如果你的项目正在使用 Mybatis， 而且编写了大量的基础sql语句，那么你可以考虑使用 Mybatis Plus ，它可以帮助你 简化项目代码，完成 CRUD，分页查询等功能；而且不用修改之前代码，就可以接入Mybatis Plus 。让你的项目更简洁更优雅！</p>
-<p>Mybatis Plus 特性</p>
+            <h2 id="3-1-新版SpringBoot2-x目录文件结构讲解和静态资源访问"><a href="#3-1-新版SpringBoot2-x目录文件结构讲解和静态资源访问" class="headerlink" title="3-1 新版SpringBoot2.x目录文件结构讲解和静态资源访问"></a>3-1 新版SpringBoot2.x目录文件结构讲解和静态资源访问</h2><ul>
+<li><p>目录讲解</p>
 <ul>
-<li><strong>无侵入</strong>：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑</li>
-<li><strong>损耗小</strong>：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作</li>
-<li><strong>强大的 CRUD 操作</strong>：内置通用 Mapper、通用 Service，仅仅通过少量配置即可实现单表大部分 CRUD 操作，更有强大的条件构造器，满足各类使用需求</li>
-<li><strong>支持 Lambda 形式调用</strong>：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</li>
-<li><strong>支持主键自动生成</strong>：支持多达 4 种主键策略（内含分布式唯一 ID 生成器 - Sequence），可自由配置，完美解决主键问题</li>
-<li><strong>支持 ActiveRecord 模式</strong>：支持 ActiveRecord 形式调用，实体类只需继承 Model 类即可进行强大的 CRUD 操作</li>
-<li><strong>支持自定义全局通用操作</strong>：支持全局通用方法注入（ Write once, use anywhere ）</li>
-<li><strong>内置代码生成器</strong>：采用代码或者 Maven 插件可快速生成 Mapper 、 Model 、 Service 、 Controller 层代码，支持模板引擎，更有超多自定义配置等您来使用</li>
-<li><strong>内置分页插件</strong>：基于 MyBatis 物理分页，开发者无需关心具体操作，配置好插件之后，写分页等同于普通 List 查询</li>
-<li><strong>分页插件支持多种数据库</strong>：支持 MySQL、MariaDB、Oracle、DB2、H2、HSQL、SQLite、Postgre、SQLServer 等多种数据库</li>
-<li><strong>内置性能分析插件</strong>：可输出 Sql 语句以及其执行时间，建议开发测试时启用该功能，能快速揪出慢查询</li>
-<li><strong>内置全局拦截插件</strong>：提供全表 delete 、 update 操作智能分析阻断，也可自定义拦截规则，预防误操作</li>
+<li>src/main/java：存放代码</li>
+<li>src/main/resources</li>
+<li>static: 存放静态文件, 比如 css、js、image, （访问方式 <a href="http://localhost:8080/js/main.js）" target="_blank" rel="noopener">http://localhost:8080/js/main.js）</a></li>
+<li>templates:存放静态页面jsp,html,tpl</li>
+<li>conﬁg:存放配置文件,application.properties</li>
+<li>resources:</li>
 </ul>
-<h2 id="Mybatis-Plus-原理分析"><a href="#Mybatis-Plus-原理分析" class="headerlink" title="Mybatis Plus 原理分析"></a>Mybatis Plus 原理分析</h2><h3 id="Mybatis-Plus-框架结构"><a href="#Mybatis-Plus-框架结构" class="headerlink" title="Mybatis Plus 框架结构"></a>Mybatis Plus 框架结构</h3><p><img src="http://img.gorun996.com/images/mybatis-plus-framework.jpg" alt="mybatis-plus-framework"></p>
-<p>先看这张图的右边，Mybatis Plus 的核心是由 annotation、extension、core、generator 四个部分组成。</p>
-<p>这张图的左边简单的说明了Mybatis Plus 的执行过程，</p>
+</li>
+</ul>
 <ul>
-<li>扫描实体类</li>
-<li>解析数据表和字段名称，与实体类之间产生映射关系</li>
-<li>生成 CRUD sql语句</li>
-<li>执行 Mybatis 框架容器</li>
+<li><p>同个文件的加载顺序,静态资源文件 Spring Boot 默认会挨个从</p>
+<ul>
+<li><p>META/resources &gt;</p>
+</li>
+<li><p>resources &gt;</p>
+</li>
+<li><p>static &gt;</p>
+</li>
+<li><p>public</p>
+<p>里面找是否存在相应的资源，如果有则直接返回，不在默认加载的目录，则找不不到</p>
+</li>
 </ul>
-<p>正常使用 Mybatis 框架，第一步到第三步都是需要我们自己处理的，现在使用 Mybatis Plus 帮我们处理了这些工作。</p>
-<p>同时，学习 Mybatis Plus 会用仅仅是基础，作为有理想的程序员，还需要知道 Mybatis Plus 是<code>如何映射数据表字段和实体类之间关系</code>，<code>如何生成sql语句</code></p>
-<p>如果大家感兴趣，下面的文章会带大家使用 Mybatis Plus 的各项功能，并努力学习里面的执行原理，最后会做一个小总结，回答上面两个问题。</p>
+</li>
+</ul>
+<ul>
+<li>默认配置<br>  spring.resources.static-locations = classpath:/META-<br>  INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/</li>
+</ul>
+<h2 id="3-2-新版SpringBoot2-x启动类位置常见形式"><a href="#3-2-新版SpringBoot2-x启动类位置常见形式" class="headerlink" title="3-2 新版SpringBoot2.x启动类位置常见形式"></a>3-2 新版SpringBoot2.x启动类位置常见形式</h2><p>应用启动的位置，Application启动类位置<br>三种形式</p>
+<ul>
+<li>当启动类和controller在同⼀类中时，在该类上添加注解@Controller即可；</li>
+<li>当启动类和controller分开时，启动类要放在根目录下，启动类上只需要注解<br>  @SpringBootApplication；</li>
+<li>当启动类和controller分开时，如果启动类在非根目录下，需要在启动类中增加注解<br>  @ComponentScan，并配置需要扫描的包名，如(basePackages = )<br>  @ComponentScan(basePackages ={“net.xdclass.controller”,”net.xdclass.service”})</li>
+</ul>
+<h2 id="3-3-SpringBoot2-X启动方式讲解和部署"><a href="#3-3-SpringBoot2-X启动方式讲解和部署" class="headerlink" title="3-3 SpringBoot2.X启动方式讲解和部署"></a>3-3 SpringBoot2.X启动方式讲解和部署</h2><p>SpringBoot2.X启动方式</p>
+<ul>
+<li>IDEA开发中启动<ul>
+<li>本地开发中常用</li>
+<li>外置Tomcat中启动<br>  接近淘汰<br>  tomcat版本兼容问题复杂<br>  微服务容器器化部署复杂</li>
+<li>Jar方式打包启动<br>  官⽅方推荐，工作中最常⽤用<br>  步骤：pom文件新增maven插件</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;build&gt;</span><br><span class="line">      &lt;plugins&gt;</span><br><span class="line">        &lt;plugin&gt;</span><br><span class="line">          &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">          &lt;artifactId&gt;spring-boot-maven-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;&#x2F;plugin&gt;</span><br><span class="line">      &lt;&#x2F;plugins&gt;</span><br><span class="line">&lt;&#x2F;build&gt;</span><br><span class="line"></span><br><span class="line">如果没有加，则执⾏行行jar包 ，报错如下</span><br><span class="line">java -jar spring-boot-demo-0.0.1-SNAPSHOT.jar</span><br><span class="line">no main manifest attribute, in spring-boot-demo-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+<p>必备打包、启动命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">构建：mvn install</span><br><span class="line">构建跳过测试类 mvn install -Dmaven.test.skip&#x3D;true </span><br><span class="line"></span><br><span class="line">target目录下有对应的jar包就是打包后项目</span><br><span class="line"></span><br><span class="line">进到对应的target目录启动 java -jar xxxxx.jar  即可</span><br><span class="line">想后台运行，就用守护进程 nohup java -jar xxx.jar &amp;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-4-打包后的Jar里面的目录结构你知道多少"><a href="#3-4-打包后的Jar里面的目录结构你知道多少" class="headerlink" title="3-4 打包后的Jar里面的目录结构你知道多少"></a>3-4 打包后的Jar里面的目录结构你知道多少</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">example.jar</span><br><span class="line"> |</span><br><span class="line"> +-META-INF</span><br><span class="line"> |  +-MANIFEST.MF</span><br><span class="line"> +-org</span><br><span class="line"> |  +-springframework</span><br><span class="line"> |     +-boot</span><br><span class="line"> |        +-loader</span><br><span class="line"> |           +-&lt;spring boot loader classes&gt;</span><br><span class="line"> +-BOOT-INF</span><br><span class="line">    +-classes</span><br><span class="line">    |  +-mycompany</span><br><span class="line">    |     +-project</span><br><span class="line">    |        +-YourClasses.class</span><br><span class="line">    +-lib</span><br><span class="line">       +-dependency1.jar</span><br><span class="line">       +-dependency2.jar</span><br></pre></td></tr></table></figure>
+
+
 
         </div>
 
@@ -246,7 +271,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://blog.gorun996.com/2020/05/12/Mybatis-Plus-%E7%B3%BB%E5%88%97%E4%B9%8B-MP-%E7%AE%80%E4%BB%8B/">http://blog.gorun996.com/2020/05/12/Mybatis-Plus-%E7%B3%BB%E5%88%97%E4%B9%8B-MP-%E7%AE%80%E4%BB%8B/</a></span>
+                        <span><a href="http://blog.gorun996.com/2020/05/28/xdclass-online-03/">http://blog.gorun996.com/2020/05/28/xdclass-online-03/</a></span>
                     </p>
                 
                 
@@ -270,9 +295,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/Mybatis/"># Mybatis</a>
-                    
-                        <a href="/tags/Mybatis-Plus/"># Mybatis Plus</a>
+                        <a href="/tags/xdclass-online/"># xdclass-online</a>
                     
                         
                 </span>
@@ -285,10 +308,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2020/05/28/xdclass-online-03/">第3天 互联网公司中新版SpringBoot2.X开发规范解读</a>
             
-            
-            <a class="next" rel="next" href="/2020/05/10/%E5%85%B3%E4%BA%8E%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BA%BA%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/">关于程序员人生的一些思考</a>
+            <a class="next" rel="next" href="/2020/05/12/Mybatis-Plus-%E7%B3%BB%E5%88%97%E4%B9%8B-MP-%E7%AE%80%E4%BB%8B/">Mybatis Plus 系列之 MP 简介</a>
             
         </section>
 
