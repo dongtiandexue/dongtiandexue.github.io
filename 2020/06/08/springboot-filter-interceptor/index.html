@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Go Running">
+
+
+
+
+
+<title>SpringBoot2.X 过滤器-拦截器实战 | Hexo</title>
+
+
+
+    <link rel="icon" href="/my_favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">GoRun996</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">文章</a>
+                
+                    <a class="menu-item" href="/categories">分类</a>
+                
+                    <a class="menu-item" href="/tags">标签</a>
+                
+                    <a class="menu-item" href="/about">关于</a>
+                
+                    <a class="menu-item" href="/about">家常菜</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">GoRun996</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">文章</a>
+                
+                    <a class="menu-item" href="/categories">分类</a>
+                
+                    <a class="menu-item" href="/tags">标签</a>
+                
+                    <a class="menu-item" href="/about">关于</a>
+                
+                    <a class="menu-item" href="/about">家常菜</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">SpringBoot2.X 过滤器-拦截器实战</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Go Running</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">June 8, 2020&nbsp;&nbsp;0:08:05</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/SpringBoot2-x-%E7%B3%BB%E5%88%97/">SpringBoot2.x 系列</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="SpringBoot2-x-过滤器"><a href="#SpringBoot2-x-过滤器" class="headerlink" title="SpringBoot2.x 过滤器"></a>SpringBoot2.x 过滤器</h2><h3 id="什么是过滤器？"><a href="#什么是过滤器？" class="headerlink" title="什么是过滤器？"></a>什么是过滤器？</h3><p><img src="http://img.gorun996.com/images/v2-f74107cb2a98ba4ae67ae0373d4532bc_r.jpg" alt="v2-f74107cb2a98ba4ae67ae0373d4532bc_r"></p>
+<p>过滤器可以比喻成打鱼的渔网，渔网有网孔大小，会过滤掉小于网孔大小的🐟；</p>
+<p>引申在Web容器中，过滤器可以做：过滤一些敏感的字符串【规定不能出现敏感字符串】、避免中文乱码【规定Web资源都使用UTF-8编码】、权限验证等等等，过滤器的作用非常大，只要发挥想象就可以有意想不到的效果</p>
+<h3 id="Filter是如何实现拦截的？"><a href="#Filter是如何实现拦截的？" class="headerlink" title="Filter是如何实现拦截的？"></a>Filter是如何实现拦截的？</h3><p><code>Filter</code>接口中有一个叫做 <code>doFilter</code> 的方法，这个方法实现了对用户请求的过滤。具体流程大体是这样的：</p>
+<ol>
+<li>用户发送请求到 web 服务器,请求会先到过滤器；</li>
+<li>过滤器会对请求进行一些处理比如过滤请求的参数、修改返回给客户端的 response 的内容、判断是否让用户访问该接口等等。</li>
+<li>用户请求响应完毕。</li>
+<li>进行一些自己想要的其他操作。</li>
+</ol>
+<p><img src="http://img.gorun996.com/images/filter1.png" alt="img"></p>
+<h3 id="如何自定义过滤器？"><a href="#如何自定义过滤器？" class="headerlink" title="如何自定义过滤器？"></a>如何自定义过滤器？</h3><p>下面提供两种方法。</p>
+<h4 id="方法一：自己手动注册配置实现"><a href="#方法一：自己手动注册配置实现" class="headerlink" title="方法一：自己手动注册配置实现"></a>方法一：自己手动注册配置实现</h4><p><strong>自定义的 Filter 需要实现<code>javax.Servlet.Filter</code>接口，并重写接口中定义的3个方法。</strong></p>
+<p>MyFilter.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(MyFilter<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig filterConfig)</span> </span>&#123;</span><br><span class="line">        logger.info(<span class="string">"初始化过滤器："</span>, filterConfig.getFilterName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">        <span class="comment">//对请求进行预处理</span></span><br><span class="line">        logger.info(<span class="string">"过滤器开始对请求进行预处理："</span>);</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest) servletRequest;</span><br><span class="line">        String requestUri = request.getRequestURI();</span><br><span class="line">        System.out.println(<span class="string">"请求的接口为："</span> + requestUri);</span><br><span class="line">        <span class="keyword">long</span> startTime = System.currentTimeMillis();</span><br><span class="line">        <span class="comment">//通过 doFilter 方法实现过滤功能</span></span><br><span class="line">        filterChain.doFilter(servletRequest, servletResponse);</span><br><span class="line">        <span class="comment">// 上面的 doFilter 方法执行结束后用户的请求已经返回</span></span><br><span class="line">        <span class="keyword">long</span> endTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"该用户的请求已经处理完毕，请求花费的时间为："</span> + (endTime - startTime));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        logger.info(<span class="string">"销毁过滤器"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>MyFilterConfig.java</p>
+<p><strong>在配置中注册自定义的过滤器。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFilterConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    MyFilter myFilter;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> FilterRegistrationBean&lt;MyFilter&gt; <span class="title">thirdFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        FilterRegistrationBean&lt;MyFilter&gt; filterRegistrationBean = <span class="keyword">new</span> FilterRegistrationBean&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        filterRegistrationBean.setFilter(myFilter);</span><br><span class="line"></span><br><span class="line">        filterRegistrationBean.setUrlPatterns(<span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(<span class="string">"/api/*"</span>)));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> filterRegistrationBean;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法二：通过提供好的一些注解实现"><a href="#方法二：通过提供好的一些注解实现" class="headerlink" title="方法二：通过提供好的一些注解实现"></a>方法二：通过提供好的一些注解实现</h4><p><strong>在自己的过滤器的类上加上<code>@WebFilter</code> 然后在这个注解中通过它提供好的一些参数进行配置。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@WebFilter(filterName &#x3D; &quot;MyFilterWithAnnotation&quot;, urlPatterns &#x3D; &quot;&#x2F;api&#x2F;*&quot;)</span><br><span class="line">public class MyFilterWithAnnotation implements Filter &#123;</span><br><span class="line"></span><br><span class="line">   ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>另外，为了能让 Spring 找到它，你需要在启动类上加上 <code>@ServletComponentScan</code> 注解。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@ServletComponentScan</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringbootFilterApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringbootFilterApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义多个拦截器，并决定它们的执行顺序"><a href="#定义多个拦截器，并决定它们的执行顺序" class="headerlink" title="定义多个拦截器，并决定它们的执行顺序"></a>定义多个拦截器，并决定它们的执行顺序</h3><p>MyFilter2.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFilter2</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(MyFilter2<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig filterConfig)</span> </span>&#123;</span><br><span class="line">        logger.info(<span class="string">"初始化过滤器2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">        <span class="comment">//对请求进行预处理</span></span><br><span class="line">        logger.info(<span class="string">"过滤器开始对请求进行预处理2："</span>);</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest) servletRequest;</span><br><span class="line">        String requestUri = request.getRequestURI();</span><br><span class="line">        System.out.println(<span class="string">"请求的接口为2："</span> + requestUri);</span><br><span class="line">        <span class="keyword">long</span> startTime = System.currentTimeMillis();</span><br><span class="line">        <span class="comment">//通过 doFilter 方法实现过滤功能</span></span><br><span class="line">        filterChain.doFilter(servletRequest, servletResponse);</span><br><span class="line">        <span class="comment">// 上面的 doFilter 方法执行结束后用户的请求已经返回</span></span><br><span class="line">        <span class="keyword">long</span> endTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"该用户的请求已经处理完毕，请求花费的时间为2："</span> + (endTime - startTime));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        logger.info(<span class="string">"销毁过滤器2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>在配置中注册自定义的过滤器，通过<code>FilterRegistrationBean</code> 的<code>setOrder</code> 方法可以决定 Filter 的执行顺序。</strong></p>
+<blockquote>
+<p>需要注意的是 order 的数字越小优先级越高，越优先执行</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class MyFilterConfig &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    MyFilter myFilter;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    MyFilter2 myFilter2;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public FilterRegistrationBean&lt;MyFilter&gt; setUpMyFilter() &#123;</span><br><span class="line">        FilterRegistrationBean&lt;MyFilter&gt; filterRegistrationBean &#x3D; new FilterRegistrationBean&lt;&gt;();</span><br><span class="line">        filterRegistrationBean.setOrder(0);</span><br><span class="line">        filterRegistrationBean.setFilter(myFilter);</span><br><span class="line">        filterRegistrationBean.setUrlPatterns(new ArrayList&lt;&gt;(Arrays.asList(&quot;&#x2F;api&#x2F;*&quot;)));</span><br><span class="line"></span><br><span class="line">        return filterRegistrationBean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public FilterRegistrationBean&lt;MyFilter2&gt; setUpMyFilter2() &#123;</span><br><span class="line">        FilterRegistrationBean&lt;MyFilter2&gt; filterRegistrationBean &#x3D; new FilterRegistrationBean&lt;&gt;();</span><br><span class="line">        filterRegistrationBean.setOrder(1);</span><br><span class="line">        filterRegistrationBean.setFilter(myFilter2);</span><br><span class="line">        filterRegistrationBean.setUrlPatterns(new ArrayList&lt;&gt;(Arrays.asList(&quot;&#x2F;api&#x2F;*&quot;)));</span><br><span class="line">        return filterRegistrationBean;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>自定义 Controller 验证过滤器</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;&#x2F;api&quot;)</span><br><span class="line">public class MainController &#123;</span><br><span class="line"></span><br><span class="line">    @GetMapping(&quot;&#x2F;hello&quot;)</span><br><span class="line">    public String getHello() throws InterruptedException &#123;</span><br><span class="line">        Thread.sleep(1000);</span><br><span class="line">        return &quot;Hello&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实际测试效果如下：</strong></p>
+<p><img src="http://img.gorun996.com/images/image-20200608000310281.png" alt="image-20200608000310281"></p>
+<h2 id="SpringBoot2-x-拦截器"><a href="#SpringBoot2-x-拦截器" class="headerlink" title="SpringBoot2.x 拦截器"></a>SpringBoot2.x 拦截器</h2><h3 id="什么是拦截器？"><a href="#什么是拦截器？" class="headerlink" title="什么是拦截器？"></a>什么是拦截器？</h3><blockquote>
+<p>当你来到公司并想见见公司经理时，你需要通过拦截器，这些拦截器可以是门卫或者接待员</p>
+</blockquote>
+<p>在Spring中，当请求发送到<code>Controller</code>时，在被<code>Controller</code>处理之前，它必须经过拦截器（0或多个）。<br><code>Spring Interceptor</code>是一个非常类似于<code>Servlet Filter</code>的概念。</p>
+<p><code>Spring Interceptor</code>仅适用于发送到<code>Controller</code>的请求。<br><img src="http://img.gorun996.com/images/14286819.png" alt="img"></p>
+<p>您可以使用Interceptor来执行某些任务，例如在Controller处理请求之前编写日志，添加或更新配置，…</p>
+<p>如下图所示：LogInterceptor 拦截器、MainController 主控制器</p>
+<p>访问一个路径为 “/test” 的请求，在到达MainController之前，先被 LogInterceptor 的 preHandle方法处理，我们可以在该方法中打印日志或者校验某些入参，可以记录下访问时间；MainController 的 test 方法处理完请求之后 Response 给用户之前，被 postHandle 方法处理可以记录下访问结束时间，并统计该请求的处理时间，方便开发人员进行性能分析；最后整个请求处理完成后，会执行 afterCompletion 方法。</p>
+<p>![img](F:\project\小滴课堂移动端在线项目\第 9 天 新版Servlet3.0和SpringBoot2.X过滤器-拦截器实战\14286863.png)</p>
+<h3 id="如何自定义拦截器？"><a href="#如何自定义拦截器？" class="headerlink" title="如何自定义拦截器？"></a>如何自定义拦截器？</h3><p><code>自定义 Interceptor</code>必须实现org.springframework.web.servlet.HandlerInterceptor接口或继承 org.springframework.web.servlet.handler.HandlerInterceptorAdapter类。</p>
+<p>需要实现三种抽象方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request,</span></span></span><br><span class="line"><span class="function"><span class="params">                         HttpServletResponse response,</span></span></span><br><span class="line"><span class="function"><span class="params">                         Object handler)</span></span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request,</span></span></span><br><span class="line"><span class="function"><span class="params">                       HttpServletResponse response,</span></span></span><br><span class="line"><span class="function"><span class="params">                       Object handler,</span></span></span><br><span class="line"><span class="function"><span class="params">                       ModelAndView modelAndView)</span></span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request,</span></span></span><br><span class="line"><span class="function"><span class="params">                            HttpServletResponse response,</span></span></span><br><span class="line"><span class="function"><span class="params">                            Object handler,</span></span></span><br><span class="line"><span class="function"><span class="params">                            Exception ex)</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>注意：preHandle方法返回true或false。 如果返回true，则意味着请求将继续执行。</p>
+</blockquote>
+<p>每个请求可能会通过许多拦截器。下图说明了这一点。</p>
+<p><img src="http://img.gorun996.com/images/14286832.png" alt="img"></p>
+<h3 id="SpringBoot-拦截器实战"><a href="#SpringBoot-拦截器实战" class="headerlink" title="SpringBoot 拦截器实战"></a>SpringBoot 拦截器实战</h3><p><strong>案例背景：</strong></p>
+<blockquote>
+<p>本项目采用 SpringBoot + thymeleaf 模板引擎进行交互，提供三种请求和三个拦截器，帮助大家理解请求在拦截器中的流转过程。 <strong>LogInterceptor</strong> 拦截所有请求，并且第一顺位执行，<strong>OldLoginInterceptor</strong> 仅拦截 “/admin/oldLogin” 请求，第二顺位执行，AdminInterceptor 拦截 “/admin/*” 下除了 “/admin/oldLogin” 之外的三个请求，并且最后执行。</p>
+</blockquote>
+<p><strong>项目结构：</strong></p>
+<p>![image-20200607230857070](F:\project\小滴课堂移动端在线项目\第 9 天 新版Servlet3.0和SpringBoot2.X过滤器-拦截器实战\image-20200607230857070.png)</p>
+<p>LogInterceptor** 拦截所有请求：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogInterceptor</span> <span class="keyword">extends</span> <span class="title">HandlerInterceptorAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span></span></span><br><span class="line"><span class="function">            <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> startTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"\n-------- LogInterception.preHandle --- "</span>);</span><br><span class="line">        System.out.println(<span class="string">"Request URL: "</span> + request.getRequestURL());</span><br><span class="line">        System.out.println(<span class="string">"Start Time: "</span> + System.currentTimeMillis());</span><br><span class="line"></span><br><span class="line">        request.setAttribute(<span class="string">"startTime"</span>, startTime);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, //</span></span></span><br><span class="line"><span class="function"><span class="params">                           Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"\n-------- LogInterception.postHandle --- "</span>);</span><br><span class="line">        System.out.println(<span class="string">"Request URL: "</span> + request.getRequestURL());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// You can add attributes in the modelAndView</span></span><br><span class="line">        <span class="comment">// and use that in the view page</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response,</span></span></span><br><span class="line"><span class="function"><span class="params">                                Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"\n-------- LogInterception.afterCompletion --- "</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> startTime = (Long) request.getAttribute(<span class="string">"startTime"</span>);</span><br><span class="line">        <span class="keyword">long</span> endTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"Request URL: "</span> + request.getRequestURL());</span><br><span class="line">        System.out.println(<span class="string">"End Time: "</span> + endTime);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"Time Taken: "</span> + (endTime - startTime));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>OldLoginInterceptor</strong>  拦截器用于将请求 “/admin/oldLogin” 重定向到请求 “/admin/login” 路径上</p>
+<p><img src="http://img.gorun996.com/images/14286880.png" alt="img"></p>
+<p><img src="http://img.gorun996.com/images/14286911.png" alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OldLoginInterceptor</span> <span class="keyword">extends</span> <span class="title">HandlerInterceptorAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span></span></span><br><span class="line"><span class="function">            <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"\n-------- OldLoginInterceptor.preHandle --- "</span>);</span><br><span class="line">        System.out.println(<span class="string">"Request URL: "</span> + request.getRequestURL());</span><br><span class="line">        System.out.println(<span class="string">"Sorry! This URL is no longer used, Redirect to /admin/login"</span>);</span><br><span class="line"></span><br><span class="line">        response.sendRedirect(request.getContextPath() + <span class="string">"/admin/login"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, //</span></span></span><br><span class="line"><span class="function"><span class="params">                           Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// This code will never be run.</span></span><br><span class="line">        System.out.println(<span class="string">"\n-------- OldLoginInterceptor.postHandle --- "</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, //</span></span></span><br><span class="line"><span class="function"><span class="params">                                Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// This code will never be run.</span></span><br><span class="line">        System.out.println(<span class="string">"\n-------- QueryStringInterceptor.afterCompletion --- "</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>AdminInterceptor</strong> 拦截除了 “/admin/oldLogin” 之外的匹配 “/admin/*” 路径的请求：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AdminInterceptor</span> <span class="keyword">extends</span> <span class="title">HandlerInterceptorAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span></span></span><br><span class="line"><span class="function">            <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"\n-------- AdminInterceptor.preHandle --- "</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, //</span></span></span><br><span class="line"><span class="function"><span class="params">                           Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"\n-------- AdminInterceptor.postHandle --- "</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, //</span></span></span><br><span class="line"><span class="function"><span class="params">                                Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"\n-------- AdminInterceptor.afterCompletion --- "</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>配置拦截器</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebMvcConfig</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 处理所有请求，该拦截器最先被执行</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> LogInterceptor());</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 处理路径为 "/admin/oldLogin" 的请求</span></span><br><span class="line"><span class="comment">         * 该拦截器在 LogInterceptor 之后执行</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> OldLoginInterceptor())<span class="comment">//</span></span><br><span class="line">                .addPathPatterns(<span class="string">"/admin/oldLogin"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 该拦截器处理 路径为 "/admin/*" 的所有请求，除了 "/admin/oldLogin"</span></span><br><span class="line"><span class="comment">         * 该拦截器为最后执行拦截器, 如果请求在前面被拦截并不通过那么该拦截器将得不到执行</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> AdminInterceptor())<span class="comment">//</span></span><br><span class="line">                .addPathPatterns(<span class="string">"/admin/*"</span>)<span class="comment">//</span></span><br><span class="line">                .excludePathPatterns(<span class="string">"/admin/oldLogin"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>自定义Controller校验拦截器</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = &#123; <span class="string">"/"</span>, <span class="string">"/test"</span> &#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">(Model model)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"\n-------- MainController.test --- "</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">" ** You are in Controller ** "</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// This path is no longer used.</span></span><br><span class="line">    <span class="comment">// It will be redirected by OldLoginInterceptor</span></span><br><span class="line">    <span class="meta">@Deprecated</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = &#123; <span class="string">"/admin/oldLogin"</span> &#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">oldLogin</span><span class="params">(Model model)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Code here never run.</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"oldLogin"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = &#123; <span class="string">"/admin/login"</span> &#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">login</span><span class="params">(Model model)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"\n-------- MainController.login --- "</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">" ** You are in Controller ** "</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"login"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>thymeleaf 模板引擎</strong></p>
+<p><strong>test.html</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.thymeleaf.org"</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">   <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">title</span>&gt;</span>Spring Boot Mvc Interceptor example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">   <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"border: 1px solid #ccc;padding: 5px;margin-bottom:10px;"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/&#125;"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">         <span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span> | <span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/admin/oldLogin&#125;"</span>&gt;</span>/admin/oldLogin (OLD URL)<span class="tag">&lt;/<span class="name">a</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">      <span class="tag">&lt;<span class="name">h3</span>&gt;</span>Spring Boot Mvc Interceptor<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">       </span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">"color:blue;"</span>&gt;</span>Testing LogInterceptor<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">br</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line"> </span><br><span class="line">      See Log in Console..</span><br><span class="line"> </span><br><span class="line">   <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>login.html</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.thymeleaf.org"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">title</span>&gt;</span>Spring Boot Mvc Interceptor example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"border: 1px solid #ccc;padding: 5px;margin-bottom:10px;"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/&#125;"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">         <span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span> | <span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/admin/oldLogin&#125;"</span>&gt;</span>/admin/oldLogin (OLD URL)<span class="tag">&lt;/<span class="name">a</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">       </span><br><span class="line">      <span class="tag">&lt;<span class="name">h3</span>&gt;</span>This is Login Page<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">       </span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">"color:blue"</span>&gt;</span>Testing OldLoginInterceptor <span class="symbol">&amp;amp;</span> AdminInterceptor<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">br</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">      See more info in the Console.</span><br><span class="line">       </span><br><span class="line">   <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>启动项目，测试</strong></p>
+<p>测试用户访问 <a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080/</a> 的时候， <strong>LogInterceptor</strong>记录相关信息（页面地址，访问时间），并计算 <strong>Web服务器</strong>处理请求的时间。另外，页面会被渲染成 <code>test.html</code>。</p>
+<p>当用户访问 <a href="http://localhost:8080/admin/oldLogin" target="_blank" rel="noopener">http://localhost:8080/admin/oldLogin</a> 也就是旧的登录页面（不再使用）时， <strong>OldLoginInterceptor</strong>将请求重定向 <a href="http://localhost:8080/admin/login" target="_blank" rel="noopener">http://localhost:8080/admin/login</a> 页面会被渲染成正常的登录页面 <code>login.html</code>。</p>
+<p><strong>注意看控制台打印出的信息。</strong></p>
+<h3 id="拦截器与过滤器的区别？"><a href="#拦截器与过滤器的区别？" class="headerlink" title="拦截器与过滤器的区别？"></a>拦截器与过滤器的区别？</h3><p>过滤器（Filter）：当你有一堆东西的时候，你只希望选择符合你要求的某一些东西。定义这些要求的工具，就是过滤器。</p>
+<p>拦截器（Interceptor）：在一个流程正在进行的时候，你希望干预它的进展，甚至终止它进行，这是拦截器做的事情。</p>
+<h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><p><a href="https://o7planning.org/en/11689/spring-boot-interceptors-tutorial#a14288051" target="_blank" rel="noopener">https://o7planning.org/en/11689/spring-boot-interceptors-tutorial#a14288051</a></p>
+<p><a href="https://snailclimb.gitee.io/springboot-guide/#/./docs/basis/springboot-interceptor" target="_blank" rel="noopener">https://snailclimb.gitee.io/springboot-guide/#/./docs/basis/springboot-interceptor</a></p>
+<p><a href="https://snailclimb.gitee.io/springboot-guide/#/./docs/basis/springboot-filter" target="_blank" rel="noopener">https://snailclimb.gitee.io/springboot-guide/#/./docs/basis/springboot-filter</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Go Running</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://blog.gorun996.com/2020/06/08/springboot-filter-interceptor/">http://blog.gorun996.com/2020/06/08/springboot-filter-interceptor/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/SpringBoot2-x/"># SpringBoot2.x</a>
+                    
+                        <a href="/tags/%E8%BF%87%E6%BB%A4%E5%99%A8-%E5%92%8C-%E6%8B%A6%E6%88%AA%E5%99%A8/"># 过滤器 和 拦截器</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/06/07/springboot-exception/">Springboot2.X 基础篇之全局异常处理</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Go Running | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+	<div class="visit">
+        访客数：<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;|&nbsp;
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </div>
+	<div class="visit">
+		<a href="http://www.beian.miit.gov.cn" target="_blank">
+			<img  style="vertical-align: text-bottom;" src="/image/beian.png">
+			<span>皖ICP备20002937号</span>
+		</a>
+	</div>	
+</footer>
+
+    </div>
+</body>
+</html>
