@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Go Running">
+
+
+
+
+
+<title>Springboot2.X 基础篇之全局异常处理 | Hexo</title>
+
+
+
+    <link rel="icon" href="/my_favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">GoRun996</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">文章</a>
+                
+                    <a class="menu-item" href="/categories">分类</a>
+                
+                    <a class="menu-item" href="/tags">标签</a>
+                
+                    <a class="menu-item" href="/about">关于</a>
+                
+                    <a class="menu-item" href="/about">家常菜</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">GoRun996</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">文章</a>
+                
+                    <a class="menu-item" href="/categories">分类</a>
+                
+                    <a class="menu-item" href="/tags">标签</a>
+                
+                    <a class="menu-item" href="/about">关于</a>
+                
+                    <a class="menu-item" href="/about">家常菜</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Springboot2.X 基础篇之全局异常处理</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Go Running</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">June 7, 2020&nbsp;&nbsp;17:36:23</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/SpringBoot2-x-%E7%B3%BB%E5%88%97/">SpringBoot2.x 系列</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="全局异常处理介绍"><a href="#全局异常处理介绍" class="headerlink" title="全局异常处理介绍"></a>全局异常处理介绍</h2><p>说到异常是项目开发中最熟悉不过的了，为了处理异常，我们往往会写很多类似于下面这样的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 业务代码</span></span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样写出的代码包含了很多异常处理，不仅仅可读性差，而且包含了需要非业务相关的逻辑。</p>
+<p>在项目开发中我们应该将精力放在业务处理上，项目中除了业务相关的代码，最好不要存在其他无关的代码。</p>
+<p><strong>那么类似于异常这种项目中各个地方都存在的非业务代码如何处理呢？</strong></p>
+<p>首先，异常处理是必不可少的，除了不能影响用户体验和前后端交互，也是我们排查问题必不可少的关键信息。</p>
+<p>其次，我们关注的问题是何时何地处理异常。</p>
+<p><code>如果你感兴趣的话，花点时间看看下面内容吧！</code></p>
+<h2 id="全局异常处理实战"><a href="#全局异常处理实战" class="headerlink" title="全局异常处理实战"></a>全局异常处理实战</h2><p>首先抛出几个概念，方便大家对后面内容的理解</p>
+<ul>
+<li>采用的是SpringBoot 自带的异常处理机制</li>
+<li>对通过Controller接口访问产生的异常，统一处理，响应结果格式统一</li>
+</ul>
+<h3 id="1、准备"><a href="#1、准备" class="headerlink" title="1、准备"></a>1、准备</h3><p>（1）创建一个SpringBoot项目，并对外暴露访问接口</p>
+<p>我准备了这样一个接口，并构造了一个 <code>/ by zero</code> 异常，浏览器访问结果：</p>
+<p><img src="http://img.gorun996.com/images/image-20200607101548334.png" alt="image-20200607101548334"></p>
+<p>这样的接口你要提供出去了，看前端小姐姐不打死你 。。。</p>
+<h3 id="2、配置全局异常通知"><a href="#2、配置全局异常通知" class="headerlink" title="2、配置全局异常通知"></a>2、配置全局异常通知</h3><p>在SpringBoot 2.X 版本中 <code>@ControllerAdvice</code> <code>@RestControllerAdvice</code> 注解，可以用于定义 <code>@ExceptionHandler</code>，并应用到配置了 <code>@RequestMapping</code> 的控制器中。</p>
+<ul>
+<li>@ControllerAdvice 注解：是一个特殊的<code>@Component</code>，用于标识一个类，这个类中被以下三种注解标识的方法：<code>@ExceptionHandler</code>，<code>@InitBinder</code>，<code>@ModelAttribute</code>，将作用于所有的<code>@Controller</code>类的接口上。</li>
+<li>@RestControllerAdvice 注解：是 <code>@ControllerAdvice</code> + <code>@ResponseBody</code>的结合体</li>
+<li>@ExceptionHandler 注解：统一异常处理，也可以指定要处理的异常类型</li>
+</ul>
+<p>下面我们就实战一个简单的全局异常处理：</p>
+<p><img src="http://img.gorun996.com/images/image-20200607104120991.png" alt="image-20200607104120991"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="meta">@Log</span>4j2</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理任何 Exception 接口实现类异常</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(Exception<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Map</span> <span class="title">exceptionHandler</span>(<span class="title">HttpServletRequest</span> <span class="title">request</span>, <span class="title">Exception</span> <span class="title">exception</span>) <span class="title">throws</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">        log.error(<span class="string">"url:&#123;&#125;|errorMsg:&#123;&#125;"</span>, request.getRequestURI(), exception.getMessage(), exception);</span><br><span class="line">        Map&lt;String, Object&gt; result = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">        result.put(<span class="string">"code"</span>, <span class="number">500</span>);</span><br><span class="line">        result.put(<span class="string">"msg"</span>, exception.getMessage());</span><br><span class="line">        result.put(<span class="string">"url"</span>, request.getRequestURL().toString());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>再次访问我们的浏览器：</p>
+<p><code>刚才的报错页面现在就变成了这样</code></p>
+<p><img src="http://img.gorun996.com/images/image-20200607104203160.png" alt="image-20200607104203160"></p>
+<p>到此为止，一个简单的全局异常处理解决方式就完成了，是不是非常简单，当然这只是最最简单的版本，现实项目中远远比这个复杂，下面我们就来一个全套的项目中异常如何处理的。</p>
+<h2 id="全局异常处理实战进阶"><a href="#全局异常处理实战进阶" class="headerlink" title="全局异常处理实战进阶"></a>全局异常处理实战进阶</h2><p>在真实的项目开发中，前后端一般是分离的，就表示后端不管出现什么情况（成功、失败、异常），返回给前端的数据结构一定是统一的，这是约定大于编码思想的一种体现。</p>
+<h3 id="1、统一接口响应"><a href="#1、统一接口响应" class="headerlink" title="1、统一接口响应"></a>1、统一接口响应</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CommonResult</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应码</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> T data;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">CommonResult&lt;T&gt; <span class="title">success</span><span class="params">(T data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CommonResult(<span class="number">200</span>, <span class="string">"success"</span>, data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2、自定义异常"><a href="#2、自定义异常" class="headerlink" title="2、自定义异常"></a>2、自定义异常</h3><p>为什么要自定义异常呢？</p>
+<p>项目中为什么要自定义异常呢，首先如果是项目业务处理产生的异常，通过自定义异常可以知道是哪个项目产生的异常，而且对不同的异常也可以有不同的处理逻辑，也方便后续扩展</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomException</span> <span class="keyword">extends</span> <span class="title">RuntimeException</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//自定义错误码</span></span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//自定义构造器，只保留一个，让其必须输入错误码及内容</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CustomException</span><span class="params">(<span class="keyword">int</span> code, String msg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(msg);</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCode</span><span class="params">(Integer code)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3、改造全局异常处理代码"><a href="#3、改造全局异常处理代码" class="headerlink" title="3、改造全局异常处理代码"></a>3、改造全局异常处理代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="meta">@Log</span>4j2</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理CustomException 异常</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(CustomException<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Map</span> <span class="title">exceptionHandler</span>(<span class="title">HttpServletRequest</span> <span class="title">request</span>, <span class="title">CustomException</span> <span class="title">exception</span>) <span class="title">throws</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">        log.error(<span class="string">"url:&#123;&#125;|errorMsg:&#123;&#125;"</span>, request.getRequestURI(), exception.getMessage(), exception);</span><br><span class="line">        Map&lt;String, Object&gt; result = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">        result.put(<span class="string">"code"</span>, exception.getCode());</span><br><span class="line">        result.put(<span class="string">"msg"</span>, exception.getMessage());</span><br><span class="line">        result.put(<span class="string">"url"</span>, request.getRequestURL().toString());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理任何 Exception 接口实现类异常</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(Exception<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Map</span> <span class="title">exceptionHandler</span>(<span class="title">HttpServletRequest</span> <span class="title">request</span>, <span class="title">Exception</span> <span class="title">exception</span>) <span class="title">throws</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">        log.error(<span class="string">"url:&#123;&#125;|errorMsg:&#123;&#125;"</span>, request.getRequestURI(), exception.getMessage(), exception);</span><br><span class="line">        Map&lt;String, Object&gt; result = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">        result.put(<span class="string">"code"</span>, <span class="number">500</span>);</span><br><span class="line">        result.put(<span class="string">"msg"</span>, exception.getMessage());</span><br><span class="line">        result.put(<span class="string">"url"</span>, request.getRequestURL().toString());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Go Running</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://blog.gorun996.com/2020/06/07/springboot-exception/">http://blog.gorun996.com/2020/06/07/springboot-exception/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/SpringBoot2-x/"># SpringBoot2.x</a>
+                    
+                        <a href="/tags/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"># 全局异常处理</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/05/28/xdclass-online-03/">第3天 互联网公司中新版SpringBoot2.X开发规范解读</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Go Running | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+	<div class="visit">
+        访客数：<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;|&nbsp;
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </div>
+	<div class="visit">
+		<a href="http://www.beian.miit.gov.cn" target="_blank">
+			<img  style="vertical-align: text-bottom;" src="/image/beian.png">
+			<span>皖ICP备20002937号</span>
+		</a>
+	</div>	
+</footer>
+
+    </div>
+</body>
+</html>
