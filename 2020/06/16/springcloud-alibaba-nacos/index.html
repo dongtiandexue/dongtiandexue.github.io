@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Go Running">
+
+
+
+
+
+<title>SpringCloud 微服务基础系列之Nacos | Hexo</title>
+
+
+
+    <link rel="icon" href="/my_favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">GoRun996</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">文章</a>
+                
+                    <a class="menu-item" href="/categories">分类</a>
+                
+                    <a class="menu-item" href="/tags">标签</a>
+                
+                    <a class="menu-item" href="/about">关于</a>
+                
+                    <a class="menu-item" href="/about">家常菜</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">GoRun996</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">文章</a>
+                
+                    <a class="menu-item" href="/categories">分类</a>
+                
+                    <a class="menu-item" href="/tags">标签</a>
+                
+                    <a class="menu-item" href="/about">关于</a>
+                
+                    <a class="menu-item" href="/about">家常菜</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">SpringCloud 微服务基础系列之Nacos</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Go Running</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">June 16, 2020&nbsp;&nbsp;0:43:05</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/SpringCloud-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E5%88%97/">SpringCloud 微服务系列</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="为什么叫Nacos？"><a href="#为什么叫Nacos？" class="headerlink" title="为什么叫Nacos？"></a>为什么叫Nacos？</h2><blockquote>
+<p>Nacos 名字的由来（取红色的英文字符）: Dynamic <code>Na</code>ming and <code>Co</code>nfiguration <code>S</code>ervice 动态命名和配置服务</p>
+</blockquote>
+<h2 id="Nacos-是什么？"><a href="#Nacos-是什么？" class="headerlink" title="Nacos 是什么？"></a>Nacos 是什么？</h2><p><a href="https://github.com/alibaba/Nacos" target="_blank" rel="noopener">Nacos</a> 是阿里巴巴开源的一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。 </p>
+<p>Nacos 既可以作为注册中心也可以作为配置中心，相当于SpringCloud中 Eureka + Config 的组合，并且Eureka 注册中心已经宣布停止更新了，Nacos提供了比它们更强大的功能，并将其合二为一帮助开发者更容易构建分布式系统。</p>
+<p>Nacos 作为注册中心在不同场景下可以切换成 <code>CAP理论</code>中的 <code>CP</code> 或 <code>AP</code> 模式</p>
+<p><img src="http://img.gorun996.com/images/f22beabffa4646dab0497bfc6f2654f2.png" alt="2.png"></p>
+<h2 id="Nacos-的主要功能有哪些？"><a href="#Nacos-的主要功能有哪些？" class="headerlink" title="Nacos 的主要功能有哪些？"></a>Nacos 的主要功能有哪些？</h2><ul>
+<li><p>服务发现与服务健康检测</p>
+</li>
+<li><p>动态配置服务</p>
+</li>
+<li><p>动态DNS服务</p>
+</li>
+<li><p>服务机器元数据管理</p>
+</li>
+</ul>
+<h2 id="Nacos-资料地址"><a href="#Nacos-资料地址" class="headerlink" title="Nacos 资料地址"></a>Nacos 资料地址</h2><p><a href="https://nacos.io/zh-cn/index.html" target="_blank" rel="noopener">Nacos官网地址</a></p>
+<p><a href="https://spring-cloud-alibaba-group.github.io/github-pages/greenwich/spring-cloud-alibaba.html" target="_blank" rel="noopener">SpringCloud官网Nacos介绍</a></p>
+<p><a href="https://github.com/alibaba/spring-cloud-alibaba/tree/master/spring-cloud-alibaba-examples/nacos-example" target="_blank" rel="noopener">Github nacos-example</a></p>
+<h2 id="安装并运行-Nacos"><a href="#安装并运行-Nacos" class="headerlink" title="安装并运行 Nacos"></a>安装并运行 Nacos</h2><h3 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h3><p><a href="https://github.com/alibaba/nacos/tags" target="_blank" rel="noopener">下载地址</a></p>
+<p><img src="http://img.gorun996.com/images/image-20200614161032918.png" alt="image-20200614161032918"></p>
+<h3 id="预备环境准备"><a href="#预备环境准备" class="headerlink" title="预备环境准备"></a>预备环境准备</h3><p>Nacos 依赖 <a href="https://docs.oracle.com/cd/E19182-01/820-7851/inst_cli_jdk_javahome_t/" target="_blank" rel="noopener">Java</a> 环境来运行。如果您是从代码开始构建并运行Nacos，还需要为此配置 <a href="https://maven.apache.org/index.html" target="_blank" rel="noopener">Maven</a>环境，请确保是在以下版本环境中安装使用:</p>
+<blockquote>
+<ol>
+<li>64 bit OS，支持 Linux/Unix/Mac/Windows，推荐选用 Linux/Unix/Mac。</li>
+<li>64 bit JDK 1.8+；<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">下载</a> &amp; <a href="https://docs.oracle.com/cd/E19182-01/820-7851/inst_cli_jdk_javahome_t/" target="_blank" rel="noopener">配置</a>。</li>
+<li>Maven 3.2.x+；<a href="https://maven.apache.org/download.cgi" target="_blank" rel="noopener">下载</a> &amp; <a href="https://maven.apache.org/settings.html" target="_blank" rel="noopener">配置</a>。</li>
+</ol>
+</blockquote>
+<h3 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h3><p><strong>Linux/Unix/Mac</strong></p>
+<p>启动命令(standalone代表着单机模式运行，非集群模式):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh startup.sh -m standalone</span><br></pre></td></tr></table></figure>
+
+<p>如果您使用的是ubuntu系统，或者运行脚本报错提示[[符号找不到，可尝试如下运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash startup.sh -m standalone</span><br></pre></td></tr></table></figure>
+
+<p><strong>Windows</strong></p>
+<p>启动命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd startup.cmd</span><br></pre></td></tr></table></figure>
+
+<p>或者双击startup.cmd运行文件。</p>
+<p>启动后打开Nacos服务地址 <a href="http://192.168.10.1:8848/nacos/index.html" target="_blank" rel="noopener">http://192.168.10.1:8848/nacos/index.html</a> ，初始用户名和密码均是nacos。</p>
+<p><img src="http://img.gorun996.com/images/image-20200614192559561.png" alt="image-20200614192559561"></p>
+<h3 id="服务注册-amp-发现和配置管理"><a href="#服务注册-amp-发现和配置管理" class="headerlink" title="服务注册&amp;发现和配置管理"></a>服务注册&amp;发现和配置管理</h3><p><strong>服务注册</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST &#39;http:&#x2F;&#x2F;127.0.0.1:8848&#x2F;nacos&#x2F;v1&#x2F;ns&#x2F;instance?serviceName&#x3D;nacos.naming.serviceName&amp;ip&#x3D;20.18.7.10&amp;port&#x3D;8080&#39;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img.gorun996.com/images/image-20200614192938944.png" alt="image-20200614192938944"></p>
+<p><strong>服务发现</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET &#39;http:&#x2F;&#x2F;127.0.0.1:8848&#x2F;nacos&#x2F;v1&#x2F;ns&#x2F;instance&#x2F;list?serviceName&#x3D;nacos.naming.serviceName&#39;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img.gorun996.com/images/image-20200614193103130.png" alt="image-20200614193103130"></p>
+<p><strong>发布配置</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST &quot;http:&#x2F;&#x2F;127.0.0.1:8848&#x2F;nacos&#x2F;v1&#x2F;cs&#x2F;configs?dataId&#x3D;nacos.cfg.dataId&amp;group&#x3D;test&amp;content&#x3D;HelloWorld&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img.gorun996.com/images/image-20200614193149138.png" alt="image-20200614193149138"></p>
+<p><strong>获取配置</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET &quot;http:&#x2F;&#x2F;127.0.0.1:8848&#x2F;nacos&#x2F;v1&#x2F;cs&#x2F;configs?dataId&#x3D;nacos.cfg.dataId&amp;group&#x3D;test&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img.gorun996.com/images/image-20200614193240796.png" alt="image-20200614193240796"></p>
+<h3 id="关闭服务器"><a href="#关闭服务器" class="headerlink" title="关闭服务器"></a>关闭服务器</h3><p><strong>Linux/Unix/Mac</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh shutdown.sh</span><br></pre></td></tr></table></figure>
+
+<p><strong>Windows</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd shutdown.cmd</span><br></pre></td></tr></table></figure>
+
+<p>或者双击shutdown.cmd运行文件。</p>
+<h2 id="Nacos-管理界面介绍"><a href="#Nacos-管理界面介绍" class="headerlink" title="Nacos 管理界面介绍"></a>Nacos 管理界面介绍</h2><p>下面是我们常见的nacos 界面，给大家介绍一个左侧的菜单功能</p>
+<p><img src="http://img.gorun996.com/images/image-20200614192559561-1592134526727.png" alt="image-20200614192559561"></p>
+<ul>
+<li>配置管理：指的是配置中心的管理<ul>
+<li>配置列表：展示所有的配置列表</li>
+<li>历史版本：每次修改后的例时记录</li>
+<li>监听查询</li>
+</ul>
+</li>
+<li>服务管理<ul>
+<li>服务列表</li>
+<li>订阅者列表</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://img.gorun996.com/images/image-20200614194152191.png" alt="image-20200614194152191"></p>
+<ul>
+<li>权限控制<ul>
+<li>用户列表：登录nacos界面的用户管理</li>
+<li>角色管理：用户所拥有的角色，需要绑定用户</li>
+<li>权限管理：角色拥有的权限管理，需要绑定角色，对不同命名空间中的数据拥有的权限</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://img.gorun996.com/images/image-20200614194245710.png" alt="image-20200614194245710"></p>
+<ul>
+<li>命名空间：nacos 中根据不同命名空间区分不同服务，下面  dev 和 test 都是我自己配置的，可以编辑删除，public 是 nacos 默认保留的，不允许编辑和删除</li>
+</ul>
+<p><img src="http://img.gorun996.com/images/image-20200614194858555.png" alt="image-20200614194858555"></p>
+<ul>
+<li>集群管理<ul>
+<li>节点列表：Nacos 集群节点列表</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://img.gorun996.com/images/image-20200614194317164.png" alt="image-20200614194317164"></p>
+<h2 id="Nacos-作为注册中心"><a href="#Nacos-作为注册中心" class="headerlink" title="Nacos 作为注册中心"></a>Nacos 作为注册中心</h2><blockquote>
+<p>本示例说明了如何使用 Nacos Discovery Starter 实现 SpringCloud 应用服务发现。</p>
+<p><a href="https://github.com/alibaba/Nacos" target="_blank" rel="noopener">Nacos</a> 是阿里巴巴开源的一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。</p>
+</blockquote>
+<p>第一步: 创建一个普通的 SpringCloud 项目</p>
+<p>第二步：在项目中添加 <code>spring-cloud-starter-alibaba-nacos-discovery</code></p>
+<p> 完整 pom 文件如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- nacos discovery --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--spring cloud alibaba 2.2.0.RELEASE--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>第三步：/src/main/resources/application.properties 文件中添加Nacos服务地址相关配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span> <span class="comment"># nacos地址</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">nacos-provider-server</span> <span class="comment"># 服务名</span></span><br><span class="line">    </span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">7001</span> <span class="comment"># 端口号</span></span><br></pre></td></tr></table></figure>
+
+<p>第四步：主启动类中加入注解 @EnableDiscoveryClient 开启服务注册与发现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableDiscoveryClient</span><br><span class="line">public class ProviderApplication &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(Application.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@RestController</span><br><span class="line">	class EchoController &#123;</span><br><span class="line">		@GetMapping(value &#x3D; &quot;&#x2F;echo&#x2F;&#123;string&#125;&quot;)</span><br><span class="line">		public String echo(@PathVariable String string) &#123;</span><br><span class="line">				return &quot;Nacos server: &quot; + string;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第五步：启动Nacos服务器</p>
+<p>第六步：启动应用</p>
+<p>浏览器访问 <a href="http://localhost:7001/echo/HelloWorld" target="_blank" rel="noopener">http://localhost:7001/echo/HelloWorld</a></p>
+<p><img src="http://img.gorun996.com/images/image-20200614202036080.png" alt="image-20200614202036080"></p>
+<p>查看Nacos服务器管理台界面，可以看到在服务列表中多了刚才启动的服务</p>
+<p><img src="http://img.gorun996.com/images/image-20200614202123050.png" alt="image-20200614202123050"></p>
+<h3 id="Nacos-服务发现"><a href="#Nacos-服务发现" class="headerlink" title="Nacos 服务发现"></a>Nacos 服务发现</h3><blockquote>
+<p>为了便于使用，NacosServerList 实现了 com.netflix.loadbalancer.ServerList 接口，并在 @ConditionOnMissingBean 的条件下进行自动注入。如果您有定制化的需求，可以自己实现自己的 ServerList。</p>
+<p>Nacos Discovery Starter 默认集成了 Ribbon ，所以对于使用了 Ribbon 做负载均衡的组件，可以直接使用 Nacos 的服务发现。</p>
+</blockquote>
+<p>下面按照步骤创建项目 cloud-nacos-consumer-8001 服务，验证如何使用 RestTemplate 与 FeignClient</p>
+<p><img src="http://img.gorun996.com/images/image-20200614203055228.png" alt="image-20200614203055228"></p>
+<p>（1）添加 @LoadBlanced 注解，使得 RestTemplate 接入 Ribbon</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@LoadBalanced</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RestTemplate <span class="title">restTemplate</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）配置 FeignClient</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient</span>(name = <span class="string">"nacos-provider-server"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EchoService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/echo/&#123;str&#125;"</span>)</span><br><span class="line">    <span class="function">String <span class="title">echo</span><span class="params">(@PathVariable(<span class="string">"str"</span>)</span> String str)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 @FeignClient 注解将 EchoService 这个接口包装成一个 FeignClient，属性 name 对应服务名 service-provider。</p>
+<p>echo 方法上的 @RequestMapping 注解将 echo 方法与 URL “/echo/{str}” 相对应，@PathVariable 注解将 URL 路径中的 <code>{str}</code> 对应成 echo 方法的参数 str。</p>
+<p>（3）完成以上配置后，将两者自动注入到 TestController 中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> EchoService echoService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/echo-rest/&#123;str&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">rest</span><span class="params">(@PathVariable String str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> restTemplate.getForObject(<span class="string">"http://nacos-provider-server/echo/"</span> + str, String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/echo-feign/&#123;str&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">feign</span><span class="params">(@PathVariable String str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> echoService.echo(str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）启动项目</p>
+<p>（5）在浏览器输入 <a href="http://localhost:8001/echo-rest/helloWorld，" target="_blank" rel="noopener">http://localhost:8001/echo-rest/helloWorld，</a> <a href="http://localhost:8001/echo-feign/helloWorld" target="_blank" rel="noopener">http://localhost:8001/echo-feign/helloWorld</a> 访问成功</p>
+<p><img src="http://img.gorun996.com/images/image-20200614205044586.png" alt="image-20200614205044586"></p>
+<p><img src="http://img.gorun996.com/images/image-20200614205612965.png" alt="image-20200614205612965"></p>
+<h3 id="Nacos-服务注册与发现原理"><a href="#Nacos-服务注册与发现原理" class="headerlink" title="Nacos 服务注册与发现原理"></a>Nacos 服务注册与发现原理</h3><h4 id="服务注册"><a href="#服务注册" class="headerlink" title="服务注册"></a>服务注册</h4><p>Spring Cloud Nacos Discovery 遵循了 spring cloud common 标准，实现了 AutoServiceRegistration、ServiceRegistry、Registration 这三个接口。</p>
+<p>在 spring cloud 应用的启动阶段，监听了 WebServerInitializedEvent 事件，当Web容器初始化完成后，即收到 WebServerInitializedEvent 事件后，会触发注册的动作，调用 ServiceRegistry 的 register 方法，将服务注册到 Nacos Server。</p>
+<h4 id="服务发现"><a href="#服务发现" class="headerlink" title="服务发现"></a>服务发现</h4><p>NacosServerList 实现了 com.netflix.loadbalancer.ServerList 接口，并在 @ConditionOnMissingBean 的条件下进行自动注入，默认集成了Ribbon。</p>
+<p>如果需要有更加自定义的可以使用 @Autowired 注入一个 NacosRegistration 实例，通过其持有的 NamingService 字段内容直接调用 Nacos API。 </p>
+<h2 id="Nacos-作为配置中心"><a href="#Nacos-作为配置中心" class="headerlink" title="Nacos 作为配置中心"></a>Nacos 作为配置中心</h2><h3 id="Nacos-配置中心介绍"><a href="#Nacos-配置中心介绍" class="headerlink" title="Nacos 配置中心介绍"></a>Nacos 配置中心介绍</h3><p>Nacos 配置中心支持 namespace(命名空间)、group(分组)、dataId(数据id) 三个属性确定一个配置</p>
+<blockquote>
+<ul>
+<li>namespace：即命名空间，可以配置成 dev、test、pro 用于切换不用环境的配置，<code>默认 public</code></li>
+<li>group：即分组，可以将同一个项目下的不用服务配置命名同一个分组统一管理，<code>默认 DEFAULT_GROUP</code></li>
+<li>dataId: 即数据id，通常 <code>dataId = ${spring.application.name}.${file-extension:properties}</code> 或者<code>dataId =${spring.application.name}-${profile}.${file-extension:properties}</code>两种情况组成</li>
+<li>三者都可以在配置文件中自定义配置</li>
+</ul>
+</blockquote>
+<p>namespace、group、dataId 三者之间的关系如下图所示</p>
+<img src="http://img.gorun996.com/images/1561217857314-95ab332c-acfb-40b2-957a-aae26c2b5d71.jpeg" alt="nacos_data_model" style="zoom:33%;" />
+
+<p><img src="http://img.gorun996.com/images/image-20200615235601169.png" alt="image-20200615235601169"></p>
+<h3 id="如何在SpringCloud项目中使用Nacos-Config"><a href="#如何在SpringCloud项目中使用Nacos-Config" class="headerlink" title="如何在SpringCloud项目中使用Nacos Config"></a>如何在SpringCloud项目中使用Nacos Config</h3><ul>
+<li>添加依赖</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>新建 bootstrap.yml 文件</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">nacos-provider-server</span> <span class="comment"># 应用名</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span> <span class="comment"># nacos 服务地址</span></span><br><span class="line"></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">7001</span> <span class="comment">#端口号</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>如果需要使用域名配置nacos服务地址，格式必须按照 <code>domain name:port</code>,例如 nacos.abc.com:80</li>
+<li>file-extension 默认值为 properties</li>
+</ul>
+</blockquote>
+<p>注意：根据前面介绍的dataId生成规则，这里的 <code>dataId = ${spring.application.name}.${file-extension:properties}</code></p>
+<p>即：dataId = nacos-provider-server.properties</p>
+<ul>
+<li>主启动类中添加读取配置代码s</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NacosProviderMain7001</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext applicationContext = SpringApplication.run(NacosProviderMain7001<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">        String userName = applicationContext.getEnvironment().getProperty(<span class="string">"user.name"</span>);</span><br><span class="line">        String userAge = applicationContext.getEnvironment().getProperty(<span class="string">"user.age"</span>);</span><br><span class="line">        System.err.println(<span class="string">"user name :"</span> +userName+<span class="string">"; age: "</span>+userAge);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RestController</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">EchoController</span> </span>&#123;</span><br><span class="line">        <span class="meta">@GetMapping</span>(value = <span class="string">"/echo/&#123;string&#125;"</span>)</span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">echo</span><span class="params">(@PathVariable String string)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Nacos server: "</span> + string;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Nacos 服务器上添加 dataId = nacos-provider-server.properties 的配置</li>
+</ul>
+<p><img src="http://img.gorun996.com/images/image-20200616001810493.png" alt="image-20200616001810493"></p>
+<ul>
+<li>测试，启动项目</li>
+</ul>
+<p><img src="http://img.gorun996.com/images/image-20200616002048860.png" alt="image-20200616002048860"></p>
+<h3 id="Nacos-配置动态刷新"><a href="#Nacos-配置动态刷新" class="headerlink" title="Nacos 配置动态刷新"></a>Nacos 配置动态刷新</h3><blockquote>
+<ul>
+<li>nacos 支持配置动态刷新</li>
+<li>nacos 配置动态刷新是默认开启的</li>
+<li>如果想要关闭动态刷新功能，修改配置为<code>spring.cloud.nacos.config.refresh.enabled=false</code> 即可关闭动态刷新</li>
+<li>如果需要在SpringBoot 配置类中动态读取 Nacos 配置有两种方式<ul>
+<li>配置类上加注解 <strong>@RefreshScope</strong>(springcloud 提供) ，配置属性上依然使用 @Value 注解</li>
+<li>或者直接将配置属性上的@Value注解替换为<strong>@NacosValue</strong>(nacos 提供)注解，并设置autoRefreshed=true</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>测试代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NacosProviderMain7001</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext applicationContext = SpringApplication.run(NacosProviderMain7001<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            String userName = applicationContext.getEnvironment().getProperty(<span class="string">"user.name"</span>);</span><br><span class="line">            String userAge = applicationContext.getEnvironment().getProperty(<span class="string">"user.age"</span>);</span><br><span class="line">            System.err.println(<span class="string">"user name :"</span> +userName+<span class="string">"; age: "</span>+userAge);</span><br><span class="line">            TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RestController</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">EchoController</span> </span>&#123;</span><br><span class="line">        <span class="meta">@GetMapping</span>(value = <span class="string">"/echo/&#123;string&#125;"</span>)</span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">echo</span><span class="params">(@PathVariable String string)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Nacos server: "</span> + string;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果在项目启动过程中修改 nacos中的配置，那么控制台打印的结果也会随之变化</p>
+<h2 id="Nacos-集群与持久化配置"><a href="#Nacos-集群与持久化配置" class="headerlink" title="Nacos 集群与持久化配置"></a>Nacos 集群与持久化配置</h2><h3 id="Nacos支持三种部署模式"><a href="#Nacos支持三种部署模式" class="headerlink" title="Nacos支持三种部署模式"></a>Nacos支持三种部署模式</h3><ul>
+<li>单机模式 - 用于测试和单机试用。</li>
+<li>集群模式 - 用于生产环境，确保高可用。</li>
+<li>多集群模式 - 用于多数据中心场景</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Go Running</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://blog.gorun996.com/2020/06/16/springcloud-alibaba-nacos/">http://blog.gorun996.com/2020/06/16/springcloud-alibaba-nacos/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/SpringCloud/"># SpringCloud</a>
+                    
+                        <a href="/tags/SpringCloud-Alibaba/"># SpringCloud Alibaba</a>
+                    
+                        <a href="/tags/Nacos/"># Nacos</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/06/14/springcloud-alibaba/">SpringCloud Alibaba 简介</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Go Running | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+	<div class="visit">
+        访客数：<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;|&nbsp;
+        访问量：<span id="busuanzi_value_site_pv"></span>
+    </div>
+	<div class="visit">
+		<a href="http://www.beian.miit.gov.cn" target="_blank">
+			<img  style="vertical-align: text-bottom;" src="/image/beian.png">
+			<span>皖ICP备20002937号</span>
+		</a>
+	</div>	
+</footer>
+
+    </div>
+</body>
+</html>
