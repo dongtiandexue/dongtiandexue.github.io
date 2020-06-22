@@ -1,183 +1,1520 @@
 <!DOCTYPE html>
+
+
 <html lang="en">
+
+
 <head>
-    <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <meta name="author" content="Go Running">
-
-
-
-
-
-<title>Hexo</title>
-
-
-
-    <link rel="icon" href="/my_favicon.ico">
-
-
-
-
-    <!-- stylesheets list from _config.yml -->
+  <meta charset="utf-8" />
     
-    <link rel="stylesheet" href="/css/style.css">
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+     Hexo
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
 
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
 
+  
+<link rel="stylesheet" href="/css/custom.css">
 
-    <!-- scripts list from _config.yml -->
-    
-    <script src="/js/script.js"></script>
-    
-    <script src="/js/tocbot.min.js"></script>
-    
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
 
+  
+  
 
+  
 
-    
-    
-        
-    
+</head>
 
+</html>
 
-<meta name="generator" content="Hexo 4.2.0"></head>
 <body>
-    <div class="wrapper">
-        <header>
-    <nav class="navbar">
-        <div class="container">
-            <div class="navbar-header header-logo"><a href="/">GoRun996</a></div>
-            <div class="menu navbar-right">
-                
-                    <a class="menu-item" href="/archives">文章</a>
-                
-                    <a class="menu-item" href="/categories">分类</a>
-                
-                    <a class="menu-item" href="/tags">标签</a>
-                
-                    <a class="menu-item" href="/about">关于</a>
-                
-                    <a class="menu-item" href="/about">家常菜</a>
-                
-                <input id="switch_default" type="checkbox" class="switch_default">
-                <label for="switch_default" class="toggleBtn"></label>
-            </div>
-        </div>
-    </nav>
+  <div id="app">
+    
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+      
+      <a class="forkMe" href="https://github.com/Shen-Yu/hexo-theme-ayer"
+        target="_blank"><img width="149" height="149" src="/images/forkme.png"
+          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover1.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">Hexo</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+<div id="main">
+  <section class="outer">
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-springcloud-alibaba-nacos"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/16/springcloud-alibaba-nacos/"
+    >SpringCloud 微服务基础系列之Nacos</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/06/16/springcloud-alibaba-nacos/" class="article-date">
+  <time datetime="2020-06-15T16:43:05.000Z" itemprop="datePublished">2020-06-16</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SpringCloud-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E5%88%97/">SpringCloud 微服务系列</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="为什么叫Nacos？"><a href="#为什么叫Nacos？" class="headerlink" title="为什么叫Nacos？"></a>为什么叫Nacos？</h2><blockquote>
+<p>Nacos 名字的由来（取红色的英文字符）: Dynamic <code>Na</code>ming and <code>Co</code>nfiguration <code>S</code>ervice 动态命名和配置服务</p>
+</blockquote>
+<h2 id="Nacos-是什么？"><a href="#Nacos-是什么？" class="headerlink" title="Nacos 是什么？"></a>Nacos 是什么？</h2><p><a href="https://github.com/alibaba/Nacos" target="_blank" rel="noopener">Nacos</a> 是阿里巴巴开源的一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。 </p>
+<p>Nacos 既可以作为注册中心也可以作为配置中心，相当于SpringCloud中 Eureka + Config 的组合，并且Eureka 注册中心已经宣布停止更新了，Nacos提供了比它们更强大的功能，并将其合二为一帮助开发者更容易构建分布式系统。</p>
+<p>Nacos 作为注册中心在不同场景下可以切换成 <code>CAP理论</code>中的 <code>CP</code> 或 <code>AP</code> 模式</p>
+<p><img src="http://img.gorun996.com/images/f22beabffa4646dab0497bfc6f2654f2.png" alt="2.png"></p>
+<h2 id="Nacos-的主要功能有哪些？"><a href="#Nacos-的主要功能有哪些？" class="headerlink" title="Nacos 的主要功能有哪些？"></a>Nacos 的主要功能有哪些？</h2><ul>
+<li><p>服务发现与服务健康检测</p>
+</li>
+<li><p>动态配置服务</p>
+</li>
+<li><p>动态DNS服务</p>
+</li>
+<li><p>服务机器元数据管理</p>
+</li>
+</ul>
+<h2 id="Nacos-资料地址"><a href="#Nacos-资料地址" class="headerlink" title="Nacos 资料地址"></a>Nacos 资料地址</h2><p><a href="https://nacos.io/zh-cn/index.html" target="_blank" rel="noopener">Nacos官网地址</a></p>
+<p><a href="https://spring-cloud-alibaba-group.github.io/github-pages/greenwich/spring-cloud-alibaba.html" target="_blank" rel="noopener">SpringCloud官网Nacos介绍</a></p>
+<p><a href="https://github.com/alibaba/spring-cloud-alibaba/tree/master/spring-cloud-alibaba-examples/nacos-example" target="_blank" rel="noopener">Github nacos-example</a></p>
+<h2 id="安装并运行-Nacos"><a href="#安装并运行-Nacos" class="headerlink" title="安装并运行 Nacos"></a>安装并运行 Nacos</h2><h3 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h3><p><a href="https://github.com/alibaba/nacos/tags" target="_blank" rel="noopener">下载地址</a></p>
+<p><img src="http://img.gorun996.com/images/image-20200614161032918.png" alt="image-20200614161032918"></p>
+<h3 id="预备环境准备"><a href="#预备环境准备" class="headerlink" title="预备环境准备"></a>预备环境准备</h3><p>Nacos 依赖 <a href="https://docs.oracle.com/cd/E19182-01/820-7851/inst_cli_jdk_javahome_t/" target="_blank" rel="noopener">Java</a> 环境来运行。如果您是从代码开始构建并运行Nacos，还需要为此配置 <a href="https://maven.apache.org/index.html" target="_blank" rel="noopener">Maven</a>环境，请确保是在以下版本环境中安装使用:</p>
+<blockquote>
+<ol>
+<li>64 bit OS，支持 Linux/Unix/Mac/Windows，推荐选用 Linux/Unix/Mac。</li>
+<li>64 bit JDK 1.8+；<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">下载</a> &amp; <a href="https://docs.oracle.com/cd/E19182-01/820-7851/inst_cli_jdk_javahome_t/" target="_blank" rel="noopener">配置</a>。</li>
+<li>Maven 3.2.x+；<a href="https://maven.apache.org/download.cgi" target="_blank" rel="noopener">下载</a> &amp; <a href="https://maven.apache.org/settings.html" target="_blank" rel="noopener">配置</a>。</li>
+</ol>
+</blockquote>
+<h3 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h3><p><strong>Linux/Unix/Mac</strong></p>
+<p>启动命令(standalone代表着单机模式运行，非集群模式):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh startup.sh -m standalone</span><br></pre></td></tr></table></figure>
+
+<p>如果您使用的是ubuntu系统，或者运行脚本报错提示[[符号找不到，可尝试如下运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash startup.sh -m standalone</span><br></pre></td></tr></table></figure>
+
+<p><strong>Windows</strong></p>
+<p>启动命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd startup.cmd</span><br></pre></td></tr></table></figure>
+
+<p>或者双击startup.cmd运行文件。</p>
+<p>启动后打开Nacos服务地址 <a href="http://192.168.10.1:8848/nacos/index.html" target="_blank" rel="noopener">http://192.168.10.1:8848/nacos/index.html</a> ，初始用户名和密码均是nacos。</p>
+<p><img src="http://img.gorun996.com/images/image-20200614192559561.png" alt="image-20200614192559561"></p>
+<h3 id="服务注册-amp-发现和配置管理"><a href="#服务注册-amp-发现和配置管理" class="headerlink" title="服务注册&amp;发现和配置管理"></a>服务注册&amp;发现和配置管理</h3><p><strong>服务注册</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST &#39;http:&#x2F;&#x2F;127.0.0.1:8848&#x2F;nacos&#x2F;v1&#x2F;ns&#x2F;instance?serviceName&#x3D;nacos.naming.serviceName&amp;ip&#x3D;20.18.7.10&amp;port&#x3D;8080&#39;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img.gorun996.com/images/image-20200614192938944.png" alt="image-20200614192938944"></p>
+<p><strong>服务发现</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET &#39;http:&#x2F;&#x2F;127.0.0.1:8848&#x2F;nacos&#x2F;v1&#x2F;ns&#x2F;instance&#x2F;list?serviceName&#x3D;nacos.naming.serviceName&#39;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img.gorun996.com/images/image-20200614193103130.png" alt="image-20200614193103130"></p>
+<p><strong>发布配置</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST &quot;http:&#x2F;&#x2F;127.0.0.1:8848&#x2F;nacos&#x2F;v1&#x2F;cs&#x2F;configs?dataId&#x3D;nacos.cfg.dataId&amp;group&#x3D;test&amp;content&#x3D;HelloWorld&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img.gorun996.com/images/image-20200614193149138.png" alt="image-20200614193149138"></p>
+<p><strong>获取配置</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X GET &quot;http:&#x2F;&#x2F;127.0.0.1:8848&#x2F;nacos&#x2F;v1&#x2F;cs&#x2F;configs?dataId&#x3D;nacos.cfg.dataId&amp;group&#x3D;test&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img.gorun996.com/images/image-20200614193240796.png" alt="image-20200614193240796"></p>
+<h3 id="关闭服务器"><a href="#关闭服务器" class="headerlink" title="关闭服务器"></a>关闭服务器</h3><p><strong>Linux/Unix/Mac</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh shutdown.sh</span><br></pre></td></tr></table></figure>
+
+<p><strong>Windows</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd shutdown.cmd</span><br></pre></td></tr></table></figure>
+
+<p>或者双击shutdown.cmd运行文件。</p>
+<h2 id="Nacos-管理界面介绍"><a href="#Nacos-管理界面介绍" class="headerlink" title="Nacos 管理界面介绍"></a>Nacos 管理界面介绍</h2><p>下面是我们常见的nacos 界面，给大家介绍一个左侧的菜单功能</p>
+<p><img src="http://img.gorun996.com/images/image-20200614192559561-1592134526727.png" alt="image-20200614192559561"></p>
+<ul>
+<li>配置管理：指的是配置中心的管理<ul>
+<li>配置列表：展示所有的配置列表</li>
+<li>历史版本：每次修改后的例时记录</li>
+<li>监听查询</li>
+</ul>
+</li>
+<li>服务管理<ul>
+<li>服务列表</li>
+<li>订阅者列表</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://img.gorun996.com/images/image-20200614194152191.png" alt="image-20200614194152191"></p>
+<ul>
+<li>权限控制<ul>
+<li>用户列表：登录nacos界面的用户管理</li>
+<li>角色管理：用户所拥有的角色，需要绑定用户</li>
+<li>权限管理：角色拥有的权限管理，需要绑定角色，对不同命名空间中的数据拥有的权限</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://img.gorun996.com/images/image-20200614194245710.png" alt="image-20200614194245710"></p>
+<ul>
+<li>命名空间：nacos 中根据不同命名空间区分不同服务，下面  dev 和 test 都是我自己配置的，可以编辑删除，public 是 nacos 默认保留的，不允许编辑和删除</li>
+</ul>
+<p><img src="http://img.gorun996.com/images/image-20200614194858555.png" alt="image-20200614194858555"></p>
+<ul>
+<li>集群管理<ul>
+<li>节点列表：Nacos 集群节点列表</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://img.gorun996.com/images/image-20200614194317164.png" alt="image-20200614194317164"></p>
+<h2 id="Nacos-作为注册中心"><a href="#Nacos-作为注册中心" class="headerlink" title="Nacos 作为注册中心"></a>Nacos 作为注册中心</h2><blockquote>
+<p>本示例说明了如何使用 Nacos Discovery Starter 实现 SpringCloud 应用服务发现。</p>
+<p><a href="https://github.com/alibaba/Nacos" target="_blank" rel="noopener">Nacos</a> 是阿里巴巴开源的一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。</p>
+</blockquote>
+<p>第一步: 创建一个普通的 SpringCloud 项目</p>
+<p>第二步：在项目中添加 <code>spring-cloud-starter-alibaba-nacos-discovery</code></p>
+<p> 完整 pom 文件如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- nacos discovery --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--spring cloud alibaba 2.2.0.RELEASE--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>第三步：/src/main/resources/application.properties 文件中添加Nacos服务地址相关配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span> <span class="comment"># nacos地址</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">nacos-provider-server</span> <span class="comment"># 服务名</span></span><br><span class="line">    </span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">7001</span> <span class="comment"># 端口号</span></span><br></pre></td></tr></table></figure>
+
+<p>第四步：主启动类中加入注解 @EnableDiscoveryClient 开启服务注册与发现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableDiscoveryClient</span><br><span class="line">public class ProviderApplication &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(Application.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@RestController</span><br><span class="line">	class EchoController &#123;</span><br><span class="line">		@GetMapping(value &#x3D; &quot;&#x2F;echo&#x2F;&#123;string&#125;&quot;)</span><br><span class="line">		public String echo(@PathVariable String string) &#123;</span><br><span class="line">				return &quot;Nacos server: &quot; + string;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第五步：启动Nacos服务器</p>
+<p>第六步：启动应用</p>
+<p>浏览器访问 <a href="http://localhost:7001/echo/HelloWorld" target="_blank" rel="noopener">http://localhost:7001/echo/HelloWorld</a></p>
+<p><img src="http://img.gorun996.com/images/image-20200614202036080.png" alt="image-20200614202036080"></p>
+<p>查看Nacos服务器管理台界面，可以看到在服务列表中多了刚才启动的服务</p>
+<p><img src="http://img.gorun996.com/images/image-20200614202123050.png" alt="image-20200614202123050"></p>
+<h3 id="Nacos-服务发现"><a href="#Nacos-服务发现" class="headerlink" title="Nacos 服务发现"></a>Nacos 服务发现</h3><blockquote>
+<p>为了便于使用，NacosServerList 实现了 com.netflix.loadbalancer.ServerList 接口，并在 @ConditionOnMissingBean 的条件下进行自动注入。如果您有定制化的需求，可以自己实现自己的 ServerList。</p>
+<p>Nacos Discovery Starter 默认集成了 Ribbon ，所以对于使用了 Ribbon 做负载均衡的组件，可以直接使用 Nacos 的服务发现。</p>
+</blockquote>
+<p>下面按照步骤创建项目 cloud-nacos-consumer-8001 服务，验证如何使用 RestTemplate 与 FeignClient</p>
+<p><img src="http://img.gorun996.com/images/image-20200614203055228.png" alt="image-20200614203055228"></p>
+<p>（1）添加 @LoadBlanced 注解，使得 RestTemplate 接入 Ribbon</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@LoadBalanced</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RestTemplate <span class="title">restTemplate</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）配置 FeignClient</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient</span>(name = <span class="string">"nacos-provider-server"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EchoService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/echo/&#123;str&#125;"</span>)</span><br><span class="line">    <span class="function">String <span class="title">echo</span><span class="params">(@PathVariable(<span class="string">"str"</span>)</span> String str)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 @FeignClient 注解将 EchoService 这个接口包装成一个 FeignClient，属性 name 对应服务名 service-provider。</p>
+<p>echo 方法上的 @RequestMapping 注解将 echo 方法与 URL “/echo/{str}” 相对应，@PathVariable 注解将 URL 路径中的 <code>{str}</code> 对应成 echo 方法的参数 str。</p>
+<p>（3）完成以上配置后，将两者自动注入到 TestController 中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> EchoService echoService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/echo-rest/&#123;str&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">rest</span><span class="params">(@PathVariable String str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> restTemplate.getForObject(<span class="string">"http://nacos-provider-server/echo/"</span> + str, String<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/echo-feign/&#123;str&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">feign</span><span class="params">(@PathVariable String str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> echoService.echo(str);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）启动项目</p>
+<p>（5）在浏览器输入 <a href="http://localhost:8001/echo-rest/helloWorld，" target="_blank" rel="noopener">http://localhost:8001/echo-rest/helloWorld，</a> <a href="http://localhost:8001/echo-feign/helloWorld" target="_blank" rel="noopener">http://localhost:8001/echo-feign/helloWorld</a> 访问成功</p>
+<p><img src="http://img.gorun996.com/images/image-20200614205044586.png" alt="image-20200614205044586"></p>
+<p><img src="http://img.gorun996.com/images/image-20200614205612965.png" alt="image-20200614205612965"></p>
+<h3 id="Nacos-服务注册与发现原理"><a href="#Nacos-服务注册与发现原理" class="headerlink" title="Nacos 服务注册与发现原理"></a>Nacos 服务注册与发现原理</h3><h4 id="服务注册"><a href="#服务注册" class="headerlink" title="服务注册"></a>服务注册</h4><p>Spring Cloud Nacos Discovery 遵循了 spring cloud common 标准，实现了 AutoServiceRegistration、ServiceRegistry、Registration 这三个接口。</p>
+<p>在 spring cloud 应用的启动阶段，监听了 WebServerInitializedEvent 事件，当Web容器初始化完成后，即收到 WebServerInitializedEvent 事件后，会触发注册的动作，调用 ServiceRegistry 的 register 方法，将服务注册到 Nacos Server。</p>
+<h4 id="服务发现"><a href="#服务发现" class="headerlink" title="服务发现"></a>服务发现</h4><p>NacosServerList 实现了 com.netflix.loadbalancer.ServerList 接口，并在 @ConditionOnMissingBean 的条件下进行自动注入，默认集成了Ribbon。</p>
+<p>如果需要有更加自定义的可以使用 @Autowired 注入一个 NacosRegistration 实例，通过其持有的 NamingService 字段内容直接调用 Nacos API。 </p>
+<h2 id="Nacos-作为配置中心"><a href="#Nacos-作为配置中心" class="headerlink" title="Nacos 作为配置中心"></a>Nacos 作为配置中心</h2><h3 id="Nacos-配置中心介绍"><a href="#Nacos-配置中心介绍" class="headerlink" title="Nacos 配置中心介绍"></a>Nacos 配置中心介绍</h3><p>Nacos 配置中心支持 namespace(命名空间)、group(分组)、dataId(数据id) 三个属性确定一个配置</p>
+<blockquote>
+<ul>
+<li>namespace：即命名空间，可以配置成 dev、test、pro 用于切换不用环境的配置，<code>默认 public</code></li>
+<li>group：即分组，可以将同一个项目下的不用服务配置命名同一个分组统一管理，<code>默认 DEFAULT_GROUP</code></li>
+<li>dataId: 即数据id，通常 <code>dataId = ${spring.application.name}.${file-extension:properties}</code> 或者<code>dataId =${spring.application.name}-${profile}.${file-extension:properties}</code>两种情况组成</li>
+<li>三者都可以在配置文件中自定义配置</li>
+</ul>
+</blockquote>
+<p>namespace、group、dataId 三者之间的关系如下图所示</p>
+<img src="http://img.gorun996.com/images/1561217857314-95ab332c-acfb-40b2-957a-aae26c2b5d71.jpeg" alt="nacos_data_model" style="zoom:33%;" />
+
+<p><img src="http://img.gorun996.com/images/image-20200615235601169.png" alt="image-20200615235601169"></p>
+<h3 id="如何在SpringCloud项目中使用Nacos-Config"><a href="#如何在SpringCloud项目中使用Nacos-Config" class="headerlink" title="如何在SpringCloud项目中使用Nacos Config"></a>如何在SpringCloud项目中使用Nacos Config</h3><ul>
+<li>添加依赖</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>新建 bootstrap.yml 文件</li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">nacos-provider-server</span> <span class="comment"># 应用名</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span> <span class="comment"># nacos 服务地址</span></span><br><span class="line"></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">7001</span> <span class="comment">#端口号</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>如果需要使用域名配置nacos服务地址，格式必须按照 <code>domain name:port</code>,例如 nacos.abc.com:80</li>
+<li>file-extension 默认值为 properties</li>
+</ul>
+</blockquote>
+<p>注意：根据前面介绍的dataId生成规则，这里的 <code>dataId = ${spring.application.name}.${file-extension:properties}</code></p>
+<p>即：dataId = nacos-provider-server.properties</p>
+<ul>
+<li>主启动类中添加读取配置代码s</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NacosProviderMain7001</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext applicationContext = SpringApplication.run(NacosProviderMain7001<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">        String userName = applicationContext.getEnvironment().getProperty(<span class="string">"user.name"</span>);</span><br><span class="line">        String userAge = applicationContext.getEnvironment().getProperty(<span class="string">"user.age"</span>);</span><br><span class="line">        System.err.println(<span class="string">"user name :"</span> +userName+<span class="string">"; age: "</span>+userAge);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RestController</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">EchoController</span> </span>&#123;</span><br><span class="line">        <span class="meta">@GetMapping</span>(value = <span class="string">"/echo/&#123;string&#125;"</span>)</span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">echo</span><span class="params">(@PathVariable String string)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Nacos server: "</span> + string;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Nacos 服务器上添加 dataId = nacos-provider-server.properties 的配置</li>
+</ul>
+<p><img src="http://img.gorun996.com/images/image-20200616001810493.png" alt="image-20200616001810493"></p>
+<ul>
+<li>测试，启动项目</li>
+</ul>
+<p><img src="http://img.gorun996.com/images/image-20200616002048860.png" alt="image-20200616002048860"></p>
+<h3 id="Nacos-配置动态刷新"><a href="#Nacos-配置动态刷新" class="headerlink" title="Nacos 配置动态刷新"></a>Nacos 配置动态刷新</h3><blockquote>
+<ul>
+<li>nacos 支持配置动态刷新</li>
+<li>nacos 配置动态刷新是默认开启的</li>
+<li>如果想要关闭动态刷新功能，修改配置为<code>spring.cloud.nacos.config.refresh.enabled=false</code> 即可关闭动态刷新</li>
+<li>如果需要在SpringBoot 配置类中动态读取 Nacos 配置有两种方式<ul>
+<li>配置类上加注解 <strong>@RefreshScope</strong>(springcloud 提供) ，配置属性上依然使用 @Value 注解</li>
+<li>或者直接将配置属性上的@Value注解替换为<strong>@NacosValue</strong>(nacos 提供)注解，并设置autoRefreshed=true</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>测试代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NacosProviderMain7001</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext applicationContext = SpringApplication.run(NacosProviderMain7001<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            String userName = applicationContext.getEnvironment().getProperty(<span class="string">"user.name"</span>);</span><br><span class="line">            String userAge = applicationContext.getEnvironment().getProperty(<span class="string">"user.age"</span>);</span><br><span class="line">            System.err.println(<span class="string">"user name :"</span> +userName+<span class="string">"; age: "</span>+userAge);</span><br><span class="line">            TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RestController</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">EchoController</span> </span>&#123;</span><br><span class="line">        <span class="meta">@GetMapping</span>(value = <span class="string">"/echo/&#123;string&#125;"</span>)</span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">echo</span><span class="params">(@PathVariable String string)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Nacos server: "</span> + string;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果在项目启动过程中修改 nacos中的配置，那么控制台打印的结果也会随之变化</p>
+<h2 id="Nacos-集群与持久化配置"><a href="#Nacos-集群与持久化配置" class="headerlink" title="Nacos 集群与持久化配置"></a>Nacos 集群与持久化配置</h2><h3 id="Nacos支持三种部署模式"><a href="#Nacos支持三种部署模式" class="headerlink" title="Nacos支持三种部署模式"></a>Nacos支持三种部署模式</h3><ul>
+<li>单机模式 - 用于测试和单机试用。</li>
+<li>集群模式 - 用于生产环境，确保高可用。</li>
+<li>多集群模式 - 用于多数据中心场景</li>
+</ul>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nacos/" rel="tag">Nacos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud-Alibaba/" rel="tag">SpringCloud Alibaba</a></li></ul>
+
+    </footer>
+  </div>
 
     
-    <nav class="navbar-mobile" id="nav-mobile">
-        <div class="container">
-            <div class="navbar-header">
-                <div>
-                    <a href="/">GoRun996</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
-                </div>
-                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
-            </div>
-            <div class="menu" id="mobile-menu">
-                
-                    <a class="menu-item" href="/archives">文章</a>
-                
-                    <a class="menu-item" href="/categories">分类</a>
-                
-                    <a class="menu-item" href="/tags">标签</a>
-                
-                    <a class="menu-item" href="/about">关于</a>
-                
-                    <a class="menu-item" href="/about">家常菜</a>
-                
-            </div>
-        </div>
-    </nav>
+ 
+   
+</article>
 
-</header>
-<script>
-    var mobileBtn = function f() {
-        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
-        var mobileMenu = document.getElementById("mobile-menu");
-        if(toggleMenu.classList.contains("active")){
-           toggleMenu.classList.remove("active")
-            mobileMenu.classList.remove("active")
-        }else{
-            toggleMenu.classList.add("active")
-            mobileMenu.classList.add("active")
-        }
-    }
-</script>
-        <div class="main">
-            
-    <div class="container">
-    <div class="intro">
-        <div class="avatar">
-            <a href="/"><img src="/image/my_avatar.jpeg"></a>
-        </div>
-        <div class="nickname">Love Life, Love Java</div>
-        <div class="description"><p>分享Java技术, 记录点滴生活</p>
+    
+    <article
+  id="post-springcloud-alibaba"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/14/springcloud-alibaba/"
+    >SpringCloud Alibaba 简介</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/06/14/springcloud-alibaba/" class="article-date">
+  <time datetime="2020-06-14T06:54:49.000Z" itemprop="datePublished">2020-06-14</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SpringCloud-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E5%88%97/">SpringCloud 微服务系列</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="What-is-SpringCloud-Alibaba"><a href="#What-is-SpringCloud-Alibaba" class="headerlink" title="What is SpringCloud Alibaba ?"></a>What is SpringCloud Alibaba ?</h2><p>Spring Cloud Alibaba provides a one-stop solution for distributed application development. It contains all the components required to develop distributed applications, making it easy for you to develop your applications using Spring Cloud.</p>
+<p>With Spring Cloud Alibaba, you only need to add some annotations and a small amount of configurations to connect Spring Cloud applications to the distributed solutions of Alibaba, and build a distributed application system with Alibaba middleware.</p>
+<blockquote>
+<p>SpringCloud Alibaba 提供分布式应用开发一站式解决方案。它包含开发分布式应用需要的所有组件，让你可以轻松使用SpringCloud开发应用。</p>
+<p>使用SpringCloud Alibaba，你仅仅需要添加一些注解和少量的配置就可以在SpringCloud应用中使用Aliabba分布式解决方案，并使用Alibaba中间件构建分布式应用。</p>
+</blockquote>
+<h2 id="SpringCloud-Alibaba-Futures？"><a href="#SpringCloud-Alibaba-Futures？" class="headerlink" title="SpringCloud Alibaba Futures？"></a>SpringCloud Alibaba Futures？</h2><ul>
+<li><strong>Flow control and service degradation</strong>：flow control, circuit breaking and system adaptive protection with Sentinel.</li>
+<li><strong>Service registration and discovery</strong>：instances can be registered with Nacos and clients can discover the instances using Spring-managed beans. Supports Ribbon, the client side load-balancer via Spring Cloud Netflix.</li>
+<li><strong>Distributed Configuration</strong>：using Nacos as a data store</li>
+<li><strong>Event-driven</strong>：building highly scalable event-driven microservices connected with Spring Cloud Stream RocketMQ Binder</li>
+<li><strong>Message Bus</strong>: link nodes of a distributed system with Spring Cloud Bus RocketMQ</li>
+<li><strong>Distributed Transaction</strong>：support for distributed transaction solution with high performance and ease of use with Seata</li>
+<li><strong>Dubbo RPC</strong>：extend the communication protocols of Spring Cloud service-to-service calls by Dubbo RPC</li>
+<li><strong>Alibaba Cloud Object Storage</strong>：Spring Resource Abstraction for OSS. Alibaba Cloud Object Storage Service (OSS) is an encrypted, secure, cost-effective, and easy-to-use object storage service that enables you to store, back up, and archive large amounts of data in the cloud</li>
+</ul>
+<blockquote>
+<ul>
+<li>流量控制与服务降级：使用Sentinel进行流量控制，断路和系统自适应保护。</li>
+<li>服务注册与发现：服务实例可以注册到Nacos上，客户端可以使用Spring管理的bean发现服务实例。支持通过Spring Cloud Netflix 的客户端负载均衡容器Ribbon。</li>
+<li>分布式配置：使用Nacos作为数据存储。</li>
+<li>消息总线：使用Spring Cloud Bus RocketMQ 连接分布式系统节点。</li>
+<li>分布式事务：支持高性能并跟易于使用的Seata分布式解决方案。</li>
+<li>Dubbo RPC：支持使用Dubbo RPC 通信协议进行服务与服务间的调用。</li>
+<li>阿里云对象存储：用于OSS的Spring资源抽象。 阿里云对象存储服务（OSS）是一种加密，安全，经济高效且易于使用的对象存储服务，可让您在云中存储，备份和存档大量数据。</li>
+</ul>
+</blockquote>
+<h2 id="How-to-use-SpingCloud-Alibaba-？"><a href="#How-to-use-SpingCloud-Alibaba-？" class="headerlink" title="How to use SpingCloud Alibaba ？"></a>How to use SpingCloud Alibaba ？</h2><h3 id="Create-Spring-Boot-project"><a href="#Create-Spring-Boot-project" class="headerlink" title="Create Spring Boot project"></a>Create Spring Boot project</h3><p><img src="http://img.gorun996.com/images/image-20200614144702965.png" alt="image-20200614144702965"></p>
+<h3 id="Add-SpringCloud-Alibaba-Dependency"><a href="#Add-SpringCloud-Alibaba-Dependency" class="headerlink" title="Add SpringCloud Alibaba Dependency"></a>Add SpringCloud Alibaba Dependency</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--spring cloud alibaba 2.1.0.RELEASE--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>spring-cloud-alibaba-dependencies</code>  include all of the Spring Cloud Alibaba features，If you don’t want  you can add individual starters for the features you would like.</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud-Alibaba/" rel="tag">SpringCloud Alibaba</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-springcloud-service-registry"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/10/springcloud-service-registry/"
+    >SpringCloud 微服务系列之注册中心</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/06/10/springcloud-service-registry/" class="article-date">
+  <time datetime="2020-06-09T16:25:34.000Z" itemprop="datePublished">2020-06-10</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SpringCloud-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E5%88%97/">SpringCloud 微服务系列</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><img src="http://img.gorun996.com/images/%E4%B8%8B%E8%BD%BD.jpg" alt="下载"></p>
+<blockquote>
+<p>在微服务架构中，注册中心是核心的基础服务之一。在微服务架构流行之前，注册中心就已经开始出现在分布式架构的系统中。Dubbo是一个在国内比较流行的分布式框架，被大量的中小型互联网公司所采用，Dubbo是一个非常实用的框架，提供了比较完善的服务治理功能，而服务治理的实现主要依靠的就是注册中心。</p>
+</blockquote>
+<h2 id="什么是注册中心？"><a href="#什么是注册中心？" class="headerlink" title="什么是注册中心？"></a>什么是注册中心？</h2><p>注册中心可以说是微服务架构中的”通讯录“，它记录了服务和服务地址的映射关系。在分布式架构中，服务会注册到这里，当服务需要调用其它服务时，就这里找到相应服务的地址，进行调用。</p>
+<p><img src="http://img.gorun996.com/images/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83.png" alt="注册中心"></p>
+<p>举个现实生活中的例子，比如说，我们手机中的通讯录的两个使用场景：</p>
+<ol>
+<li>当我想给张三打电话时，那我需要在通讯录中按照名字找到张三，然后就可以找到他的手机号拨打电话。</li>
+<li>李四办了手机号，那么他把手机号告诉我，我把李四的号码存进通讯录，后续，我就可以从通讯录找到他。</li>
+</ol>
+<p>上述两个场景就是我们在微服务架构中常常提到的：</p>
+<ol>
+<li>服务发现</li>
+<li>服务注册</li>
+</ol>
+<h2 id="为什么需要注册中心？"><a href="#为什么需要注册中心？" class="headerlink" title="为什么需要注册中心？"></a>为什么需要注册中心？</h2><p>在分布式系统中，我们不仅仅是需要在注册中心找到服务和服务地址的映射关系这么简单，我们还需要考虑更多更复杂的问题：</p>
+<ol>
+<li>服务注册后，如何被及时发现</li>
+<li>服务宕机后，如何及时下线</li>
+<li>服务如何有效的水平扩展</li>
+<li>服务发现时，如何进行路由</li>
+<li>服务异常时，如何进行降级</li>
+<li>注册中心如何实现自身的高可用</li>
+</ol>
+<p>这里问题的解决都依赖于注册中心。简单看，注册中心的功能有点类似于DNS服务器或者负载均衡器，而实际上，注册中心作为微服务的基础组件，可能要更加复杂，也需要更多的灵活性和时效性。</p>
+<h2 id="注册中心的CAP理论"><a href="#注册中心的CAP理论" class="headerlink" title="注册中心的CAP理论"></a>注册中心的CAP理论</h2><h3 id="CAP理论概述"><a href="#CAP理论概述" class="headerlink" title="CAP理论概述"></a>CAP理论概述</h3><p>CAP理论：一个分布式系统最多只能同时满足一致性（Consistency）、可用性（Availability）和分区容错性（Partition tolerance）这三项中的两项。</p>
+<p><img src="http://img.gorun996.com/images/Teorema-CAP-2.png" alt="Teorema-CAP-2"></p>
+<h3 id="CAP的定义"><a href="#CAP的定义" class="headerlink" title="CAP的定义"></a>CAP的定义</h3><p><strong>Consistency 一致性</strong></p>
+<p>一致性指“<code>all nodes see the same data at the same time</code>”，即更新操作成功并返回客户端完成后，所有节点在同一时间的数据完全一致，所以，一致性，说的就是数据一致性。</p>
+<p><strong>Availability 可用性</strong></p>
+<p>可用性指“<code>Reads and writes always succeed</code>”, 负载过大后，集群整体是否还能响应客户端的读写请求。（服务一直可用，而且是正常响应时间）</p>
+<p><strong>Partition Tolerance分区容错性</strong></p>
+<p>分区容错性指“<code>the system continues to operate despite arbitrary message loss or failure of part of the system</code>”，分区容忍性，就是高可用性，一个节点崩了，并不影响其它的节点（100个节点，挂了几个，不影响服务，越多机器越好）</p>
+<blockquote>
+<p>CAP理论就是说在分布式存储系统中，最多只能实现上面的两点。而由于当前的网络硬件肯定会出现延迟丢包等问题，所以分区容忍性是我们必须需要实现的。所以我们只能在一致性和可用性之间进行权衡</p>
+</blockquote>
+<h3 id="CAP选择"><a href="#CAP选择" class="headerlink" title="CAP选择"></a><strong>CAP选择</strong></h3><p><strong>CA without P</strong></p>
+<p>这种情况在分布式系统中几乎是不存在的。首先在分布式环境下，网络分区是一个自然的事实。因为分区是必然的，所以如果舍弃P，意味着要舍弃分布式系统。那也就没有必要再讨论CAP理论了。这也是为什么在前面的CAP证明中，我们以系统满足P为前提论述了无法同时满足C和A。</p>
+<p>比如我们熟知的关系型数据库，如My Sql和Oracle就是保证了可用性和数据一致性，但是他并不是个分布式系统。一旦关系型数据库要考虑主备同步、集群部署等就必须要把P也考虑进来。</p>
+<p>其实，在CAP理论中。C，A，P三者并不是平等的，CAP之父在《Spanner，真时，CAP理论》一文中写到：</p>
+<blockquote>
+<p>如果说Spanner真有什么特别之处，那就是谷歌的广域网。Google通过建立私有网络以及强大的网络工程能力来保证P，在多年运营改进的基础上，在生产环境中可以最大程度的减少分区发生，从而实现高可用性。</p>
+</blockquote>
+<p>从Google的经验中可以得到的结论是，无法通过降低CA来提升P。要想提升系统的分区容错性，需要通过提升基础设施的稳定性来保障。</p>
+<p>所以，对于一个分布式系统来说。P是一个基本要求，CAP三者中，只能在CA两者之间做权衡，并且要想尽办法提升P。</p>
+<p><strong>CP without A</strong></p>
+<p>如果一个分布式系统不要求强的可用性，即容许系统停机或者长时间无响应的话，就可以在CAP三者中保障CP而舍弃A。</p>
+<p>一个保证了CP而一个舍弃了A的分布式系统，一旦发生网络故障或者消息丢失等情况，就要牺牲用户的体验，等待所有数据全部一致了之后再让用户访问系统。</p>
+<p>设计成CP的系统其实也不少，其中最典型的就是很多分布式数据库，他们都是设计成CP的。在发生极端情况时，优先保证数据的强一致性，代价就是舍弃系统的可用性。如Redis、HBase等，还有分布式系统中常用的Zookeeper也是在CAP三者之中选择优先保证CP的。</p>
+<p>无论是像Redis、HBase这种分布式存储系统，还是像Zookeeper这种分布式协调组件。数据的一致性是他们最最基本的要求。一个连数据一致性都保证不了的分布式存储要他有何用？</p>
+<p>在我的<a href="http://www.hollischuang.com/archives/1275" target="_blank" rel="noopener">Zookeeper介绍（二）——Zookeeper概述</a>一文中其实介绍过zk关于CAP的思考，这里再简单回顾一下：</p>
+<p>ZooKeeper是个CP（一致性+分区容错性）的，即任何时刻对ZooKeeper的访问请求能得到一致的数据结果，同时系统对网络分割具备容错性。但是它不能保证每次服务请求的可用性，也就是在极端环境下，ZooKeeper可能会丢弃一些请求，消费者程序需要重新请求才能获得结果。ZooKeeper是分布式协调服务，它的职责是保证数据在其管辖下的所有服务之间保持同步、一致。所以就不难理解为什么ZooKeeper被设计成CP而不是AP特性的了。</p>
+<p><strong>AP wihtout C</strong></p>
+<p>要高可用并允许分区，则需放弃一致性。一旦网络问题发生，节点之间可能会失去联系。为了保证高可用，需要在用户访问时可以马上得到返回，则每个节点只能用本地数据提供服务，而这样会导致全局数据的不一致性。</p>
+<p>这种舍弃强一致性而保证系统的分区容错性和可用性的场景和案例非常多。前面我们介绍可用性的时候说到过，很多系统在可用性方面会做很多事情来保证系统的全年可用性可以达到N个9，所以，对于很多业务系统来说，比如淘宝的购物，12306的买票。都是在可用性和一致性之间舍弃了一致性而选择可用性。</p>
+<p>你在12306买票的时候肯定遇到过这种场景，当你购买的时候提示你是有票的（但是可能实际已经没票了），你也正常的去输入验证码，下单了。但是过了一会系统提示你下单失败，余票不足。这其实就是先在可用性方面保证系统可以正常的服务，然后在数据的一致性方面做了些牺牲，会影响一些用户体验，但是也不至于造成用户流程的严重阻塞。</p>
+<p>但是，我们说很多网站牺牲了一致性，选择了可用性，这其实也不准确的。就比如上面的买票的例子，其实舍弃的只是强一致性。退而求其次保证了最终一致性。也就是说，虽然下单的瞬间，关于车票的库存可能存在数据不一致的情况，但是过了一段时间，还是要保证最终一致性的。</p>
+<p>对于多数大型互联网应用的场景，主机众多、部署分散，而且现在的集群规模越来越大，所以节点故障、网络故障是常态，而且要保证服务可用性达到N个9，即保证P和A，舍弃C（退而求其次保证最终一致性）。虽然某些地方会影响客户体验，但没达到造成用户流程的严重程度。</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>分布式系统中P 肯定要满足，所以只能在CA中二选一<br>没有最好的选择，最好的选择是根据业务场景来进行架构设计<br>如果要求一致性，则选择zookeeper，如金融行业<br>如果要去可用性，则Eureka，如电商系统</p>
+<h2 id="常见的注册中心介绍"><a href="#常见的注册中心介绍" class="headerlink" title="常见的注册中心介绍"></a>常见的注册中心介绍</h2><p><img src="http://img.gorun996.com/images/f22beabffa4646dab0497bfc6f2654f2.png" alt="2.png"></p>
+<h3 id="Spring-Cloud-Eureka-gt-AP"><a href="#Spring-Cloud-Eureka-gt-AP" class="headerlink" title="Spring Cloud Eureka -&gt; AP"></a>Spring Cloud Eureka -&gt; AP</h3><ul>
+<li><p>Spring Cloud Netflix 在设计 Eureka 时遵守的是AP原则</p>
+</li>
+<li><p>Eureka 基于C/S架构，Server端可以运行多个实例构建集群</p>
+</li>
+<li><p>Eureka 集群中无master/slave之分，每个节点是对等的，节点之前通过相互注册相互守望来提高可用性</p>
+</li>
+<li><p>默认情况下，如果 Eureka Server 在一定时间内没有接收到某个服务实例的心跳（默认周期为30秒），Eureka Server 将会注销该实例</p>
+</li>
+<li><p>当 Eureka Server 节点在短时间内丢失过多的心跳时，那么这个节点就会进入自我保护模式</p>
+</li>
+</ul>
+<h3 id="Apache-Zookeeper-gt-CP"><a href="#Apache-Zookeeper-gt-CP" class="headerlink" title="Apache Zookeeper -&gt; CP"></a>Apache Zookeeper -&gt; CP</h3><ul>
+<li>Apache Zookeeper 在设计时遵守的是CP原则</li>
+<li>任何时候对 Zookeeper 的访问请求能得到一致的数据结果</li>
+<li>Zookeeper集群区分master/slaver, 如果master宕机，集群将进入选举状态选举出新的master，将会导致服务短暂不可用</li>
+<li>Zookeeper集群中如果半数以上服务节点宕机，将无法处理请求</li>
+</ul>
+<h3 id="Alibaba-Nacos-gt-CP-AP"><a href="#Alibaba-Nacos-gt-CP-AP" class="headerlink" title="Alibaba Nacos -&gt; CP + AP"></a>Alibaba Nacos -&gt; CP + AP</h3><ul>
+<li><p>Nacos是阿里开源的，Nacos 支持基于 DNS 和基于 RPC 的服务发现</p>
+</li>
+<li><p>在Spring Cloud中使用Nacos，只需要先下载 Nacos 并启动 Nacos server，Nacos只需要简单的配置就可以完成服务的注册发现</p>
+</li>
+<li><p>Nacos除了服务的注册发现之外，还支持动态配置服务</p>
+</li>
+<li><p>动态配置服务可以让您以中心化、外部化和动态化的方式管理所有环境的应用配置和服务配置</p>
+</li>
+<li><p>动态配置消除了配置变更时重新部署应用和服务的需要，让配置管理变得更加高效和敏捷</p>
+</li>
+<li><p>配置中心化管理让实现无状态服务变得更简单，让服务按需弹性扩展变得更容易</p>
+</li>
+</ul>
+<p>一句话概括就是 Nacos = Spring Cloud 注册中心 + Spring Cloud 配置中心</p>
+<h2 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h2><p><a href="https://segmentfault.com/a/1190000016097418" target="_blank" rel="noopener">微服务架构基础之注册中心</a></p>
+<p><a href="http://www.hollischuang.com/archives/666" target="_blank" rel="noopener">分布式系统的CAP理论</a></p>
+<p><a href="https://developer.aliyun.com/article/738413" target="_blank" rel="noopener">主流微服务注册中心产品比较 Eureka、Consul、Nacos</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CAP%E7%90%86%E8%AE%BA/" rel="tag">CAP理论</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringCloud/" rel="tag">SpringCloud</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/" rel="tag">注册中心</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-springboot-filter-interceptor"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/08/springboot-filter-interceptor/"
+    >SpringBoot2.X 过滤器-拦截器实战</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/06/08/springboot-filter-interceptor/" class="article-date">
+  <time datetime="2020-06-07T16:08:05.000Z" itemprop="datePublished">2020-06-08</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SpringBoot2-x-%E7%B3%BB%E5%88%97/">SpringBoot2.x 系列</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="SpringBoot2-x-过滤器"><a href="#SpringBoot2-x-过滤器" class="headerlink" title="SpringBoot2.x 过滤器"></a>SpringBoot2.x 过滤器</h2><h3 id="什么是过滤器？"><a href="#什么是过滤器？" class="headerlink" title="什么是过滤器？"></a>什么是过滤器？</h3><p><img src="http://img.gorun996.com/images/v2-f74107cb2a98ba4ae67ae0373d4532bc_r.jpg" alt="v2-f74107cb2a98ba4ae67ae0373d4532bc_r"></p>
+<p>过滤器可以比喻成打鱼的渔网，渔网有网孔大小，会过滤掉小于网孔大小的🐟；</p>
+<p>引申在Web容器中，过滤器可以做：过滤一些敏感的字符串【规定不能出现敏感字符串】、避免中文乱码【规定Web资源都使用UTF-8编码】、权限验证等等等，过滤器的作用非常大，只要发挥想象就可以有意想不到的效果</p>
+<h3 id="Filter是如何实现拦截的？"><a href="#Filter是如何实现拦截的？" class="headerlink" title="Filter是如何实现拦截的？"></a>Filter是如何实现拦截的？</h3><p><code>Filter</code>接口中有一个叫做 <code>doFilter</code> 的方法，这个方法实现了对用户请求的过滤。具体流程大体是这样的：</p>
+<ol>
+<li>用户发送请求到 web 服务器,请求会先到过滤器；</li>
+<li>过滤器会对请求进行一些处理比如过滤请求的参数、修改返回给客户端的 response 的内容、判断是否让用户访问该接口等等。</li>
+<li>用户请求响应完毕。</li>
+<li>进行一些自己想要的其他操作。</li>
+</ol>
+<p><img src="http://img.gorun996.com/images/filter1.png" alt="img"></p>
+<h3 id="如何自定义过滤器？"><a href="#如何自定义过滤器？" class="headerlink" title="如何自定义过滤器？"></a>如何自定义过滤器？</h3><p>下面提供两种方法。</p>
+<h4 id="方法一：自己手动注册配置实现"><a href="#方法一：自己手动注册配置实现" class="headerlink" title="方法一：自己手动注册配置实现"></a>方法一：自己手动注册配置实现</h4><p><strong>自定义的 Filter 需要实现<code>javax.Servlet.Filter</code>接口，并重写接口中定义的3个方法。</strong></p>
+<p>MyFilter.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(MyFilter<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig filterConfig)</span> </span>&#123;</span><br><span class="line">        logger.info(<span class="string">"初始化过滤器："</span>, filterConfig.getFilterName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">        <span class="comment">//对请求进行预处理</span></span><br><span class="line">        logger.info(<span class="string">"过滤器开始对请求进行预处理："</span>);</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest) servletRequest;</span><br><span class="line">        String requestUri = request.getRequestURI();</span><br><span class="line">        System.out.println(<span class="string">"请求的接口为："</span> + requestUri);</span><br><span class="line">        <span class="keyword">long</span> startTime = System.currentTimeMillis();</span><br><span class="line">        <span class="comment">//通过 doFilter 方法实现过滤功能</span></span><br><span class="line">        filterChain.doFilter(servletRequest, servletResponse);</span><br><span class="line">        <span class="comment">// 上面的 doFilter 方法执行结束后用户的请求已经返回</span></span><br><span class="line">        <span class="keyword">long</span> endTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"该用户的请求已经处理完毕，请求花费的时间为："</span> + (endTime - startTime));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        logger.info(<span class="string">"销毁过滤器"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>MyFilterConfig.java</p>
+<p><strong>在配置中注册自定义的过滤器。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFilterConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    MyFilter myFilter;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> FilterRegistrationBean&lt;MyFilter&gt; <span class="title">thirdFilter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        FilterRegistrationBean&lt;MyFilter&gt; filterRegistrationBean = <span class="keyword">new</span> FilterRegistrationBean&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        filterRegistrationBean.setFilter(myFilter);</span><br><span class="line"></span><br><span class="line">        filterRegistrationBean.setUrlPatterns(<span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(<span class="string">"/api/*"</span>)));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> filterRegistrationBean;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法二：通过提供好的一些注解实现"><a href="#方法二：通过提供好的一些注解实现" class="headerlink" title="方法二：通过提供好的一些注解实现"></a>方法二：通过提供好的一些注解实现</h4><p><strong>在自己的过滤器的类上加上<code>@WebFilter</code> 然后在这个注解中通过它提供好的一些参数进行配置。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@WebFilter(filterName &#x3D; &quot;MyFilterWithAnnotation&quot;, urlPatterns &#x3D; &quot;&#x2F;api&#x2F;*&quot;)</span><br><span class="line">public class MyFilterWithAnnotation implements Filter &#123;</span><br><span class="line"></span><br><span class="line">   ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>另外，为了能让 Spring 找到它，你需要在启动类上加上 <code>@ServletComponentScan</code> 注解。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@ServletComponentScan</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringbootFilterApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(SpringbootFilterApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义多个拦截器，并决定它们的执行顺序"><a href="#定义多个拦截器，并决定它们的执行顺序" class="headerlink" title="定义多个拦截器，并决定它们的执行顺序"></a>定义多个拦截器，并决定它们的执行顺序</h3><p>MyFilter2.java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFilter2</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(MyFilter2<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig filterConfig)</span> </span>&#123;</span><br><span class="line">        logger.info(<span class="string">"初始化过滤器2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">        <span class="comment">//对请求进行预处理</span></span><br><span class="line">        logger.info(<span class="string">"过滤器开始对请求进行预处理2："</span>);</span><br><span class="line">        HttpServletRequest request = (HttpServletRequest) servletRequest;</span><br><span class="line">        String requestUri = request.getRequestURI();</span><br><span class="line">        System.out.println(<span class="string">"请求的接口为2："</span> + requestUri);</span><br><span class="line">        <span class="keyword">long</span> startTime = System.currentTimeMillis();</span><br><span class="line">        <span class="comment">//通过 doFilter 方法实现过滤功能</span></span><br><span class="line">        filterChain.doFilter(servletRequest, servletResponse);</span><br><span class="line">        <span class="comment">// 上面的 doFilter 方法执行结束后用户的请求已经返回</span></span><br><span class="line">        <span class="keyword">long</span> endTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"该用户的请求已经处理完毕，请求花费的时间为2："</span> + (endTime - startTime));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        logger.info(<span class="string">"销毁过滤器2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>在配置中注册自定义的过滤器，通过<code>FilterRegistrationBean</code> 的<code>setOrder</code> 方法可以决定 Filter 的执行顺序。</strong></p>
+<blockquote>
+<p>需要注意的是 order 的数字越小优先级越高，越优先执行</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class MyFilterConfig &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    MyFilter myFilter;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    MyFilter2 myFilter2;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public FilterRegistrationBean&lt;MyFilter&gt; setUpMyFilter() &#123;</span><br><span class="line">        FilterRegistrationBean&lt;MyFilter&gt; filterRegistrationBean &#x3D; new FilterRegistrationBean&lt;&gt;();</span><br><span class="line">        filterRegistrationBean.setOrder(0);</span><br><span class="line">        filterRegistrationBean.setFilter(myFilter);</span><br><span class="line">        filterRegistrationBean.setUrlPatterns(new ArrayList&lt;&gt;(Arrays.asList(&quot;&#x2F;api&#x2F;*&quot;)));</span><br><span class="line"></span><br><span class="line">        return filterRegistrationBean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public FilterRegistrationBean&lt;MyFilter2&gt; setUpMyFilter2() &#123;</span><br><span class="line">        FilterRegistrationBean&lt;MyFilter2&gt; filterRegistrationBean &#x3D; new FilterRegistrationBean&lt;&gt;();</span><br><span class="line">        filterRegistrationBean.setOrder(1);</span><br><span class="line">        filterRegistrationBean.setFilter(myFilter2);</span><br><span class="line">        filterRegistrationBean.setUrlPatterns(new ArrayList&lt;&gt;(Arrays.asList(&quot;&#x2F;api&#x2F;*&quot;)));</span><br><span class="line">        return filterRegistrationBean;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>自定义 Controller 验证过滤器</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;&#x2F;api&quot;)</span><br><span class="line">public class MainController &#123;</span><br><span class="line"></span><br><span class="line">    @GetMapping(&quot;&#x2F;hello&quot;)</span><br><span class="line">    public String getHello() throws InterruptedException &#123;</span><br><span class="line">        Thread.sleep(1000);</span><br><span class="line">        return &quot;Hello&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实际测试效果如下：</strong></p>
+<p><img src="http://img.gorun996.com/images/image-20200608000310281.png" alt="image-20200608000310281"></p>
+<h2 id="SpringBoot2-x-拦截器"><a href="#SpringBoot2-x-拦截器" class="headerlink" title="SpringBoot2.x 拦截器"></a>SpringBoot2.x 拦截器</h2><h3 id="什么是拦截器？"><a href="#什么是拦截器？" class="headerlink" title="什么是拦截器？"></a>什么是拦截器？</h3><blockquote>
+<p>当你来到公司并想见见公司经理时，你需要通过拦截器，这些拦截器可以是门卫或者接待员</p>
+</blockquote>
+<p>在Spring中，当请求发送到<code>Controller</code>时，在被<code>Controller</code>处理之前，它必须经过拦截器（0或多个）。<br><code>Spring Interceptor</code>是一个非常类似于<code>Servlet Filter</code>的概念。</p>
+<p><code>Spring Interceptor</code>仅适用于发送到<code>Controller</code>的请求。<br><img src="http://img.gorun996.com/images/14286819.png" alt="img"></p>
+<p>您可以使用Interceptor来执行某些任务，例如在Controller处理请求之前编写日志，添加或更新配置，…</p>
+<p>如下图所示：LogInterceptor 拦截器、MainController 主控制器</p>
+<p>访问一个路径为 “/test” 的请求，在到达MainController之前，先被 LogInterceptor 的 preHandle方法处理，我们可以在该方法中打印日志或者校验某些入参，可以记录下访问时间；MainController 的 test 方法处理完请求之后 Response 给用户之前，被 postHandle 方法处理可以记录下访问结束时间，并统计该请求的处理时间，方便开发人员进行性能分析；最后整个请求处理完成后，会执行 afterCompletion 方法。</p>
+<p>![img](F:\project\小滴课堂移动端在线项目\第 9 天 新版Servlet3.0和SpringBoot2.X过滤器-拦截器实战\14286863.png)</p>
+<h3 id="如何自定义拦截器？"><a href="#如何自定义拦截器？" class="headerlink" title="如何自定义拦截器？"></a>如何自定义拦截器？</h3><p><code>自定义 Interceptor</code>必须实现org.springframework.web.servlet.HandlerInterceptor接口或继承 org.springframework.web.servlet.handler.HandlerInterceptorAdapter类。</p>
+<p>需要实现三种抽象方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request,</span></span></span><br><span class="line"><span class="function"><span class="params">                         HttpServletResponse response,</span></span></span><br><span class="line"><span class="function"><span class="params">                         Object handler)</span></span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request,</span></span></span><br><span class="line"><span class="function"><span class="params">                       HttpServletResponse response,</span></span></span><br><span class="line"><span class="function"><span class="params">                       Object handler,</span></span></span><br><span class="line"><span class="function"><span class="params">                       ModelAndView modelAndView)</span></span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"> </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request,</span></span></span><br><span class="line"><span class="function"><span class="params">                            HttpServletResponse response,</span></span></span><br><span class="line"><span class="function"><span class="params">                            Object handler,</span></span></span><br><span class="line"><span class="function"><span class="params">                            Exception ex)</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>注意：preHandle方法返回true或false。 如果返回true，则意味着请求将继续执行。</p>
+</blockquote>
+<p>每个请求可能会通过许多拦截器。下图说明了这一点。</p>
+<p><img src="http://img.gorun996.com/images/14286832.png" alt="img"></p>
+<h3 id="SpringBoot-拦截器实战"><a href="#SpringBoot-拦截器实战" class="headerlink" title="SpringBoot 拦截器实战"></a>SpringBoot 拦截器实战</h3><p><strong>案例背景：</strong></p>
+<blockquote>
+<p>本项目采用 SpringBoot + thymeleaf 模板引擎进行交互，提供三种请求和三个拦截器，帮助大家理解请求在拦截器中的流转过程。 <strong>LogInterceptor</strong> 拦截所有请求，并且第一顺位执行，<strong>OldLoginInterceptor</strong> 仅拦截 “/admin/oldLogin” 请求，第二顺位执行，AdminInterceptor 拦截 “/admin/*” 下除了 “/admin/oldLogin” 之外的三个请求，并且最后执行。</p>
+</blockquote>
+<p><strong>项目结构：</strong></p>
+<p>![image-20200607230857070](F:\project\小滴课堂移动端在线项目\第 9 天 新版Servlet3.0和SpringBoot2.X过滤器-拦截器实战\image-20200607230857070.png)</p>
+<p>LogInterceptor** 拦截所有请求：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogInterceptor</span> <span class="keyword">extends</span> <span class="title">HandlerInterceptorAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span></span></span><br><span class="line"><span class="function">            <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> startTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"\n-------- LogInterception.preHandle --- "</span>);</span><br><span class="line">        System.out.println(<span class="string">"Request URL: "</span> + request.getRequestURL());</span><br><span class="line">        System.out.println(<span class="string">"Start Time: "</span> + System.currentTimeMillis());</span><br><span class="line"></span><br><span class="line">        request.setAttribute(<span class="string">"startTime"</span>, startTime);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, //</span></span></span><br><span class="line"><span class="function"><span class="params">                           Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"\n-------- LogInterception.postHandle --- "</span>);</span><br><span class="line">        System.out.println(<span class="string">"Request URL: "</span> + request.getRequestURL());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// You can add attributes in the modelAndView</span></span><br><span class="line">        <span class="comment">// and use that in the view page</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response,</span></span></span><br><span class="line"><span class="function"><span class="params">                                Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"\n-------- LogInterception.afterCompletion --- "</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> startTime = (Long) request.getAttribute(<span class="string">"startTime"</span>);</span><br><span class="line">        <span class="keyword">long</span> endTime = System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">"Request URL: "</span> + request.getRequestURL());</span><br><span class="line">        System.out.println(<span class="string">"End Time: "</span> + endTime);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"Time Taken: "</span> + (endTime - startTime));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>OldLoginInterceptor</strong>  拦截器用于将请求 “/admin/oldLogin” 重定向到请求 “/admin/login” 路径上</p>
+<p><img src="http://img.gorun996.com/images/14286880.png" alt="img"></p>
+<p><img src="http://img.gorun996.com/images/14286911.png" alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OldLoginInterceptor</span> <span class="keyword">extends</span> <span class="title">HandlerInterceptorAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span></span></span><br><span class="line"><span class="function">            <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"\n-------- OldLoginInterceptor.preHandle --- "</span>);</span><br><span class="line">        System.out.println(<span class="string">"Request URL: "</span> + request.getRequestURL());</span><br><span class="line">        System.out.println(<span class="string">"Sorry! This URL is no longer used, Redirect to /admin/login"</span>);</span><br><span class="line"></span><br><span class="line">        response.sendRedirect(request.getContextPath() + <span class="string">"/admin/login"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, //</span></span></span><br><span class="line"><span class="function"><span class="params">                           Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// This code will never be run.</span></span><br><span class="line">        System.out.println(<span class="string">"\n-------- OldLoginInterceptor.postHandle --- "</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, //</span></span></span><br><span class="line"><span class="function"><span class="params">                                Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// This code will never be run.</span></span><br><span class="line">        System.out.println(<span class="string">"\n-------- QueryStringInterceptor.afterCompletion --- "</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>AdminInterceptor</strong> 拦截除了 “/admin/oldLogin” 之外的匹配 “/admin/*” 路径的请求：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AdminInterceptor</span> <span class="keyword">extends</span> <span class="title">HandlerInterceptorAdapter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span></span></span><br><span class="line"><span class="function">            <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"\n-------- AdminInterceptor.preHandle --- "</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, //</span></span></span><br><span class="line"><span class="function"><span class="params">                           Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"\n-------- AdminInterceptor.postHandle --- "</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, //</span></span></span><br><span class="line"><span class="function"><span class="params">                                Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"\n-------- AdminInterceptor.afterCompletion --- "</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>配置拦截器</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebMvcConfig</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 处理所有请求，该拦截器最先被执行</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> LogInterceptor());</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 处理路径为 "/admin/oldLogin" 的请求</span></span><br><span class="line"><span class="comment">         * 该拦截器在 LogInterceptor 之后执行</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> OldLoginInterceptor())<span class="comment">//</span></span><br><span class="line">                .addPathPatterns(<span class="string">"/admin/oldLogin"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 该拦截器处理 路径为 "/admin/*" 的所有请求，除了 "/admin/oldLogin"</span></span><br><span class="line"><span class="comment">         * 该拦截器为最后执行拦截器, 如果请求在前面被拦截并不通过那么该拦截器将得不到执行</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> AdminInterceptor())<span class="comment">//</span></span><br><span class="line">                .addPathPatterns(<span class="string">"/admin/*"</span>)<span class="comment">//</span></span><br><span class="line">                .excludePathPatterns(<span class="string">"/admin/oldLogin"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>自定义Controller校验拦截器</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = &#123; <span class="string">"/"</span>, <span class="string">"/test"</span> &#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">(Model model)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"\n-------- MainController.test --- "</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">" ** You are in Controller ** "</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// This path is no longer used.</span></span><br><span class="line">    <span class="comment">// It will be redirected by OldLoginInterceptor</span></span><br><span class="line">    <span class="meta">@Deprecated</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = &#123; <span class="string">"/admin/oldLogin"</span> &#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">oldLogin</span><span class="params">(Model model)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Code here never run.</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"oldLogin"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = &#123; <span class="string">"/admin/login"</span> &#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">login</span><span class="params">(Model model)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"\n-------- MainController.login --- "</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">" ** You are in Controller ** "</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"login"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>thymeleaf 模板引擎</strong></p>
+<p><strong>test.html</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.thymeleaf.org"</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">   <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">title</span>&gt;</span>Spring Boot Mvc Interceptor example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">   <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"border: 1px solid #ccc;padding: 5px;margin-bottom:10px;"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/&#125;"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">         <span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span> | <span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/admin/oldLogin&#125;"</span>&gt;</span>/admin/oldLogin (OLD URL)<span class="tag">&lt;/<span class="name">a</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">      <span class="tag">&lt;<span class="name">h3</span>&gt;</span>Spring Boot Mvc Interceptor<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">       </span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">"color:blue;"</span>&gt;</span>Testing LogInterceptor<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">br</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line"> </span><br><span class="line">      See Log in Console..</span><br><span class="line"> </span><br><span class="line">   <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>login.html</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.thymeleaf.org"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">title</span>&gt;</span>Spring Boot Mvc Interceptor example<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"border: 1px solid #ccc;padding: 5px;margin-bottom:10px;"</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/&#125;"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">         <span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span> | <span class="symbol">&amp;nbsp;</span><span class="symbol">&amp;nbsp;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/admin/oldLogin&#125;"</span>&gt;</span>/admin/oldLogin (OLD URL)<span class="tag">&lt;/<span class="name">a</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">       </span><br><span class="line">      <span class="tag">&lt;<span class="name">h3</span>&gt;</span>This is Login Page<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">       </span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">"color:blue"</span>&gt;</span>Testing OldLoginInterceptor <span class="symbol">&amp;amp;</span> AdminInterceptor<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">br</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">      See more info in the Console.</span><br><span class="line">       </span><br><span class="line">   <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>启动项目，测试</strong></p>
+<p>测试用户访问 <a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080/</a> 的时候， <strong>LogInterceptor</strong>记录相关信息（页面地址，访问时间），并计算 <strong>Web服务器</strong>处理请求的时间。另外，页面会被渲染成 <code>test.html</code>。</p>
+<p>当用户访问 <a href="http://localhost:8080/admin/oldLogin" target="_blank" rel="noopener">http://localhost:8080/admin/oldLogin</a> 也就是旧的登录页面（不再使用）时， <strong>OldLoginInterceptor</strong>将请求重定向 <a href="http://localhost:8080/admin/login" target="_blank" rel="noopener">http://localhost:8080/admin/login</a> 页面会被渲染成正常的登录页面 <code>login.html</code>。</p>
+<p><strong>注意看控制台打印出的信息。</strong></p>
+<h3 id="拦截器与过滤器的区别？"><a href="#拦截器与过滤器的区别？" class="headerlink" title="拦截器与过滤器的区别？"></a>拦截器与过滤器的区别？</h3><p>过滤器（Filter）：当你有一堆东西的时候，你只希望选择符合你要求的某一些东西。定义这些要求的工具，就是过滤器。</p>
+<p>拦截器（Interceptor）：在一个流程正在进行的时候，你希望干预它的进展，甚至终止它进行，这是拦截器做的事情。</p>
+<h3 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h3><p><a href="https://o7planning.org/en/11689/spring-boot-interceptors-tutorial#a14288051" target="_blank" rel="noopener">https://o7planning.org/en/11689/spring-boot-interceptors-tutorial#a14288051</a></p>
+<p><a href="https://snailclimb.gitee.io/springboot-guide/#/./docs/basis/springboot-interceptor" target="_blank" rel="noopener">https://snailclimb.gitee.io/springboot-guide/#/./docs/basis/springboot-interceptor</a></p>
+<p><a href="https://snailclimb.gitee.io/springboot-guide/#/./docs/basis/springboot-filter" target="_blank" rel="noopener">https://snailclimb.gitee.io/springboot-guide/#/./docs/basis/springboot-filter</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot2-x/" rel="tag">SpringBoot2.x</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%87%E6%BB%A4%E5%99%A8-%E5%92%8C-%E6%8B%A6%E6%88%AA%E5%99%A8/" rel="tag">过滤器 和 拦截器</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-springboot-exception"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/07/springboot-exception/"
+    >Springboot2.X 基础篇之全局异常处理</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/06/07/springboot-exception/" class="article-date">
+  <time datetime="2020-06-07T09:36:23.000Z" itemprop="datePublished">2020-06-07</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SpringBoot2-x-%E7%B3%BB%E5%88%97/">SpringBoot2.x 系列</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="全局异常处理介绍"><a href="#全局异常处理介绍" class="headerlink" title="全局异常处理介绍"></a>全局异常处理介绍</h2><p>说到异常是项目开发中最熟悉不过的了，为了处理异常，我们往往会写很多类似于下面这样的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 业务代码</span></span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样写出的代码包含了很多异常处理，不仅仅可读性差，而且包含了需要非业务相关的逻辑。</p>
+<p>在项目开发中我们应该将精力放在业务处理上，项目中除了业务相关的代码，最好不要存在其他无关的代码。</p>
+<p><strong>那么类似于异常这种项目中各个地方都存在的非业务代码如何处理呢？</strong></p>
+<p>首先，异常处理是必不可少的，除了不能影响用户体验和前后端交互，也是我们排查问题必不可少的关键信息。</p>
+<p>其次，我们关注的问题是何时何地处理异常。</p>
+<p><code>如果你感兴趣的话，花点时间看看下面内容吧！</code></p>
+<h2 id="全局异常处理实战"><a href="#全局异常处理实战" class="headerlink" title="全局异常处理实战"></a>全局异常处理实战</h2><p>首先抛出几个概念，方便大家对后面内容的理解</p>
+<ul>
+<li>采用的是SpringBoot 自带的异常处理机制</li>
+<li>对通过Controller接口访问产生的异常，统一处理，响应结果格式统一</li>
+</ul>
+<h3 id="1、准备"><a href="#1、准备" class="headerlink" title="1、准备"></a>1、准备</h3><p>（1）创建一个SpringBoot项目，并对外暴露访问接口</p>
+<p>我准备了这样一个接口，并构造了一个 <code>/ by zero</code> 异常，浏览器访问结果：</p>
+<p><img src="http://img.gorun996.com/images/image-20200607101548334.png" alt="image-20200607101548334"></p>
+<p>这样的接口你要提供出去了，看前端小姐姐不打死你 。。。</p>
+<h3 id="2、配置全局异常通知"><a href="#2、配置全局异常通知" class="headerlink" title="2、配置全局异常通知"></a>2、配置全局异常通知</h3><p>在SpringBoot 2.X 版本中 <code>@ControllerAdvice</code> <code>@RestControllerAdvice</code> 注解，可以用于定义 <code>@ExceptionHandler</code>，并应用到配置了 <code>@RequestMapping</code> 的控制器中。</p>
+<ul>
+<li>@ControllerAdvice 注解：是一个特殊的<code>@Component</code>，用于标识一个类，这个类中被以下三种注解标识的方法：<code>@ExceptionHandler</code>，<code>@InitBinder</code>，<code>@ModelAttribute</code>，将作用于所有的<code>@Controller</code>类的接口上。</li>
+<li>@RestControllerAdvice 注解：是 <code>@ControllerAdvice</code> + <code>@ResponseBody</code>的结合体</li>
+<li>@ExceptionHandler 注解：统一异常处理，也可以指定要处理的异常类型</li>
+</ul>
+<p>下面我们就实战一个简单的全局异常处理：</p>
+<p><img src="http://img.gorun996.com/images/image-20200607104120991.png" alt="image-20200607104120991"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="meta">@Log</span>4j2</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理任何 Exception 接口实现类异常</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(Exception<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Map</span> <span class="title">exceptionHandler</span>(<span class="title">HttpServletRequest</span> <span class="title">request</span>, <span class="title">Exception</span> <span class="title">exception</span>) <span class="title">throws</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">        log.error(<span class="string">"url:&#123;&#125;|errorMsg:&#123;&#125;"</span>, request.getRequestURI(), exception.getMessage(), exception);</span><br><span class="line">        Map&lt;String, Object&gt; result = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">        result.put(<span class="string">"code"</span>, <span class="number">500</span>);</span><br><span class="line">        result.put(<span class="string">"msg"</span>, exception.getMessage());</span><br><span class="line">        result.put(<span class="string">"url"</span>, request.getRequestURL().toString());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>再次访问我们的浏览器：</p>
+<p><code>刚才的报错页面现在就变成了这样</code></p>
+<p><img src="http://img.gorun996.com/images/image-20200607104203160.png" alt="image-20200607104203160"></p>
+<p>到此为止，一个简单的全局异常处理解决方式就完成了，是不是非常简单，当然这只是最最简单的版本，现实项目中远远比这个复杂，下面我们就来一个全套的项目中异常如何处理的。</p>
+<h2 id="全局异常处理实战进阶"><a href="#全局异常处理实战进阶" class="headerlink" title="全局异常处理实战进阶"></a>全局异常处理实战进阶</h2><p>在真实的项目开发中，前后端一般是分离的，就表示后端不管出现什么情况（成功、失败、异常），返回给前端的数据结构一定是统一的，这是约定大于编码思想的一种体现。</p>
+<h3 id="1、统一接口响应"><a href="#1、统一接口响应" class="headerlink" title="1、统一接口响应"></a>1、统一接口响应</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CommonResult</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应码</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> T data;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">CommonResult&lt;T&gt; <span class="title">success</span><span class="params">(T data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CommonResult(<span class="number">200</span>, <span class="string">"success"</span>, data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2、自定义异常"><a href="#2、自定义异常" class="headerlink" title="2、自定义异常"></a>2、自定义异常</h3><p>为什么要自定义异常呢？</p>
+<p>项目中为什么要自定义异常呢，首先如果是项目业务处理产生的异常，通过自定义异常可以知道是哪个项目产生的异常，而且对不同的异常也可以有不同的处理逻辑，也方便后续扩展</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomException</span> <span class="keyword">extends</span> <span class="title">RuntimeException</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//自定义错误码</span></span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//自定义构造器，只保留一个，让其必须输入错误码及内容</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CustomException</span><span class="params">(<span class="keyword">int</span> code, String msg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(msg);</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCode</span><span class="params">(Integer code)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3、改造全局异常处理代码"><a href="#3、改造全局异常处理代码" class="headerlink" title="3、改造全局异常处理代码"></a>3、改造全局异常处理代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="meta">@Log</span>4j2</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理CustomException 异常</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(CustomException<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Map</span> <span class="title">exceptionHandler</span>(<span class="title">HttpServletRequest</span> <span class="title">request</span>, <span class="title">CustomException</span> <span class="title">exception</span>) <span class="title">throws</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">        log.error(<span class="string">"url:&#123;&#125;|errorMsg:&#123;&#125;"</span>, request.getRequestURI(), exception.getMessage(), exception);</span><br><span class="line">        Map&lt;String, Object&gt; result = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">        result.put(<span class="string">"code"</span>, exception.getCode());</span><br><span class="line">        result.put(<span class="string">"msg"</span>, exception.getMessage());</span><br><span class="line">        result.put(<span class="string">"url"</span>, request.getRequestURL().toString());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理任何 Exception 接口实现类异常</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(Exception<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Map</span> <span class="title">exceptionHandler</span>(<span class="title">HttpServletRequest</span> <span class="title">request</span>, <span class="title">Exception</span> <span class="title">exception</span>) <span class="title">throws</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">        log.error(<span class="string">"url:&#123;&#125;|errorMsg:&#123;&#125;"</span>, request.getRequestURI(), exception.getMessage(), exception);</span><br><span class="line">        Map&lt;String, Object&gt; result = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">        result.put(<span class="string">"code"</span>, <span class="number">500</span>);</span><br><span class="line">        result.put(<span class="string">"msg"</span>, exception.getMessage());</span><br><span class="line">        result.put(<span class="string">"url"</span>, request.getRequestURL().toString());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringBoot2-x/" rel="tag">SpringBoot2.x</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" rel="tag">全局异常处理</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-xdclass-online-03"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/28/xdclass-online-03/"
+    >第3天 互联网公司中新版SpringBoot2.X开发规范解读</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/05/28/xdclass-online-03/" class="article-date">
+  <time datetime="2020-05-28T00:11:36.000Z" itemprop="datePublished">2020-05-28</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/">项目开发</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="3-1-新版SpringBoot2-x目录文件结构讲解和静态资源访问"><a href="#3-1-新版SpringBoot2-x目录文件结构讲解和静态资源访问" class="headerlink" title="3-1 新版SpringBoot2.x目录文件结构讲解和静态资源访问"></a>3-1 新版SpringBoot2.x目录文件结构讲解和静态资源访问</h2><ul>
+<li><p>目录讲解</p>
+<ul>
+<li>src/main/java：存放代码</li>
+<li>src/main/resources</li>
+<li>static: 存放静态文件, 比如 css、js、image, （访问方式 <a href="http://localhost:8080/js/main.js）" target="_blank" rel="noopener">http://localhost:8080/js/main.js）</a></li>
+<li>templates:存放静态页面jsp,html,tpl</li>
+<li>conﬁg:存放配置文件,application.properties</li>
+<li>resources:</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>同个文件的加载顺序,静态资源文件 Spring Boot 默认会挨个从</p>
+<ul>
+<li><p>META/resources &gt;</p>
+</li>
+<li><p>resources &gt;</p>
+</li>
+<li><p>static &gt;</p>
+</li>
+<li><p>public</p>
+<p>里面找是否存在相应的资源，如果有则直接返回，不在默认加载的目录，则找不不到</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>默认配置<br>  spring.resources.static-locations = classpath:/META-<br>  INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/</li>
+</ul>
+<h2 id="3-2-新版SpringBoot2-x启动类位置常见形式"><a href="#3-2-新版SpringBoot2-x启动类位置常见形式" class="headerlink" title="3-2 新版SpringBoot2.x启动类位置常见形式"></a>3-2 新版SpringBoot2.x启动类位置常见形式</h2><p>应用启动的位置，Application启动类位置<br>三种形式</p>
+<ul>
+<li>当启动类和controller在同⼀类中时，在该类上添加注解@Controller即可；</li>
+<li>当启动类和controller分开时，启动类要放在根目录下，启动类上只需要注解<br>  @SpringBootApplication；</li>
+<li>当启动类和controller分开时，如果启动类在非根目录下，需要在启动类中增加注解<br>  @ComponentScan，并配置需要扫描的包名，如(basePackages = )<br>  @ComponentScan(basePackages ={“net.xdclass.controller”,”net.xdclass.service”})</li>
+</ul>
+<h2 id="3-3-SpringBoot2-X启动方式讲解和部署"><a href="#3-3-SpringBoot2-X启动方式讲解和部署" class="headerlink" title="3-3 SpringBoot2.X启动方式讲解和部署"></a>3-3 SpringBoot2.X启动方式讲解和部署</h2><p>SpringBoot2.X启动方式</p>
+<ul>
+<li>IDEA开发中启动<ul>
+<li>本地开发中常用</li>
+<li>外置Tomcat中启动<br>  接近淘汰<br>  tomcat版本兼容问题复杂<br>  微服务容器器化部署复杂</li>
+<li>Jar方式打包启动<br>  官⽅方推荐，工作中最常⽤用<br>  步骤：pom文件新增maven插件</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;build&gt;</span><br><span class="line">      &lt;plugins&gt;</span><br><span class="line">        &lt;plugin&gt;</span><br><span class="line">          &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">          &lt;artifactId&gt;spring-boot-maven-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;&#x2F;plugin&gt;</span><br><span class="line">      &lt;&#x2F;plugins&gt;</span><br><span class="line">&lt;&#x2F;build&gt;</span><br><span class="line"></span><br><span class="line">如果没有加，则执⾏行行jar包 ，报错如下</span><br><span class="line">java -jar spring-boot-demo-0.0.1-SNAPSHOT.jar</span><br><span class="line">no main manifest attribute, in spring-boot-demo-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+<p>必备打包、启动命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">构建：mvn install</span><br><span class="line">构建跳过测试类 mvn install -Dmaven.test.skip&#x3D;true </span><br><span class="line"></span><br><span class="line">target目录下有对应的jar包就是打包后项目</span><br><span class="line"></span><br><span class="line">进到对应的target目录启动 java -jar xxxxx.jar  即可</span><br><span class="line">想后台运行，就用守护进程 nohup java -jar xxx.jar &amp;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-4-打包后的Jar里面的目录结构你知道多少"><a href="#3-4-打包后的Jar里面的目录结构你知道多少" class="headerlink" title="3-4 打包后的Jar里面的目录结构你知道多少"></a>3-4 打包后的Jar里面的目录结构你知道多少</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">example.jar</span><br><span class="line"> |</span><br><span class="line"> +-META-INF</span><br><span class="line"> |  +-MANIFEST.MF</span><br><span class="line"> +-org</span><br><span class="line"> |  +-springframework</span><br><span class="line"> |     +-boot</span><br><span class="line"> |        +-loader</span><br><span class="line"> |           +-&lt;spring boot loader classes&gt;</span><br><span class="line"> +-BOOT-INF</span><br><span class="line">    +-classes</span><br><span class="line">    |  +-mycompany</span><br><span class="line">    |     +-project</span><br><span class="line">    |        +-YourClasses.class</span><br><span class="line">    +-lib</span><br><span class="line">       +-dependency1.jar</span><br><span class="line">       +-dependency2.jar</span><br></pre></td></tr></table></figure>
+
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xdclass-online/" rel="tag">xdclass-online</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-Mybatis-Plus-系列之-MP-简介"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/12/Mybatis-Plus-%E7%B3%BB%E5%88%97%E4%B9%8B-MP-%E7%AE%80%E4%BB%8B/"
+    >Mybatis Plus 系列之 MP 简介</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/05/12/Mybatis-Plus-%E7%B3%BB%E5%88%97%E4%B9%8B-MP-%E7%AE%80%E4%BB%8B/" class="article-date">
+  <time datetime="2020-05-12T14:46:24.000Z" itemprop="datePublished">2020-05-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/">数据存储</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><img src="http://img.gorun996.com/images/relationship-with-mybatis.png" alt="relationship-with-mybatis"></p>
+<h2 id="Mybatis-Plus-是什么？"><a href="#Mybatis-Plus-是什么？" class="headerlink" title="Mybatis Plus 是什么？"></a>Mybatis Plus 是什么？</h2><p>Mybatis Plus 不是一个新的连接数据库的发明创造，它是在 Mybatis 的基础上的封装，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。它不是一个必选项，但使用它会让你更加容易进行项目开发。</p>
+<h2 id="Mybatis-Plus-使用感受"><a href="#Mybatis-Plus-使用感受" class="headerlink" title="Mybatis Plus 使用感受"></a>Mybatis Plus 使用感受</h2><p>Mybatis Plus 是基于 Mybatis 框架的封装，如果你的项目正在使用 Mybatis， 而且编写了大量的基础sql语句，那么你可以考虑使用 Mybatis Plus ，它可以帮助你 简化项目代码，完成 CRUD，分页查询等功能；而且不用修改之前代码，就可以接入Mybatis Plus 。让你的项目更简洁更优雅！</p>
+<p>Mybatis Plus 特性</p>
+<ul>
+<li><strong>无侵入</strong>：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑</li>
+<li><strong>损耗小</strong>：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作</li>
+<li><strong>强大的 CRUD 操作</strong>：内置通用 Mapper、通用 Service，仅仅通过少量配置即可实现单表大部分 CRUD 操作，更有强大的条件构造器，满足各类使用需求</li>
+<li><strong>支持 Lambda 形式调用</strong>：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</li>
+<li><strong>支持主键自动生成</strong>：支持多达 4 种主键策略（内含分布式唯一 ID 生成器 - Sequence），可自由配置，完美解决主键问题</li>
+<li><strong>支持 ActiveRecord 模式</strong>：支持 ActiveRecord 形式调用，实体类只需继承 Model 类即可进行强大的 CRUD 操作</li>
+<li><strong>支持自定义全局通用操作</strong>：支持全局通用方法注入（ Write once, use anywhere ）</li>
+<li><strong>内置代码生成器</strong>：采用代码或者 Maven 插件可快速生成 Mapper 、 Model 、 Service 、 Controller 层代码，支持模板引擎，更有超多自定义配置等您来使用</li>
+<li><strong>内置分页插件</strong>：基于 MyBatis 物理分页，开发者无需关心具体操作，配置好插件之后，写分页等同于普通 List 查询</li>
+<li><strong>分页插件支持多种数据库</strong>：支持 MySQL、MariaDB、Oracle、DB2、H2、HSQL、SQLite、Postgre、SQLServer 等多种数据库</li>
+<li><strong>内置性能分析插件</strong>：可输出 Sql 语句以及其执行时间，建议开发测试时启用该功能，能快速揪出慢查询</li>
+<li><strong>内置全局拦截插件</strong>：提供全表 delete 、 update 操作智能分析阻断，也可自定义拦截规则，预防误操作</li>
+</ul>
+<h2 id="Mybatis-Plus-原理分析"><a href="#Mybatis-Plus-原理分析" class="headerlink" title="Mybatis Plus 原理分析"></a>Mybatis Plus 原理分析</h2><h3 id="Mybatis-Plus-框架结构"><a href="#Mybatis-Plus-框架结构" class="headerlink" title="Mybatis Plus 框架结构"></a>Mybatis Plus 框架结构</h3><p><img src="http://img.gorun996.com/images/mybatis-plus-framework.jpg" alt="mybatis-plus-framework"></p>
+<p>先看这张图的右边，Mybatis Plus 的核心是由 annotation、extension、core、generator 四个部分组成。</p>
+<p>这张图的左边简单的说明了Mybatis Plus 的执行过程，</p>
+<ul>
+<li>扫描实体类</li>
+<li>解析数据表和字段名称，与实体类之间产生映射关系</li>
+<li>生成 CRUD sql语句</li>
+<li>执行 Mybatis 框架容器</li>
+</ul>
+<p>正常使用 Mybatis 框架，第一步到第三步都是需要我们自己处理的，现在使用 Mybatis Plus 帮我们处理了这些工作。</p>
+<p>同时，学习 Mybatis Plus 会用仅仅是基础，作为有理想的程序员，还需要知道 Mybatis Plus 是<code>如何映射数据表字段和实体类之间关系</code>，<code>如何生成sql语句</code></p>
+<p>如果大家感兴趣，下面的文章会带大家使用 Mybatis Plus 的各项功能，并努力学习里面的执行原理，最后会做一个小总结，回答上面两个问题。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis-Plus/" rel="tag">Mybatis Plus</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-关于程序员人生的一些思考"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/10/%E5%85%B3%E4%BA%8E%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BA%BA%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/"
+    >关于程序员人生的一些思考</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/05/10/%E5%85%B3%E4%BA%8E%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BA%BA%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/" class="article-date">
+  <time datetime="2020-05-10T15:44:57.000Z" itemprop="datePublished">2020-05-10</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>[如何领先 90% 的程序员？]{<a href="https://mp.weixin.qq.com/s?__biz=MzIwMTAzMTMxMg==&amp;mid=2649496222&amp;idx=1&amp;sn=366f2a1efd952750dd618a8a528762d8&amp;chksm=8eec9161b99b187766282c3fecd98f441dfcef31965b3ba3e14718f074ec57bc215c991551e8&amp;scene=126&amp;sessionid=1589119244&amp;key=74a1d1c7636e53d35336da0958f216eec358997e36af7d2d39871f269fcd2326271215ac44dc6f182af744d081be7fc3fc2a4b83ff889be4c35184b7cbcc91f28488c53ad76afc1e1a5e2e601c432a64&amp;ascene=1&amp;uin=MTc3MTE3MTgxNA%3D%3D&amp;devicetype=Windows+10+x64&amp;version=62090070&amp;lang=zh_CN&amp;exportkey=AYPEu7AdElolpE%2BaONNikN8%3D&amp;pass_ticket=rK01oB0ugepstEQ1JWXevXyz313bJXmq9eogB76EGWg4rRfav1KLxOSUVC7Og7MZ}" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzIwMTAzMTMxMg==&amp;mid=2649496222&amp;idx=1&amp;sn=366f2a1efd952750dd618a8a528762d8&amp;chksm=8eec9161b99b187766282c3fecd98f441dfcef31965b3ba3e14718f074ec57bc215c991551e8&amp;scene=126&amp;sessionid=1589119244&amp;key=74a1d1c7636e53d35336da0958f216eec358997e36af7d2d39871f269fcd2326271215ac44dc6f182af744d081be7fc3fc2a4b83ff889be4c35184b7cbcc91f28488c53ad76afc1e1a5e2e601c432a64&amp;ascene=1&amp;uin=MTc3MTE3MTgxNA%3D%3D&amp;devicetype=Windows+10+x64&amp;version=62090070&amp;lang=zh_CN&amp;exportkey=AYPEu7AdElolpE%2BaONNikN8%3D&amp;pass_ticket=rK01oB0ugepstEQ1JWXevXyz313bJXmq9eogB76EGWg4rRfav1KLxOSUVC7Og7MZ}</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
+  id="post-hello-world"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/05/10/hello-world/"
+    >Hello World</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/05/10/hello-world/" class="article-date">
+  <time datetime="2020-05-10T15:41:41.610Z" itemprop="datePublished">2020-05-10</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+  </article>
+  
+
+  
+</section>
 </div>
-        <div class="links">
-            
-                
-                    <a class="link-item" title="Blog" href="/archives">
-                        
-                        
-                            <i class="iconfont icon-blog"></i>
-                        
-                    </a>
-                
-                    <a class="link-item" title="ZhiHu" href="https://www.zhihu.com/people/sirice" target="_blank" rel="noopener">
-                        
-                        
-                            <i class="iconfont icon-zhihu"></i>
-                        
-                    </a>
-                
-                    <a class="link-item" title="Instagram" href="">
-                        
-                        
-                            <i class="iconfont icon-instagram"></i>
-                        
-                    </a>
-                
-                    <a class="link-item" title="Reddit" href="">
-                        
-                        
-                            <i class="iconfont icon-reddit"></i>
-                        
-                    </a>
-                
-                    <a class="link-item" title="Github" href="https://github.com/Siricee" target="_blank" rel="noopener">
-                        
-                        
-                            <i class="iconfont icon-github"></i>
-                        
-                    </a>
-                
-            
-        </div>
-    </div>
-</div>
 
-
-        </div>
-        <footer id="footer" class="footer">
-    <div class="copyright">
-        <span>© Go Running | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
-    </div>
-	<div class="visit">
-        访客数：<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;|&nbsp;
-        访问量：<span id="busuanzi_value_site_pv"></span>
-    </div>
-	<div class="visit">
-		<a href="http://www.beian.miit.gov.cn" target="_blank">
-			<img  style="vertical-align: text-bottom;" src="/image/beian.png">
-			<span>皖ICP备20002937号</span>
-		</a>
-	</div>	
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2020
+        <i class="ri-heart-fill heart_icon"></i> Go Running
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
 </footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Hexo"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Subtitle -->
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+    console.log(err)
+  }
+</script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
 
     </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
 </body>
+
 </html>
