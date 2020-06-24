@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.gorun996.com/"/>
+  <updated>2020-06-24T16:04:32.551Z</updated>
+  <id>http://blog.gorun996.com/</id>
+  
+  <author>
+    <name>Go Running</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>博客视频播放测试</title>
+    <link href="http://blog.gorun996.com/2020/06/24/blog-video/"/>
+    <id>http://blog.gorun996.com/2020/06/24/blog-video/</id>
+    <published>2020-06-24T15:51:28.000Z</published>
+    <updated>2020-06-24T16:04:32.551Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SpringCloud 微服务基础系列之Nacos</title>
+    <link href="http://blog.gorun996.com/2020/06/16/springcloud-alibaba-nacos/"/>
+    <id>http://blog.gorun996.com/2020/06/16/springcloud-alibaba-nacos/</id>
+    <published>2020-06-15T16:43:05.000Z</published>
+    <updated>2020-06-15T16:43:59.915Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;为什么叫Nacos？&quot;&gt;&lt;a href=&quot;#为什么叫Nacos？&quot; class=&quot;headerlink&quot; title=&quot;为什么叫Nacos？&quot;&gt;&lt;/a&gt;为什么叫Nacos？&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Nacos 名字的由来（取红色的英文字符）:
+        
+      
+    
+    </summary>
+    
+    
+      <category term="SpringCloud 微服务系列" scheme="http://blog.gorun996.com/categories/SpringCloud-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E5%88%97/"/>
+    
+    
+      <category term="SpringCloud" scheme="http://blog.gorun996.com/tags/SpringCloud/"/>
+    
+      <category term="SpringCloud Alibaba" scheme="http://blog.gorun996.com/tags/SpringCloud-Alibaba/"/>
+    
+      <category term="Nacos" scheme="http://blog.gorun996.com/tags/Nacos/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringCloud Alibaba 简介</title>
+    <link href="http://blog.gorun996.com/2020/06/14/springcloud-alibaba/"/>
+    <id>http://blog.gorun996.com/2020/06/14/springcloud-alibaba/</id>
+    <published>2020-06-14T06:54:49.000Z</published>
+    <updated>2020-06-14T06:56:51.368Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;What-is-SpringCloud-Alibaba&quot;&gt;&lt;a href=&quot;#What-is-SpringCloud-Alibaba&quot; class=&quot;headerlink&quot; title=&quot;What is SpringCloud Alibaba
+        
+      
+    
+    </summary>
+    
+    
+      <category term="SpringCloud 微服务系列" scheme="http://blog.gorun996.com/categories/SpringCloud-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E5%88%97/"/>
+    
+    
+      <category term="SpringCloud" scheme="http://blog.gorun996.com/tags/SpringCloud/"/>
+    
+      <category term="SpringCloud Alibaba" scheme="http://blog.gorun996.com/tags/SpringCloud-Alibaba/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringCloud 微服务系列之注册中心</title>
+    <link href="http://blog.gorun996.com/2020/06/10/springcloud-service-registry/"/>
+    <id>http://blog.gorun996.com/2020/06/10/springcloud-service-registry/</id>
+    <published>2020-06-09T16:25:34.000Z</published>
+    <updated>2020-06-14T06:57:06.948Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;http://img.gorun996.com/images/%E4%B8%8B%E8%BD%BD.jpg&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="SpringCloud 微服务系列" scheme="http://blog.gorun996.com/categories/SpringCloud-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E5%88%97/"/>
+    
+    
+      <category term="SpringCloud" scheme="http://blog.gorun996.com/tags/SpringCloud/"/>
+    
+      <category term="注册中心" scheme="http://blog.gorun996.com/tags/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/"/>
+    
+      <category term="CAP理论" scheme="http://blog.gorun996.com/tags/CAP%E7%90%86%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot2.X 过滤器-拦截器实战</title>
+    <link href="http://blog.gorun996.com/2020/06/08/springboot-filter-interceptor/"/>
+    <id>http://blog.gorun996.com/2020/06/08/springboot-filter-interceptor/</id>
+    <published>2020-06-07T16:08:05.000Z</published>
+    <updated>2020-06-07T16:10:49.997Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;SpringBoot2-x-过滤器&quot;&gt;&lt;a href=&quot;#SpringBoot2-x-过滤器&quot; class=&quot;headerlink&quot; title=&quot;SpringBoot2.x 过滤器&quot;&gt;&lt;/a&gt;SpringBoot2.x 过滤器&lt;/h2&gt;&lt;h3
+        
+      
+    
+    </summary>
+    
+    
+      <category term="SpringBoot2.x 系列" scheme="http://blog.gorun996.com/categories/SpringBoot2-x-%E7%B3%BB%E5%88%97/"/>
+    
+    
+      <category term="SpringBoot2.x" scheme="http://blog.gorun996.com/tags/SpringBoot2-x/"/>
+    
+      <category term="过滤器 和 拦截器" scheme="http://blog.gorun996.com/tags/%E8%BF%87%E6%BB%A4%E5%99%A8-%E5%92%8C-%E6%8B%A6%E6%88%AA%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Springboot2.X 基础篇之全局异常处理</title>
+    <link href="http://blog.gorun996.com/2020/06/07/springboot-exception/"/>
+    <id>http://blog.gorun996.com/2020/06/07/springboot-exception/</id>
+    <published>2020-06-07T09:36:23.000Z</published>
+    <updated>2020-06-22T15:16:49.077Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;全局异常处理介绍&quot;&gt;&lt;a href=&quot;#全局异常处理介绍&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="SpringBoot2.x 系列" scheme="http://blog.gorun996.com/categories/SpringBoot2-x-%E7%B3%BB%E5%88%97/"/>
+    
+    
+      <category term="SpringBoot2.x" scheme="http://blog.gorun996.com/tags/SpringBoot2-x/"/>
+    
+      <category term="全局异常处理" scheme="http://blog.gorun996.com/tags/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>第3天 互联网公司中新版SpringBoot2.X开发规范解读</title>
+    <link href="http://blog.gorun996.com/2020/05/28/xdclass-online-03/"/>
+    <id>http://blog.gorun996.com/2020/05/28/xdclass-online-03/</id>
+    <published>2020-05-28T00:11:36.000Z</published>
+    <updated>2020-05-28T00:13:57.151Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;3-1-新版SpringBoot2-x目录文件结构讲解和静态资源访问&quot;&gt;&lt;a href=&quot;#3-1-新版SpringBoot2-x目录文件结构讲解和静态资源访问&quot; class=&quot;headerlink&quot; title=&quot;3-1
+        
+      
+    
+    </summary>
+    
+    
+      <category term="项目开发" scheme="http://blog.gorun996.com/categories/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="xdclass-online" scheme="http://blog.gorun996.com/tags/xdclass-online/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mybatis Plus 系列之 MP 简介</title>
+    <link href="http://blog.gorun996.com/2020/05/12/Mybatis-Plus-%E7%B3%BB%E5%88%97%E4%B9%8B-MP-%E7%AE%80%E4%BB%8B/"/>
+    <id>http://blog.gorun996.com/2020/05/12/Mybatis-Plus-%E7%B3%BB%E5%88%97%E4%B9%8B-MP-%E7%AE%80%E4%BB%8B/</id>
+    <published>2020-05-12T14:46:24.000Z</published>
+    <updated>2020-05-12T15:14:56.628Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;http://img.gorun996.com/images/relationship-with-mybatis.png&quot; alt=&quot;relationship-with-mybatis&quot;&gt;&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="数据存储" scheme="http://blog.gorun996.com/categories/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/"/>
+    
+    
+      <category term="Mybatis" scheme="http://blog.gorun996.com/tags/Mybatis/"/>
+    
+      <category term="Mybatis Plus" scheme="http://blog.gorun996.com/tags/Mybatis-Plus/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于程序员人生的一些思考</title>
+    <link href="http://blog.gorun996.com/2020/05/10/%E5%85%B3%E4%BA%8E%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BA%BA%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/"/>
+    <id>http://blog.gorun996.com/2020/05/10/%E5%85%B3%E4%BA%8E%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BA%BA%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/</id>
+    <published>2020-05-10T15:44:57.000Z</published>
+    <updated>2020-05-10T15:46:06.433Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;[如何领先 90% 的程序员？]{&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://blog.gorun996.com/2020/05/10/hello-world/"/>
+    <id>http://blog.gorun996.com/2020/05/10/hello-world/</id>
+    <published>2020-05-10T15:41:41.610Z</published>
+    <updated>2020-05-10T15:41:41.721Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>

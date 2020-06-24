@@ -33,6 +33,7 @@
 
   
 
+<link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
 </head>
 
 </html>
@@ -146,10 +147,6 @@
 <h3 id="3、改造全局异常处理代码"><a href="#3、改造全局异常处理代码" class="headerlink" title="3、改造全局异常处理代码"></a>3、改造全局异常处理代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="meta">@Log</span>4j2</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理CustomException 异常</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(CustomException<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Map</span> <span class="title">exceptionHandler</span>(<span class="title">HttpServletRequest</span> <span class="title">request</span>, <span class="title">CustomException</span> <span class="title">exception</span>) <span class="title">throws</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">        log.error(<span class="string">"url:&#123;&#125;|errorMsg:&#123;&#125;"</span>, request.getRequestURI(), exception.getMessage(), exception);</span><br><span class="line">        Map&lt;String, Object&gt; result = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">        result.put(<span class="string">"code"</span>, exception.getCode());</span><br><span class="line">        result.put(<span class="string">"msg"</span>, exception.getMessage());</span><br><span class="line">        result.put(<span class="string">"url"</span>, request.getRequestURL().toString());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理任何 Exception 接口实现类异常</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(Exception<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Map</span> <span class="title">exceptionHandler</span>(<span class="title">HttpServletRequest</span> <span class="title">request</span>, <span class="title">Exception</span> <span class="title">exception</span>) <span class="title">throws</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">        log.error(<span class="string">"url:&#123;&#125;|errorMsg:&#123;&#125;"</span>, request.getRequestURI(), exception.getMessage(), exception);</span><br><span class="line">        Map&lt;String, Object&gt; result = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">        result.put(<span class="string">"code"</span>, <span class="number">500</span>);</span><br><span class="line">        result.put(<span class="string">"msg"</span>, exception.getMessage());</span><br><span class="line">        result.put(<span class="string">"url"</span>, request.getRequestURL().toString());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
  
       <!-- reward -->
-      
-      <div id="reward-btn">
-        Donate
-      </div>
       
     </div>
     
@@ -298,7 +295,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2015-2020
+        2020
         <i class="ri-heart-fill heart_icon"></i> Go Running
       </li>
     </ul>
@@ -327,6 +324,10 @@
     </ul>
     <ul>
       
+        <li>
+          <a href="http://www.beian.miit.gov.cn" target="_black">皖ICP备20002937号</a>
+        </li>
+        
     </ul>
     <ul>
       <li>
@@ -676,6 +677,23 @@
 <!-- CanvasBackground -->
 
 
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=22707008&auto=0&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
     
   </div>
 </body>
