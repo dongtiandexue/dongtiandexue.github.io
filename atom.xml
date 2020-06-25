@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.gorun996.com/"/>
-  <updated>2020-06-25T09:59:38.858Z</updated>
+  <updated>2020-06-25T10:04:52.563Z</updated>
   <id>http://blog.gorun996.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://blog.gorun996.com/2020/06/25/hashmap/"/>
     <id>http://blog.gorun996.com/2020/06/25/hashmap/</id>
     <published>2020-06-25T09:33:28.000Z</published>
-    <updated>2020-06-25T09:59:38.858Z</updated>
+    <updated>2020-06-25T10:04:52.563Z</updated>
     
     <summary type="html">
     
@@ -36,6 +36,10 @@
     </summary>
     
     
+      <category term="Java 基础" scheme="http://blog.gorun996.com/categories/Java-%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="HashMap" scheme="http://blog.gorun996.com/tags/HashMap/"/>
     
   </entry>
   
