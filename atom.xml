@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://dongtiandexue1994.gitee.io/"/>
+  <link href="https://dongtiandexue1994.gitee.io/"/>
   <updated>2020-06-25T10:04:52.563Z</updated>
-  <id>http://dongtiandexue1994.gitee.io/</id>
+  <id>https://dongtiandexue1994.gitee.io/</id>
   
   <author>
     <name>Go Running</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>HashMap 源码详解</title>
-    <link href="http://dongtiandexue1994.gitee.io/2020/06/25/hashmap/"/>
-    <id>http://dongtiandexue1994.gitee.io/2020/06/25/hashmap/</id>
+    <link href="https://dongtiandexue1994.gitee.io/2020/06/25/hashmap/"/>
+    <id>https://dongtiandexue1994.gitee.io/2020/06/25/hashmap/</id>
     <published>2020-06-25T09:33:28.000Z</published>
     <updated>2020-06-25T10:04:52.563Z</updated>
     
@@ -36,17 +36,17 @@
     </summary>
     
     
-      <category term="Java 基础" scheme="http://dongtiandexue1994.gitee.io/categories/Java-%E5%9F%BA%E7%A1%80/"/>
+      <category term="Java 基础" scheme="https://dongtiandexue1994.gitee.io/categories/Java-%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="HashMap" scheme="http://dongtiandexue1994.gitee.io/tags/HashMap/"/>
+      <category term="HashMap" scheme="https://dongtiandexue1994.gitee.io/tags/HashMap/"/>
     
   </entry>
   
   <entry>
     <title>博客视频播放测试</title>
-    <link href="http://dongtiandexue1994.gitee.io/2020/06/24/blog-video/"/>
-    <id>http://dongtiandexue1994.gitee.io/2020/06/24/blog-video/</id>
+    <link href="https://dongtiandexue1994.gitee.io/2020/06/24/blog-video/"/>
+    <id>https://dongtiandexue1994.gitee.io/2020/06/24/blog-video/</id>
     <published>2020-06-24T15:51:28.000Z</published>
     <updated>2020-06-24T16:04:32.551Z</updated>
     
@@ -68,8 +68,8 @@
   
   <entry>
     <title>SpringCloud 微服务基础系列之Nacos</title>
-    <link href="http://dongtiandexue1994.gitee.io/2020/06/16/springcloud-alibaba-nacos/"/>
-    <id>http://dongtiandexue1994.gitee.io/2020/06/16/springcloud-alibaba-nacos/</id>
+    <link href="https://dongtiandexue1994.gitee.io/2020/06/16/springcloud-alibaba-nacos/"/>
+    <id>https://dongtiandexue1994.gitee.io/2020/06/16/springcloud-alibaba-nacos/</id>
     <published>2020-06-15T16:43:05.000Z</published>
     <updated>2020-06-15T16:43:59.915Z</updated>
     
@@ -86,21 +86,21 @@
     </summary>
     
     
-      <category term="SpringCloud 微服务系列" scheme="http://dongtiandexue1994.gitee.io/categories/SpringCloud-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E5%88%97/"/>
+      <category term="SpringCloud 微服务系列" scheme="https://dongtiandexue1994.gitee.io/categories/SpringCloud-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E5%88%97/"/>
     
     
-      <category term="SpringCloud" scheme="http://dongtiandexue1994.gitee.io/tags/SpringCloud/"/>
+      <category term="SpringCloud" scheme="https://dongtiandexue1994.gitee.io/tags/SpringCloud/"/>
     
-      <category term="SpringCloud Alibaba" scheme="http://dongtiandexue1994.gitee.io/tags/SpringCloud-Alibaba/"/>
+      <category term="SpringCloud Alibaba" scheme="https://dongtiandexue1994.gitee.io/tags/SpringCloud-Alibaba/"/>
     
-      <category term="Nacos" scheme="http://dongtiandexue1994.gitee.io/tags/Nacos/"/>
+      <category term="Nacos" scheme="https://dongtiandexue1994.gitee.io/tags/Nacos/"/>
     
   </entry>
   
   <entry>
     <title>SpringCloud Alibaba 简介</title>
-    <link href="http://dongtiandexue1994.gitee.io/2020/06/14/springcloud-alibaba/"/>
-    <id>http://dongtiandexue1994.gitee.io/2020/06/14/springcloud-alibaba/</id>
+    <link href="https://dongtiandexue1994.gitee.io/2020/06/14/springcloud-alibaba/"/>
+    <id>https://dongtiandexue1994.gitee.io/2020/06/14/springcloud-alibaba/</id>
     <published>2020-06-14T06:54:49.000Z</published>
     <updated>2020-06-14T06:56:51.368Z</updated>
     
@@ -117,19 +117,19 @@
     </summary>
     
     
-      <category term="SpringCloud 微服务系列" scheme="http://dongtiandexue1994.gitee.io/categories/SpringCloud-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E5%88%97/"/>
+      <category term="SpringCloud 微服务系列" scheme="https://dongtiandexue1994.gitee.io/categories/SpringCloud-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E5%88%97/"/>
     
     
-      <category term="SpringCloud" scheme="http://dongtiandexue1994.gitee.io/tags/SpringCloud/"/>
+      <category term="SpringCloud" scheme="https://dongtiandexue1994.gitee.io/tags/SpringCloud/"/>
     
-      <category term="SpringCloud Alibaba" scheme="http://dongtiandexue1994.gitee.io/tags/SpringCloud-Alibaba/"/>
+      <category term="SpringCloud Alibaba" scheme="https://dongtiandexue1994.gitee.io/tags/SpringCloud-Alibaba/"/>
     
   </entry>
   
   <entry>
     <title>SpringCloud 微服务系列之注册中心</title>
-    <link href="http://dongtiandexue1994.gitee.io/2020/06/10/springcloud-service-registry/"/>
-    <id>http://dongtiandexue1994.gitee.io/2020/06/10/springcloud-service-registry/</id>
+    <link href="https://dongtiandexue1994.gitee.io/2020/06/10/springcloud-service-registry/"/>
+    <id>https://dongtiandexue1994.gitee.io/2020/06/10/springcloud-service-registry/</id>
     <published>2020-06-09T16:25:34.000Z</published>
     <updated>2020-06-14T06:57:06.948Z</updated>
     
@@ -146,21 +146,21 @@
     </summary>
     
     
-      <category term="SpringCloud 微服务系列" scheme="http://dongtiandexue1994.gitee.io/categories/SpringCloud-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E5%88%97/"/>
+      <category term="SpringCloud 微服务系列" scheme="https://dongtiandexue1994.gitee.io/categories/SpringCloud-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E5%88%97/"/>
     
     
-      <category term="SpringCloud" scheme="http://dongtiandexue1994.gitee.io/tags/SpringCloud/"/>
+      <category term="SpringCloud" scheme="https://dongtiandexue1994.gitee.io/tags/SpringCloud/"/>
     
-      <category term="注册中心" scheme="http://dongtiandexue1994.gitee.io/tags/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/"/>
+      <category term="注册中心" scheme="https://dongtiandexue1994.gitee.io/tags/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/"/>
     
-      <category term="CAP理论" scheme="http://dongtiandexue1994.gitee.io/tags/CAP%E7%90%86%E8%AE%BA/"/>
+      <category term="CAP理论" scheme="https://dongtiandexue1994.gitee.io/tags/CAP%E7%90%86%E8%AE%BA/"/>
     
   </entry>
   
   <entry>
     <title>SpringBoot2.X 过滤器-拦截器实战</title>
-    <link href="http://dongtiandexue1994.gitee.io/2020/06/08/springboot-filter-interceptor/"/>
-    <id>http://dongtiandexue1994.gitee.io/2020/06/08/springboot-filter-interceptor/</id>
+    <link href="https://dongtiandexue1994.gitee.io/2020/06/08/springboot-filter-interceptor/"/>
+    <id>https://dongtiandexue1994.gitee.io/2020/06/08/springboot-filter-interceptor/</id>
     <published>2020-06-07T16:08:05.000Z</published>
     <updated>2020-06-07T16:10:49.997Z</updated>
     
@@ -177,19 +177,19 @@
     </summary>
     
     
-      <category term="SpringBoot2.x 系列" scheme="http://dongtiandexue1994.gitee.io/categories/SpringBoot2-x-%E7%B3%BB%E5%88%97/"/>
+      <category term="SpringBoot2.x 系列" scheme="https://dongtiandexue1994.gitee.io/categories/SpringBoot2-x-%E7%B3%BB%E5%88%97/"/>
     
     
-      <category term="SpringBoot2.x" scheme="http://dongtiandexue1994.gitee.io/tags/SpringBoot2-x/"/>
+      <category term="SpringBoot2.x" scheme="https://dongtiandexue1994.gitee.io/tags/SpringBoot2-x/"/>
     
-      <category term="过滤器 和 拦截器" scheme="http://dongtiandexue1994.gitee.io/tags/%E8%BF%87%E6%BB%A4%E5%99%A8-%E5%92%8C-%E6%8B%A6%E6%88%AA%E5%99%A8/"/>
+      <category term="过滤器 和 拦截器" scheme="https://dongtiandexue1994.gitee.io/tags/%E8%BF%87%E6%BB%A4%E5%99%A8-%E5%92%8C-%E6%8B%A6%E6%88%AA%E5%99%A8/"/>
     
   </entry>
   
   <entry>
     <title>Springboot2.X 基础篇之全局异常处理</title>
-    <link href="http://dongtiandexue1994.gitee.io/2020/06/07/springboot-exception/"/>
-    <id>http://dongtiandexue1994.gitee.io/2020/06/07/springboot-exception/</id>
+    <link href="https://dongtiandexue1994.gitee.io/2020/06/07/springboot-exception/"/>
+    <id>https://dongtiandexue1994.gitee.io/2020/06/07/springboot-exception/</id>
     <published>2020-06-07T09:36:23.000Z</published>
     <updated>2020-06-22T15:16:49.077Z</updated>
     
@@ -206,19 +206,19 @@
     </summary>
     
     
-      <category term="SpringBoot2.x 系列" scheme="http://dongtiandexue1994.gitee.io/categories/SpringBoot2-x-%E7%B3%BB%E5%88%97/"/>
+      <category term="SpringBoot2.x 系列" scheme="https://dongtiandexue1994.gitee.io/categories/SpringBoot2-x-%E7%B3%BB%E5%88%97/"/>
     
     
-      <category term="SpringBoot2.x" scheme="http://dongtiandexue1994.gitee.io/tags/SpringBoot2-x/"/>
+      <category term="SpringBoot2.x" scheme="https://dongtiandexue1994.gitee.io/tags/SpringBoot2-x/"/>
     
-      <category term="全局异常处理" scheme="http://dongtiandexue1994.gitee.io/tags/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
+      <category term="全局异常处理" scheme="https://dongtiandexue1994.gitee.io/tags/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>第3天 互联网公司中新版SpringBoot2.X开发规范解读</title>
-    <link href="http://dongtiandexue1994.gitee.io/2020/05/28/xdclass-online-03/"/>
-    <id>http://dongtiandexue1994.gitee.io/2020/05/28/xdclass-online-03/</id>
+    <link href="https://dongtiandexue1994.gitee.io/2020/05/28/xdclass-online-03/"/>
+    <id>https://dongtiandexue1994.gitee.io/2020/05/28/xdclass-online-03/</id>
     <published>2020-05-28T00:11:36.000Z</published>
     <updated>2020-05-28T00:13:57.151Z</updated>
     
@@ -235,17 +235,17 @@
     </summary>
     
     
-      <category term="项目开发" scheme="http://dongtiandexue1994.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/"/>
+      <category term="项目开发" scheme="https://dongtiandexue1994.gitee.io/categories/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/"/>
     
     
-      <category term="xdclass-online" scheme="http://dongtiandexue1994.gitee.io/tags/xdclass-online/"/>
+      <category term="xdclass-online" scheme="https://dongtiandexue1994.gitee.io/tags/xdclass-online/"/>
     
   </entry>
   
   <entry>
     <title>Mybatis Plus 系列之 MP 简介</title>
-    <link href="http://dongtiandexue1994.gitee.io/2020/05/12/Mybatis-Plus-%E7%B3%BB%E5%88%97%E4%B9%8B-MP-%E7%AE%80%E4%BB%8B/"/>
-    <id>http://dongtiandexue1994.gitee.io/2020/05/12/Mybatis-Plus-%E7%B3%BB%E5%88%97%E4%B9%8B-MP-%E7%AE%80%E4%BB%8B/</id>
+    <link href="https://dongtiandexue1994.gitee.io/2020/05/12/Mybatis-Plus-%E7%B3%BB%E5%88%97%E4%B9%8B-MP-%E7%AE%80%E4%BB%8B/"/>
+    <id>https://dongtiandexue1994.gitee.io/2020/05/12/Mybatis-Plus-%E7%B3%BB%E5%88%97%E4%B9%8B-MP-%E7%AE%80%E4%BB%8B/</id>
     <published>2020-05-12T14:46:24.000Z</published>
     <updated>2020-05-12T15:14:56.628Z</updated>
     
@@ -262,19 +262,19 @@
     </summary>
     
     
-      <category term="数据存储" scheme="http://dongtiandexue1994.gitee.io/categories/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/"/>
+      <category term="数据存储" scheme="https://dongtiandexue1994.gitee.io/categories/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8/"/>
     
     
-      <category term="Mybatis" scheme="http://dongtiandexue1994.gitee.io/tags/Mybatis/"/>
+      <category term="Mybatis" scheme="https://dongtiandexue1994.gitee.io/tags/Mybatis/"/>
     
-      <category term="Mybatis Plus" scheme="http://dongtiandexue1994.gitee.io/tags/Mybatis-Plus/"/>
+      <category term="Mybatis Plus" scheme="https://dongtiandexue1994.gitee.io/tags/Mybatis-Plus/"/>
     
   </entry>
   
   <entry>
     <title>关于程序员人生的一些思考</title>
-    <link href="http://dongtiandexue1994.gitee.io/2020/05/10/%E5%85%B3%E4%BA%8E%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BA%BA%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/"/>
-    <id>http://dongtiandexue1994.gitee.io/2020/05/10/%E5%85%B3%E4%BA%8E%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BA%BA%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/</id>
+    <link href="https://dongtiandexue1994.gitee.io/2020/05/10/%E5%85%B3%E4%BA%8E%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BA%BA%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/"/>
+    <id>https://dongtiandexue1994.gitee.io/2020/05/10/%E5%85%B3%E4%BA%8E%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BA%BA%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/</id>
     <published>2020-05-10T15:44:57.000Z</published>
     <updated>2020-05-10T15:46:06.433Z</updated>
     
@@ -296,8 +296,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://dongtiandexue1994.gitee.io/2020/05/10/hello-world/"/>
-    <id>http://dongtiandexue1994.gitee.io/2020/05/10/hello-world/</id>
+    <link href="https://dongtiandexue1994.gitee.io/2020/05/10/hello-world/"/>
+    <id>https://dongtiandexue1994.gitee.io/2020/05/10/hello-world/</id>
     <published>2020-05-10T15:41:41.610Z</published>
     <updated>2020-05-10T15:41:41.721Z</updated>
     
