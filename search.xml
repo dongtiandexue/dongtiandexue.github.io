@@ -1,9 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>博客视频播放测试</title>
+    <url>/2020/06/24/blog-video/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","loop":true,"video":{"url":"https://music.163.com/#/mv?id=5404646","pic":"ttp://p1.music.126.net/T5u6tvoe6_AJkbOBP6jsIQ==/18635622580858178.jpg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>]]></content>
+  </entry>
+  <entry>
+    <title>Mybatis Plus 系列之 MP 简介</title>
+    <url>/2020/05/12/Mybatis-Plus-%E7%B3%BB%E5%88%97%E4%B9%8B-MP-%E7%AE%80%E4%BB%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="http://img.gorun996.com/images/relationship-with-mybatis.png" alt="relationship-with-mybatis"></p>
+<h2 id="Mybatis-Plus-是什么？"><a href="#Mybatis-Plus-是什么？" class="headerlink" title="Mybatis Plus 是什么？"></a>Mybatis Plus 是什么？</h2><p>Mybatis Plus 不是一个新的连接数据库的发明创造，它是在 Mybatis 的基础上的封装，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。它不是一个必选项，但使用它会让你更加容易进行项目开发。</p>
+<h2 id="Mybatis-Plus-使用感受"><a href="#Mybatis-Plus-使用感受" class="headerlink" title="Mybatis Plus 使用感受"></a>Mybatis Plus 使用感受</h2><p>Mybatis Plus 是基于 Mybatis 框架的封装，如果你的项目正在使用 Mybatis， 而且编写了大量的基础sql语句，那么你可以考虑使用 Mybatis Plus ，它可以帮助你 简化项目代码，完成 CRUD，分页查询等功能；而且不用修改之前代码，就可以接入Mybatis Plus 。让你的项目更简洁更优雅！</p>
+<p>Mybatis Plus 特性</p>
+<ul>
+<li><strong>无侵入</strong>：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑</li>
+<li><strong>损耗小</strong>：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作</li>
+<li><strong>强大的 CRUD 操作</strong>：内置通用 Mapper、通用 Service，仅仅通过少量配置即可实现单表大部分 CRUD 操作，更有强大的条件构造器，满足各类使用需求</li>
+<li><strong>支持 Lambda 形式调用</strong>：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</li>
+<li><strong>支持主键自动生成</strong>：支持多达 4 种主键策略（内含分布式唯一 ID 生成器 - Sequence），可自由配置，完美解决主键问题</li>
+<li><strong>支持 ActiveRecord 模式</strong>：支持 ActiveRecord 形式调用，实体类只需继承 Model 类即可进行强大的 CRUD 操作</li>
+<li><strong>支持自定义全局通用操作</strong>：支持全局通用方法注入（ Write once, use anywhere ）</li>
+<li><strong>内置代码生成器</strong>：采用代码或者 Maven 插件可快速生成 Mapper 、 Model 、 Service 、 Controller 层代码，支持模板引擎，更有超多自定义配置等您来使用</li>
+<li><strong>内置分页插件</strong>：基于 MyBatis 物理分页，开发者无需关心具体操作，配置好插件之后，写分页等同于普通 List 查询</li>
+<li><strong>分页插件支持多种数据库</strong>：支持 MySQL、MariaDB、Oracle、DB2、H2、HSQL、SQLite、Postgre、SQLServer 等多种数据库</li>
+<li><strong>内置性能分析插件</strong>：可输出 Sql 语句以及其执行时间，建议开发测试时启用该功能，能快速揪出慢查询</li>
+<li><strong>内置全局拦截插件</strong>：提供全表 delete 、 update 操作智能分析阻断，也可自定义拦截规则，预防误操作</li>
+</ul>
+<h2 id="Mybatis-Plus-原理分析"><a href="#Mybatis-Plus-原理分析" class="headerlink" title="Mybatis Plus 原理分析"></a>Mybatis Plus 原理分析</h2><h3 id="Mybatis-Plus-框架结构"><a href="#Mybatis-Plus-框架结构" class="headerlink" title="Mybatis Plus 框架结构"></a>Mybatis Plus 框架结构</h3><p><img src="http://img.gorun996.com/images/mybatis-plus-framework.jpg" alt="mybatis-plus-framework"></p>
+<p>先看这张图的右边，Mybatis Plus 的核心是由 annotation、extension、core、generator 四个部分组成。</p>
+<p>这张图的左边简单的说明了Mybatis Plus 的执行过程，</p>
+<ul>
+<li>扫描实体类</li>
+<li>解析数据表和字段名称，与实体类之间产生映射关系</li>
+<li>生成 CRUD sql语句</li>
+<li>执行 Mybatis 框架容器</li>
+</ul>
+<p>正常使用 Mybatis 框架，第一步到第三步都是需要我们自己处理的，现在使用 Mybatis Plus 帮我们处理了这些工作。</p>
+<p>同时，学习 Mybatis Plus 会用仅仅是基础，作为有理想的程序员，还需要知道 Mybatis Plus 是<code>如何映射数据表字段和实体类之间关系</code>，<code>如何生成sql语句</code></p>
+<p>如果大家感兴趣，下面的文章会带大家使用 Mybatis Plus 的各项功能，并努力学习里面的执行原理，最后会做一个小总结，回答上面两个问题。</p>
+]]></content>
+      <categories>
+        <category>数据存储</category>
+      </categories>
+      <tags>
+        <tag>Mybatis</tag>
+        <tag>Mybatis Plus</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2020/05/10/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
@@ -21,7 +68,7 @@
   <entry>
     <title>Springboot2.X 基础篇之全局异常处理</title>
     <url>/2020/06/07/springboot-exception/</url>
-    <content><![CDATA[<h2 id="全局异常处理介绍"><a href="#全局异常处理介绍" class="headerlink" title="全局异常处理介绍"></a>全局异常处理介绍</h2><p>说到异常是项目开发中最熟悉不过的了，为了处理异常，我们往往会写很多类似于下面这样的代码：</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="全局异常处理介绍"><a href="#全局异常处理介绍" class="headerlink" title="全局异常处理介绍"></a>全局异常处理介绍</h2><p>说到异常是项目开发中最熟悉不过的了，为了处理异常，我们往往会写很多类似于下面这样的代码：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 业务代码</span></span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这样写出的代码包含了很多异常处理，不仅仅可读性差，而且包含了需要非业务相关的逻辑。</p>
@@ -77,57 +124,60 @@
       </tags>
   </entry>
   <entry>
-    <title>关于程序员人生的一些思考</title>
-    <url>/2020/05/10/%E5%85%B3%E4%BA%8E%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BA%BA%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/</url>
-    <content><![CDATA[<p>[如何领先 90% 的程序员？]{<a href="https://mp.weixin.qq.com/s?__biz=MzIwMTAzMTMxMg==&amp;mid=2649496222&amp;idx=1&amp;sn=366f2a1efd952750dd618a8a528762d8&amp;chksm=8eec9161b99b187766282c3fecd98f441dfcef31965b3ba3e14718f074ec57bc215c991551e8&amp;scene=126&amp;sessionid=1589119244&amp;key=74a1d1c7636e53d35336da0958f216eec358997e36af7d2d39871f269fcd2326271215ac44dc6f182af744d081be7fc3fc2a4b83ff889be4c35184b7cbcc91f28488c53ad76afc1e1a5e2e601c432a64&amp;ascene=1&amp;uin=MTc3MTE3MTgxNA%3D%3D&amp;devicetype=Windows+10+x64&amp;version=62090070&amp;lang=zh_CN&amp;exportkey=AYPEu7AdElolpE%2BaONNikN8%3D&amp;pass_ticket=rK01oB0ugepstEQ1JWXevXyz313bJXmq9eogB76EGWg4rRfav1KLxOSUVC7Og7MZ}" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzIwMTAzMTMxMg==&amp;mid=2649496222&amp;idx=1&amp;sn=366f2a1efd952750dd618a8a528762d8&amp;chksm=8eec9161b99b187766282c3fecd98f441dfcef31965b3ba3e14718f074ec57bc215c991551e8&amp;scene=126&amp;sessionid=1589119244&amp;key=74a1d1c7636e53d35336da0958f216eec358997e36af7d2d39871f269fcd2326271215ac44dc6f182af744d081be7fc3fc2a4b83ff889be4c35184b7cbcc91f28488c53ad76afc1e1a5e2e601c432a64&amp;ascene=1&amp;uin=MTc3MTE3MTgxNA%3D%3D&amp;devicetype=Windows+10+x64&amp;version=62090070&amp;lang=zh_CN&amp;exportkey=AYPEu7AdElolpE%2BaONNikN8%3D&amp;pass_ticket=rK01oB0ugepstEQ1JWXevXyz313bJXmq9eogB76EGWg4rRfav1KLxOSUVC7Og7MZ}</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Mybatis Plus 系列之 MP 简介</title>
-    <url>/2020/05/12/Mybatis-Plus-%E7%B3%BB%E5%88%97%E4%B9%8B-MP-%E7%AE%80%E4%BB%8B/</url>
-    <content><![CDATA[<p><img src="http://img.gorun996.com/images/relationship-with-mybatis.png" alt="relationship-with-mybatis"></p>
-<h2 id="Mybatis-Plus-是什么？"><a href="#Mybatis-Plus-是什么？" class="headerlink" title="Mybatis Plus 是什么？"></a>Mybatis Plus 是什么？</h2><p>Mybatis Plus 不是一个新的连接数据库的发明创造，它是在 Mybatis 的基础上的封装，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。它不是一个必选项，但使用它会让你更加容易进行项目开发。</p>
-<h2 id="Mybatis-Plus-使用感受"><a href="#Mybatis-Plus-使用感受" class="headerlink" title="Mybatis Plus 使用感受"></a>Mybatis Plus 使用感受</h2><p>Mybatis Plus 是基于 Mybatis 框架的封装，如果你的项目正在使用 Mybatis， 而且编写了大量的基础sql语句，那么你可以考虑使用 Mybatis Plus ，它可以帮助你 简化项目代码，完成 CRUD，分页查询等功能；而且不用修改之前代码，就可以接入Mybatis Plus 。让你的项目更简洁更优雅！</p>
-<p>Mybatis Plus 特性</p>
-<ul>
-<li><strong>无侵入</strong>：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑</li>
-<li><strong>损耗小</strong>：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作</li>
-<li><strong>强大的 CRUD 操作</strong>：内置通用 Mapper、通用 Service，仅仅通过少量配置即可实现单表大部分 CRUD 操作，更有强大的条件构造器，满足各类使用需求</li>
-<li><strong>支持 Lambda 形式调用</strong>：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</li>
-<li><strong>支持主键自动生成</strong>：支持多达 4 种主键策略（内含分布式唯一 ID 生成器 - Sequence），可自由配置，完美解决主键问题</li>
-<li><strong>支持 ActiveRecord 模式</strong>：支持 ActiveRecord 形式调用，实体类只需继承 Model 类即可进行强大的 CRUD 操作</li>
-<li><strong>支持自定义全局通用操作</strong>：支持全局通用方法注入（ Write once, use anywhere ）</li>
-<li><strong>内置代码生成器</strong>：采用代码或者 Maven 插件可快速生成 Mapper 、 Model 、 Service 、 Controller 层代码，支持模板引擎，更有超多自定义配置等您来使用</li>
-<li><strong>内置分页插件</strong>：基于 MyBatis 物理分页，开发者无需关心具体操作，配置好插件之后，写分页等同于普通 List 查询</li>
-<li><strong>分页插件支持多种数据库</strong>：支持 MySQL、MariaDB、Oracle、DB2、H2、HSQL、SQLite、Postgre、SQLServer 等多种数据库</li>
-<li><strong>内置性能分析插件</strong>：可输出 Sql 语句以及其执行时间，建议开发测试时启用该功能，能快速揪出慢查询</li>
-<li><strong>内置全局拦截插件</strong>：提供全表 delete 、 update 操作智能分析阻断，也可自定义拦截规则，预防误操作</li>
+    <title>SpringCloud Alibaba 简介</title>
+    <url>/2020/06/14/springcloud-alibaba/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="What-is-SpringCloud-Alibaba"><a href="#What-is-SpringCloud-Alibaba" class="headerlink" title="What is SpringCloud Alibaba ?"></a>What is SpringCloud Alibaba ?</h2><p>Spring Cloud Alibaba provides a one-stop solution for distributed application development. It contains all the components required to develop distributed applications, making it easy for you to develop your applications using Spring Cloud.</p>
+<p>With Spring Cloud Alibaba, you only need to add some annotations and a small amount of configurations to connect Spring Cloud applications to the distributed solutions of Alibaba, and build a distributed application system with Alibaba middleware.</p>
+<blockquote>
+<p>SpringCloud Alibaba 提供分布式应用开发一站式解决方案。它包含开发分布式应用需要的所有组件，让你可以轻松使用SpringCloud开发应用。</p>
+<p>使用SpringCloud Alibaba，你仅仅需要添加一些注解和少量的配置就可以在SpringCloud应用中使用Aliabba分布式解决方案，并使用Alibaba中间件构建分布式应用。</p>
+</blockquote>
+<h2 id="SpringCloud-Alibaba-Futures？"><a href="#SpringCloud-Alibaba-Futures？" class="headerlink" title="SpringCloud Alibaba Futures？"></a>SpringCloud Alibaba Futures？</h2><ul>
+<li><strong>Flow control and service degradation</strong>：flow control, circuit breaking and system adaptive protection with Sentinel.</li>
+<li><strong>Service registration and discovery</strong>：instances can be registered with Nacos and clients can discover the instances using Spring-managed beans. Supports Ribbon, the client side load-balancer via Spring Cloud Netflix.</li>
+<li><strong>Distributed Configuration</strong>：using Nacos as a data store</li>
+<li><strong>Event-driven</strong>：building highly scalable event-driven microservices connected with Spring Cloud Stream RocketMQ Binder</li>
+<li><strong>Message Bus</strong>: link nodes of a distributed system with Spring Cloud Bus RocketMQ</li>
+<li><strong>Distributed Transaction</strong>：support for distributed transaction solution with high performance and ease of use with Seata</li>
+<li><strong>Dubbo RPC</strong>：extend the communication protocols of Spring Cloud service-to-service calls by Dubbo RPC</li>
+<li><strong>Alibaba Cloud Object Storage</strong>：Spring Resource Abstraction for OSS. Alibaba Cloud Object Storage Service (OSS) is an encrypted, secure, cost-effective, and easy-to-use object storage service that enables you to store, back up, and archive large amounts of data in the cloud</li>
 </ul>
-<h2 id="Mybatis-Plus-原理分析"><a href="#Mybatis-Plus-原理分析" class="headerlink" title="Mybatis Plus 原理分析"></a>Mybatis Plus 原理分析</h2><h3 id="Mybatis-Plus-框架结构"><a href="#Mybatis-Plus-框架结构" class="headerlink" title="Mybatis Plus 框架结构"></a>Mybatis Plus 框架结构</h3><p><img src="http://img.gorun996.com/images/mybatis-plus-framework.jpg" alt="mybatis-plus-framework"></p>
-<p>先看这张图的右边，Mybatis Plus 的核心是由 annotation、extension、core、generator 四个部分组成。</p>
-<p>这张图的左边简单的说明了Mybatis Plus 的执行过程，</p>
+<blockquote>
 <ul>
-<li>扫描实体类</li>
-<li>解析数据表和字段名称，与实体类之间产生映射关系</li>
-<li>生成 CRUD sql语句</li>
-<li>执行 Mybatis 框架容器</li>
+<li>流量控制与服务降级：使用Sentinel进行流量控制，断路和系统自适应保护。</li>
+<li>服务注册与发现：服务实例可以注册到Nacos上，客户端可以使用Spring管理的bean发现服务实例。支持通过Spring Cloud Netflix 的客户端负载均衡容器Ribbon。</li>
+<li>分布式配置：使用Nacos作为数据存储。</li>
+<li>消息总线：使用Spring Cloud Bus RocketMQ 连接分布式系统节点。</li>
+<li>分布式事务：支持高性能并跟易于使用的Seata分布式解决方案。</li>
+<li>Dubbo RPC：支持使用Dubbo RPC 通信协议进行服务与服务间的调用。</li>
+<li>阿里云对象存储：用于OSS的Spring资源抽象。 阿里云对象存储服务（OSS）是一种加密，安全，经济高效且易于使用的对象存储服务，可让您在云中存储，备份和存档大量数据。</li>
 </ul>
-<p>正常使用 Mybatis 框架，第一步到第三步都是需要我们自己处理的，现在使用 Mybatis Plus 帮我们处理了这些工作。</p>
-<p>同时，学习 Mybatis Plus 会用仅仅是基础，作为有理想的程序员，还需要知道 Mybatis Plus 是<code>如何映射数据表字段和实体类之间关系</code>，<code>如何生成sql语句</code></p>
-<p>如果大家感兴趣，下面的文章会带大家使用 Mybatis Plus 的各项功能，并努力学习里面的执行原理，最后会做一个小总结，回答上面两个问题。</p>
+</blockquote>
+<h2 id="How-to-use-SpingCloud-Alibaba-？"><a href="#How-to-use-SpingCloud-Alibaba-？" class="headerlink" title="How to use SpingCloud Alibaba ？"></a>How to use SpingCloud Alibaba ？</h2><h3 id="Create-Spring-Boot-project"><a href="#Create-Spring-Boot-project" class="headerlink" title="Create Spring Boot project"></a>Create Spring Boot project</h3><p><img src="http://img.gorun996.com/images/image-20200614144702965.png" alt="image-20200614144702965"></p>
+<h3 id="Add-SpringCloud-Alibaba-Dependency"><a href="#Add-SpringCloud-Alibaba-Dependency" class="headerlink" title="Add SpringCloud Alibaba Dependency"></a>Add SpringCloud Alibaba Dependency</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--spring cloud alibaba 2.1.0.RELEASE--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>spring-cloud-alibaba-dependencies</code>  include all of the Spring Cloud Alibaba features，If you don’t want  you can add individual starters for the features you would like.</p>
 ]]></content>
       <categories>
-        <category>数据存储</category>
+        <category>SpringCloud 微服务系列</category>
       </categories>
       <tags>
-        <tag>Mybatis</tag>
-        <tag>Mybatis Plus</tag>
+        <tag>SpringCloud</tag>
+        <tag>SpringCloud Alibaba</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>关于程序员人生的一些思考</title>
+    <url>/2020/05/10/%E5%85%B3%E4%BA%8E%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BA%BA%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>[如何领先 90% 的程序员？]{<a href="https://mp.weixin.qq.com/s?__biz=MzIwMTAzMTMxMg==&amp;mid=2649496222&amp;idx=1&amp;sn=366f2a1efd952750dd618a8a528762d8&amp;chksm=8eec9161b99b187766282c3fecd98f441dfcef31965b3ba3e14718f074ec57bc215c991551e8&amp;scene=126&amp;sessionid=1589119244&amp;key=74a1d1c7636e53d35336da0958f216eec358997e36af7d2d39871f269fcd2326271215ac44dc6f182af744d081be7fc3fc2a4b83ff889be4c35184b7cbcc91f28488c53ad76afc1e1a5e2e601c432a64&amp;ascene=1&amp;uin=MTc3MTE3MTgxNA%3D%3D&amp;devicetype=Windows+10+x64&amp;version=62090070&amp;lang=zh_CN&amp;exportkey=AYPEu7AdElolpE%2BaONNikN8%3D&amp;pass_ticket=rK01oB0ugepstEQ1JWXevXyz313bJXmq9eogB76EGWg4rRfav1KLxOSUVC7Og7MZ}" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzIwMTAzMTMxMg==&amp;mid=2649496222&amp;idx=1&amp;sn=366f2a1efd952750dd618a8a528762d8&amp;chksm=8eec9161b99b187766282c3fecd98f441dfcef31965b3ba3e14718f074ec57bc215c991551e8&amp;scene=126&amp;sessionid=1589119244&amp;key=74a1d1c7636e53d35336da0958f216eec358997e36af7d2d39871f269fcd2326271215ac44dc6f182af744d081be7fc3fc2a4b83ff889be4c35184b7cbcc91f28488c53ad76afc1e1a5e2e601c432a64&amp;ascene=1&amp;uin=MTc3MTE3MTgxNA%3D%3D&amp;devicetype=Windows+10+x64&amp;version=62090070&amp;lang=zh_CN&amp;exportkey=AYPEu7AdElolpE%2BaONNikN8%3D&amp;pass_ticket=rK01oB0ugepstEQ1JWXevXyz313bJXmq9eogB76EGWg4rRfav1KLxOSUVC7Og7MZ}</a></p>
+]]></content>
   </entry>
   <entry>
     <title>第3天 互联网公司中新版SpringBoot2.X开发规范解读</title>
     <url>/2020/05/28/xdclass-online-03/</url>
-    <content><![CDATA[<h2 id="3-1-新版SpringBoot2-x目录文件结构讲解和静态资源访问"><a href="#3-1-新版SpringBoot2-x目录文件结构讲解和静态资源访问" class="headerlink" title="3-1 新版SpringBoot2.x目录文件结构讲解和静态资源访问"></a>3-1 新版SpringBoot2.x目录文件结构讲解和静态资源访问</h2><ul>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="3-1-新版SpringBoot2-x目录文件结构讲解和静态资源访问"><a href="#3-1-新版SpringBoot2-x目录文件结构讲解和静态资源访问" class="headerlink" title="3-1 新版SpringBoot2.x目录文件结构讲解和静态资源访问"></a>3-1 新版SpringBoot2.x目录文件结构讲解和静态资源访问</h2><ul>
 <li><p>目录讲解</p>
 <ul>
 <li>src/main/java：存放代码</li>
@@ -191,54 +241,9 @@
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud Alibaba 简介</title>
-    <url>/2020/06/14/springcloud-alibaba/</url>
-    <content><![CDATA[<h2 id="What-is-SpringCloud-Alibaba"><a href="#What-is-SpringCloud-Alibaba" class="headerlink" title="What is SpringCloud Alibaba ?"></a>What is SpringCloud Alibaba ?</h2><p>Spring Cloud Alibaba provides a one-stop solution for distributed application development. It contains all the components required to develop distributed applications, making it easy for you to develop your applications using Spring Cloud.</p>
-<p>With Spring Cloud Alibaba, you only need to add some annotations and a small amount of configurations to connect Spring Cloud applications to the distributed solutions of Alibaba, and build a distributed application system with Alibaba middleware.</p>
-<blockquote>
-<p>SpringCloud Alibaba 提供分布式应用开发一站式解决方案。它包含开发分布式应用需要的所有组件，让你可以轻松使用SpringCloud开发应用。</p>
-<p>使用SpringCloud Alibaba，你仅仅需要添加一些注解和少量的配置就可以在SpringCloud应用中使用Aliabba分布式解决方案，并使用Alibaba中间件构建分布式应用。</p>
-</blockquote>
-<h2 id="SpringCloud-Alibaba-Futures？"><a href="#SpringCloud-Alibaba-Futures？" class="headerlink" title="SpringCloud Alibaba Futures？"></a>SpringCloud Alibaba Futures？</h2><ul>
-<li><strong>Flow control and service degradation</strong>：flow control, circuit breaking and system adaptive protection with Sentinel.</li>
-<li><strong>Service registration and discovery</strong>：instances can be registered with Nacos and clients can discover the instances using Spring-managed beans. Supports Ribbon, the client side load-balancer via Spring Cloud Netflix.</li>
-<li><strong>Distributed Configuration</strong>：using Nacos as a data store</li>
-<li><strong>Event-driven</strong>：building highly scalable event-driven microservices connected with Spring Cloud Stream RocketMQ Binder</li>
-<li><strong>Message Bus</strong>: link nodes of a distributed system with Spring Cloud Bus RocketMQ</li>
-<li><strong>Distributed Transaction</strong>：support for distributed transaction solution with high performance and ease of use with Seata</li>
-<li><strong>Dubbo RPC</strong>：extend the communication protocols of Spring Cloud service-to-service calls by Dubbo RPC</li>
-<li><strong>Alibaba Cloud Object Storage</strong>：Spring Resource Abstraction for OSS. Alibaba Cloud Object Storage Service (OSS) is an encrypted, secure, cost-effective, and easy-to-use object storage service that enables you to store, back up, and archive large amounts of data in the cloud</li>
-</ul>
-<blockquote>
-<ul>
-<li>流量控制与服务降级：使用Sentinel进行流量控制，断路和系统自适应保护。</li>
-<li>服务注册与发现：服务实例可以注册到Nacos上，客户端可以使用Spring管理的bean发现服务实例。支持通过Spring Cloud Netflix 的客户端负载均衡容器Ribbon。</li>
-<li>分布式配置：使用Nacos作为数据存储。</li>
-<li>消息总线：使用Spring Cloud Bus RocketMQ 连接分布式系统节点。</li>
-<li>分布式事务：支持高性能并跟易于使用的Seata分布式解决方案。</li>
-<li>Dubbo RPC：支持使用Dubbo RPC 通信协议进行服务与服务间的调用。</li>
-<li>阿里云对象存储：用于OSS的Spring资源抽象。 阿里云对象存储服务（OSS）是一种加密，安全，经济高效且易于使用的对象存储服务，可让您在云中存储，备份和存档大量数据。</li>
-</ul>
-</blockquote>
-<h2 id="How-to-use-SpingCloud-Alibaba-？"><a href="#How-to-use-SpingCloud-Alibaba-？" class="headerlink" title="How to use SpingCloud Alibaba ？"></a>How to use SpingCloud Alibaba ？</h2><h3 id="Create-Spring-Boot-project"><a href="#Create-Spring-Boot-project" class="headerlink" title="Create Spring Boot project"></a>Create Spring Boot project</h3><p><img src="http://img.gorun996.com/images/image-20200614144702965.png" alt="image-20200614144702965"></p>
-<h3 id="Add-SpringCloud-Alibaba-Dependency"><a href="#Add-SpringCloud-Alibaba-Dependency" class="headerlink" title="Add SpringCloud Alibaba Dependency"></a>Add SpringCloud Alibaba Dependency</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--spring cloud alibaba 2.1.0.RELEASE--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><code>spring-cloud-alibaba-dependencies</code>  include all of the Spring Cloud Alibaba features，If you don’t want  you can add individual starters for the features you would like.</p>
-]]></content>
-      <categories>
-        <category>SpringCloud 微服务系列</category>
-      </categories>
-      <tags>
-        <tag>SpringCloud</tag>
-        <tag>SpringCloud Alibaba</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringCloud 微服务基础系列之Nacos</title>
     <url>/2020/06/16/springcloud-alibaba-nacos/</url>
-    <content><![CDATA[<h2 id="为什么叫Nacos？"><a href="#为什么叫Nacos？" class="headerlink" title="为什么叫Nacos？"></a>为什么叫Nacos？</h2><blockquote>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="为什么叫Nacos？"><a href="#为什么叫Nacos？" class="headerlink" title="为什么叫Nacos？"></a>为什么叫Nacos？</h2><blockquote>
 <p>Nacos 名字的由来（取红色的英文字符）: Dynamic <code>Na</code>ming and <code>Co</code>nfiguration <code>S</code>ervice 动态命名和配置服务</p>
 </blockquote>
 <h2 id="Nacos-是什么？"><a href="#Nacos-是什么？" class="headerlink" title="Nacos 是什么？"></a>Nacos 是什么？</h2><p><a href="https://github.com/alibaba/Nacos" target="_blank" rel="noopener">Nacos</a> 是阿里巴巴开源的一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。 </p>
@@ -467,7 +472,7 @@
   <entry>
     <title>SpringCloud 微服务系列之注册中心</title>
     <url>/2020/06/10/springcloud-service-registry/</url>
-    <content><![CDATA[<p><img src="http://img.gorun996.com/images/%E4%B8%8B%E8%BD%BD.jpg" alt="下载"></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="http://img.gorun996.com/images/%E4%B8%8B%E8%BD%BD.jpg" alt="下载"></p>
 <blockquote>
 <p>在微服务架构中，注册中心是核心的基础服务之一。在微服务架构流行之前，注册中心就已经开始出现在分布式架构的系统中。Dubbo是一个在国内比较流行的分布式框架，被大量的中小型互联网公司所采用，Dubbo是一个非常实用的框架，提供了比较完善的服务治理功能，而服务治理的实现主要依靠的就是注册中心。</p>
 </blockquote>
@@ -577,7 +582,7 @@
   <entry>
     <title>SpringBoot2.X 过滤器-拦截器实战</title>
     <url>/2020/06/08/springboot-filter-interceptor/</url>
-    <content><![CDATA[<h2 id="SpringBoot2-x-过滤器"><a href="#SpringBoot2-x-过滤器" class="headerlink" title="SpringBoot2.x 过滤器"></a>SpringBoot2.x 过滤器</h2><h3 id="什么是过滤器？"><a href="#什么是过滤器？" class="headerlink" title="什么是过滤器？"></a>什么是过滤器？</h3><p><img src="http://img.gorun996.com/images/v2-f74107cb2a98ba4ae67ae0373d4532bc_r.jpg" alt="v2-f74107cb2a98ba4ae67ae0373d4532bc_r"></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="SpringBoot2-x-过滤器"><a href="#SpringBoot2-x-过滤器" class="headerlink" title="SpringBoot2.x 过滤器"></a>SpringBoot2.x 过滤器</h2><h3 id="什么是过滤器？"><a href="#什么是过滤器？" class="headerlink" title="什么是过滤器？"></a>什么是过滤器？</h3><p><img src="http://img.gorun996.com/images/v2-f74107cb2a98ba4ae67ae0373d4532bc_r.jpg" alt="v2-f74107cb2a98ba4ae67ae0373d4532bc_r"></p>
 <p>过滤器可以比喻成打鱼的渔网，渔网有网孔大小，会过滤掉小于网孔大小的🐟；</p>
 <p>引申在Web容器中，过滤器可以做：过滤一些敏感的字符串【规定不能出现敏感字符串】、避免中文乱码【规定Web资源都使用UTF-8编码】、权限验证等等等，过滤器的作用非常大，只要发挥想象就可以有意想不到的效果</p>
 <h3 id="Filter是如何实现拦截的？"><a href="#Filter是如何实现拦截的？" class="headerlink" title="Filter是如何实现拦截的？"></a>Filter是如何实现拦截的？</h3><p><code>Filter</code>接口中有一个叫做 <code>doFilter</code> 的方法，这个方法实现了对用户请求的过滤。具体流程大体是这样的：</p>
@@ -696,10 +701,5 @@
         <tag>SpringBoot2.x</tag>
         <tag>过滤器 和 拦截器</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>博客视频播放测试</title>
-    <url>/2020/06/24/blog-video/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","loop":true,"video":{"url":"https://music.163.com/#/mv?id=5404646","pic":"ttp://p1.music.126.net/T5u6tvoe6_AJkbOBP6jsIQ==/18635622580858178.jpg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>]]></content>
   </entry>
 </search>
