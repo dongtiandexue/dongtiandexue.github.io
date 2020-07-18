@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>博客视频播放测试</title>
+    <url>/2020/06/24/blog-video/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","loop":true,"video":{"url":"https://music.163.com/#/mv?id=5404646","pic":"ttp://p1.music.126.net/T5u6tvoe6_AJkbOBP6jsIQ==/18635622580858178.jpg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>]]></content>
+  </entry>
+  <entry>
     <title>Mybatis Plus 系列之 MP 简介</title>
     <url>/2020/05/12/Mybatis-Plus-%E7%B3%BB%E5%88%97%E4%B9%8B-MP-%E7%AE%80%E4%BB%8B/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="http://img.gorun996.com/images/relationship-with-mybatis.png" alt="relationship-with-mybatis"></p>
@@ -43,6 +48,92 @@
       </tags>
   </entry>
   <entry>
+    <title>Spring5.X 源码编译</title>
+    <url>/2020/07/18/spring5-build/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><blockquote>
+<p>这篇文章参考自微信的一篇文章，文章的地址我放在后面，自己照着编译了 spring 源码成功率挺高的，由于 IDEA 版本的不同操作的步骤会有些不同，下面是我自己的编译过程。</p>
+</blockquote>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>1、确保本机已经安装好了 git</p>
+<p>2、jbk 对应版本为1.8</p>
+<p>3、IDEA 版本 2019.3.3</p>
+<p>4、Gradle 目前不需要安装，在编译的时候根据源码提示按照对应版本的<code>Gradle</code>即可</p>
+<h2 id="1、下载源码"><a href="#1、下载源码" class="headerlink" title="1、下载源码"></a>1、下载源码</h2><p>拉取Spring源码，大家可以按照以下几步进行</p>
+<ol>
+<li>在任意磁盘路径下新建一个文件夹，名称随便取，建议为<code>SpringFrameWork</code></li>
+<li>进入<code>SpringFrameWork</code>文件夹中，打开<code>git</code>命令行，输入以下两个命令之一：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> github 仓库地址</span></span><br><span class="line">git clone https://github.com/spring-projects/spring-framework.git</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 国内gitee 仓库地址</span></span><br><span class="line">git clone https://gitee.com/mirrors/Spring-Framework.git</span><br></pre></td></tr></table></figure>
+
+<p>国内朋友推荐使用 gitee clone spring源码，速度会快很多。</p>
+<p>如果你是跟我一样直接拉取的代码，记得切换到<code>5.2.x</code>版本，在命令行中执行命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git checkout origin&#x2F;5.2.x</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、添加阿里云镜像"><a href="#2、添加阿里云镜像" class="headerlink" title="2、添加阿里云镜像"></a>2、添加阿里云镜像</h2><p>在编译过程中，Spring会去自动下载一些依赖的包，默认使用的是官方的镜像，下载比较慢，所以我们提前添加好国内镜像，将下面这行代码粘贴到<code>build.gradle</code>文件中的<code>repositories</code>节点下即可 ，</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;添加阿里云镜像</span><br><span class="line">maven &#123; url &quot;http:&#x2F;&#x2F;maven.aliyun.com&#x2F;nexus&#x2F;content&#x2F;groups&#x2F;public&quot; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如下图所示:</p>
+<p><img src="http://img.gorun996.com/images/640-1595031192588.gif" alt="img"></p>
+<h2 id="3、预先编译spring-oxm模块"><a href="#3、预先编译spring-oxm模块" class="headerlink" title="3、预先编译spring-oxm模块"></a><strong>3、预先编译spring-oxm模块</strong></h2><p>打开命令行窗口，并切换到源码所在文件夹，执行以下命令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gradlew :spring-oxm:compileTestJava</span><br></pre></td></tr></table></figure>
+
+<p>出现<code>BUILD SUCCESS</code>字样时说明构建成功，如下图所示：</p>
+<p><img src="http://img.gorun996.com/images/image-20200718084134139.png" alt="image-20200718084134139"></p>
+<h2 id="4、下载并安装对应的版本的Gradle"><a href="#4、下载并安装对应的版本的Gradle" class="headerlink" title="4、下载并安装对应的版本的Gradle"></a><strong>4、下载并安装对应的版本的Gradle</strong></h2><p>在 spring 源码的 gradle  目录下的 gradle-wrapper.properties 配置文件中，给出了当前项目依赖的 gradle 版本，具体文件位置如下：</p>
+<p>spring-framework —&gt; gradle —&gt; wrapper —&gt; gradle-wrapper.properties</p>
+<p><img src="http://img.gorun996.com/images/spring-gradle.gif" alt="spring-gradle"></p>
+<p>可以看到 spring-framework 5.2.X 版本源码，使用的 gradle 版本是 5.6.4</p>
+<p>大家直接在这个网站上下载对应所需要的版本即可：<a href="https://gradle.org/releases/，" target="_blank" rel="noopener">https://gradle.org/releases/，</a> 选择<code>binary-only</code></p>
+<p>安装好后记得配置<code>Gradle</code>的环境变量</p>
+<ul>
+<li>新增 <code>GRADLE_HOME</code> 环境变量，指向Gradle解压目录</li>
+<li>配置Path环境变量:新增 <code>%GRADLE_HOME%\bin</code></li>
+</ul>
+<p>之后测试是否安装成，在命令行中输入以下命令：<code>gradle -v</code>，查看是否正确输出了对应版本。</p>
+<p><img src="http://img.gorun996.com/images/640.png" alt="img"></p>
+<h2 id="5、为安装好的Gradle配置国内镜像"><a href="#5、为安装好的Gradle配置国内镜像" class="headerlink" title="5、为安装好的Gradle配置国内镜像"></a><strong>5、为安装好的Gradle配置国内镜像</strong></h2><p>进入<code>Gradle</code>安装目录，在<code>init.d</code>目录下新建一个<code>init.gradle</code>文件，并添加以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">allprojects&#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        def REPOSITORY_URL &#x3D; &#39;http:&#x2F;&#x2F;maven.aliyun.com&#x2F;nexus&#x2F;content&#x2F;groups&#x2F;public&#x2F;&#39;</span><br><span class="line">        all &#123; ArtifactRepository repo -&gt;</span><br><span class="line">            def url &#x3D; repo.url.toString()</span><br><span class="line">            if ((repo instanceof MavenArtifactRepository) &amp;&amp; (url.startsWith(&#39;https:&#x2F;&#x2F;repo1.maven.org&#x2F;maven2&#39;) || url.startsWith(&#39;https:&#x2F;&#x2F;jcenter.bintray.com&#39;))) &#123;</span><br><span class="line">                project.logger.lifecycle &#39;Repository $&#123;repo.url&#125; replaced by $REPOSITORY_URL .&#39;</span><br><span class="line">                remove repo</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        maven &#123;</span><br><span class="line">            url REPOSITORY_URL</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>如下图所示：</p>
+<p><img src="http://img.gorun996.com/images/640-1595032174994.gif" alt="img"></p>
+<h2 id="6、将代码导入到IDEA中"><a href="#6、将代码导入到IDEA中" class="headerlink" title="6、将代码导入到IDEA中"></a><strong>6、将代码导入到IDEA中</strong></h2><h3 id="6-1、打开IDEA并选择导入项目"><a href="#6-1、打开IDEA并选择导入项目" class="headerlink" title="6.1、打开IDEA并选择导入项目"></a>6.1、打开IDEA并选择导入项目</h3><p><img src="http://img.gorun996.com/images/image-20200718220918088.png" alt="image-20200718220918088"></p>
+<h3 id="6-2、选择导入一个Gradle项目"><a href="#6-2、选择导入一个Gradle项目" class="headerlink" title="6.2、选择导入一个Gradle项目"></a>6.2、选择导入一个Gradle项目</h3><p><img src="http://img.gorun996.com/images/image-20200718220954555.png" alt="image-20200718220954555"></p>
+<h3 id="6-3、配置导入的项目"><a href="#6-3、配置导入的项目" class="headerlink" title="6.3、配置导入的项目"></a>6.3、配置导入的项目</h3><p>导入项目后需要配置以下 Gradle，如下图所示：</p>
+<p><img src="http://img.gorun996.com/images/image-20200718221114779.png" alt="image-20200718221114779"></p>
+<p>等待IDEA构建完项目，如果你之前已经按照我的方法配置了<code>Gradle</code>的国内镜像，这个过程不会太久，我们本机只用了10多分钟就构建完成了</p>
+<p>构建完成后整个项目结构如下：</p>
+<p><img src="http://img.gorun996.com/images/image-20200718221235341.png" alt="image-20200718221235341"></p>
+<h2 id="7、构建整个项目"><a href="#7、构建整个项目" class="headerlink" title="7、构建整个项目"></a><strong>7、构建整个项目</strong></h2><p>选择Build &gt; Build Project</p>
+<p><img src="http://img.gorun996.com/images/image-20200718221317399.png" alt="image-20200718221317399"></p>
+<h3 id="可能出现的问题"><a href="#可能出现的问题" class="headerlink" title="可能出现的问题"></a>可能出现的问题</h3><h4 id="AnnotationCacheAspect找不到符号"><a href="#AnnotationCacheAspect找不到符号" class="headerlink" title="AnnotationCacheAspect找不到符号"></a>AnnotationCacheAspect找不到符号</h4><p>在这个过程中你可能会碰到如下错误：</p>
+<p><img src="http://img.gorun996.com/images/640-1595032323250.webp" alt="img"></p>
+<p>这里简单处理方式如下：</p>
+<p>将 spring-aspects 项目从整个 spring-framework 中移除</p>
+<p>处理步骤如下图所示：</p>
+<p><img src="http://img.gorun996.com/images/image-20200718201627234.png" alt="image-20200718201627234"></p>
+<p><img src="http://img.gorun996.com/images/image-20200718201739207.png" alt="image-20200718201739207"></p>
+<p><img src="http://img.gorun996.com/images/image-20200718202230111.png" alt="image-20200718202230111"></p>
+<h2 id="8、添加测试模块"><a href="#8、添加测试模块" class="headerlink" title="8、添加测试模块**"></a>8、添加测试模块**</h2><h3 id="8-1、右键工程名-—-gt-new-—-gt-module"><a href="#8-1、右键工程名-—-gt-new-—-gt-module" class="headerlink" title="8.1、右键工程名 —&gt; new —&gt; module"></a>8.1、右键工程名 —&gt; new —&gt; module</h3><p><img src="http://img.gorun996.com/images/image-20200718221505601.png" alt="image-20200718221505601"></p>
+<h3 id="8-2、选择Gradle及Java"><a href="#8-2、选择Gradle及Java" class="headerlink" title="8.2、选择Gradle及Java"></a>8.2、选择Gradle及Java</h3><p><img src="http://img.gorun996.com/images/image-20200718221535912.png" alt="image-20200718221535912"></p>
+<h3 id="8-3、输入模块名称"><a href="#8-3、输入模块名称" class="headerlink" title="8.3、输入模块名称"></a>8.3、输入模块名称</h3><p><img src="http://img.gorun996.com/images/image-20200718221621879.png" alt="image-20200718221621879"></p>
+<p>点击next —&gt; Finish 完成测试模块的创建</p>
+<p>最后，添加一些必要的依赖，修改创建好的模块中的<code>build.gradle</code>文件,添加如下三个依赖</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">compile(project(&quot;:spring-aop&quot;))</span><br><span class="line">compile(project(&quot;:spring-context&quot;))</span><br><span class="line">optional(&quot;org.aspectj:aspectjweaver&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>如下图所示：</p>
+<p><img src="http://img.gorun996.com/images/spring-custom-1595082178452.gif" alt="spring-custom"></p>
+<p>至此，我们就完成了整个Spring的编译，并且在创建了一个日后学习使用的模块！</p>
+<h2 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h2><p><a href="http://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=2650135705&idx=3&sn=4b97edf22362ad2f59e5d15c60034962&chksm=f36bc1b8c41c48ae211207ce33e9e3681384d9f472821523ca8462b7068f32561d331ed43c4c&mpshare=1&scene=24&srcid=0715hpF1UoosyVJ9yROhutIP&sharer_sharetime=1594787372476&sharer_shareid=0c1cd6bb7eb0bc56d153dd635757aec7#rd" target="_blank" rel="noopener">听说你还没学Spring就被源码编译劝退了？30+张图带你玩转Spring编译</a></p>
+]]></content>
+      <categories>
+        <category>Spring 系列</category>
+      </categories>
+      <tags>
+        <tag>Spring5.x 源码</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2020/05/10/hello-world/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
@@ -59,11 +150,6 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>博客视频播放测试</title>
-    <url>/2020/06/24/blog-video/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","loop":true,"video":{"url":"https://music.163.com/#/mv?id=5404646","pic":"ttp://p1.music.126.net/T5u6tvoe6_AJkbOBP6jsIQ==/18635622580858178.jpg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>]]></content>
   </entry>
   <entry>
     <title>Springboot2.X 基础篇之全局异常处理</title>
@@ -122,6 +208,12 @@
         <tag>SpringBoot2.x</tag>
         <tag>全局异常处理</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>关于程序员人生的一些思考</title>
+    <url>/2020/05/10/%E5%85%B3%E4%BA%8E%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BA%BA%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>[如何领先 90% 的程序员？]{<a href="https://mp.weixin.qq.com/s?__biz=MzIwMTAzMTMxMg==&amp;mid=2649496222&amp;idx=1&amp;sn=366f2a1efd952750dd618a8a528762d8&amp;chksm=8eec9161b99b187766282c3fecd98f441dfcef31965b3ba3e14718f074ec57bc215c991551e8&amp;scene=126&amp;sessionid=1589119244&amp;key=74a1d1c7636e53d35336da0958f216eec358997e36af7d2d39871f269fcd2326271215ac44dc6f182af744d081be7fc3fc2a4b83ff889be4c35184b7cbcc91f28488c53ad76afc1e1a5e2e601c432a64&amp;ascene=1&amp;uin=MTc3MTE3MTgxNA%3D%3D&amp;devicetype=Windows+10+x64&amp;version=62090070&amp;lang=zh_CN&amp;exportkey=AYPEu7AdElolpE%2BaONNikN8%3D&amp;pass_ticket=rK01oB0ugepstEQ1JWXevXyz313bJXmq9eogB76EGWg4rRfav1KLxOSUVC7Og7MZ}" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzIwMTAzMTMxMg==&amp;mid=2649496222&amp;idx=1&amp;sn=366f2a1efd952750dd618a8a528762d8&amp;chksm=8eec9161b99b187766282c3fecd98f441dfcef31965b3ba3e14718f074ec57bc215c991551e8&amp;scene=126&amp;sessionid=1589119244&amp;key=74a1d1c7636e53d35336da0958f216eec358997e36af7d2d39871f269fcd2326271215ac44dc6f182af744d081be7fc3fc2a4b83ff889be4c35184b7cbcc91f28488c53ad76afc1e1a5e2e601c432a64&amp;ascene=1&amp;uin=MTc3MTE3MTgxNA%3D%3D&amp;devicetype=Windows+10+x64&amp;version=62090070&amp;lang=zh_CN&amp;exportkey=AYPEu7AdElolpE%2BaONNikN8%3D&amp;pass_ticket=rK01oB0ugepstEQ1JWXevXyz313bJXmq9eogB76EGWg4rRfav1KLxOSUVC7Og7MZ}</a></p>
+]]></content>
   </entry>
   <entry>
     <title>SpringCloud Alibaba 简介</title>
@@ -233,12 +325,6 @@
       <tags>
         <tag>xdclass-online</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>关于程序员人生的一些思考</title>
-    <url>/2020/05/10/%E5%85%B3%E4%BA%8E%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BA%BA%E7%94%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%9D%E8%80%83/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>[如何领先 90% 的程序员？]{<a href="https://mp.weixin.qq.com/s?__biz=MzIwMTAzMTMxMg==&amp;mid=2649496222&amp;idx=1&amp;sn=366f2a1efd952750dd618a8a528762d8&amp;chksm=8eec9161b99b187766282c3fecd98f441dfcef31965b3ba3e14718f074ec57bc215c991551e8&amp;scene=126&amp;sessionid=1589119244&amp;key=74a1d1c7636e53d35336da0958f216eec358997e36af7d2d39871f269fcd2326271215ac44dc6f182af744d081be7fc3fc2a4b83ff889be4c35184b7cbcc91f28488c53ad76afc1e1a5e2e601c432a64&amp;ascene=1&amp;uin=MTc3MTE3MTgxNA%3D%3D&amp;devicetype=Windows+10+x64&amp;version=62090070&amp;lang=zh_CN&amp;exportkey=AYPEu7AdElolpE%2BaONNikN8%3D&amp;pass_ticket=rK01oB0ugepstEQ1JWXevXyz313bJXmq9eogB76EGWg4rRfav1KLxOSUVC7Og7MZ}" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzIwMTAzMTMxMg==&amp;mid=2649496222&amp;idx=1&amp;sn=366f2a1efd952750dd618a8a528762d8&amp;chksm=8eec9161b99b187766282c3fecd98f441dfcef31965b3ba3e14718f074ec57bc215c991551e8&amp;scene=126&amp;sessionid=1589119244&amp;key=74a1d1c7636e53d35336da0958f216eec358997e36af7d2d39871f269fcd2326271215ac44dc6f182af744d081be7fc3fc2a4b83ff889be4c35184b7cbcc91f28488c53ad76afc1e1a5e2e601c432a64&amp;ascene=1&amp;uin=MTc3MTE3MTgxNA%3D%3D&amp;devicetype=Windows+10+x64&amp;version=62090070&amp;lang=zh_CN&amp;exportkey=AYPEu7AdElolpE%2BaONNikN8%3D&amp;pass_ticket=rK01oB0ugepstEQ1JWXevXyz313bJXmq9eogB76EGWg4rRfav1KLxOSUVC7Og7MZ}</a></p>
-]]></content>
   </entry>
   <entry>
     <title>SpringCloud 微服务基础系列之Nacos</title>

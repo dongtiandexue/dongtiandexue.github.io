@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dongtiandexue1994.gitee.io/"/>
-  <updated>2020-06-25T10:04:52.563Z</updated>
+  <updated>2020-07-18T14:36:15.201Z</updated>
   <id>https://dongtiandexue1994.gitee.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring5.X 源码编译</title>
+    <link href="https://dongtiandexue1994.gitee.io/2020/07/18/spring5-build/"/>
+    <id>https://dongtiandexue1994.gitee.io/2020/07/18/spring5-build/</id>
+    <published>2020-07-18T14:30:56.000Z</published>
+    <updated>2020-07-18T14:36:15.201Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Spring 系列" scheme="https://dongtiandexue1994.gitee.io/categories/Spring-%E7%B3%BB%E5%88%97/"/>
+    
+    
+      <category term="Spring5.x 源码" scheme="https://dongtiandexue1994.gitee.io/tags/Spring5-x-%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
   
   <entry>
     <title>HashMap 源码详解</title>
