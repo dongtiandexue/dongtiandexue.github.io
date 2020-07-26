@@ -1047,4 +1047,117 @@
         <tag>过滤器 和 拦截器</tag>
       </tags>
   </entry>
+  <entry>
+    <title>SpringCloud (二) 注册中心理论</title>
+    <url>/2020/07/26/springcloud-register-center/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>在微服务架构中，注册中心是核心的基础服务之一。在微服务架构流行之前，注册中心就已经开始出现在分布式架构的系统中。Dubbo是一个在国内比较流行的分布式框架，被大量的中小型互联网公司所采用，Dubbo是一个非常实用的框架，提供了比较完善的服务治理功能，而服务治理的实现主要依靠的就是注册中心。</p>
+</blockquote>
+<h2 id="什么是注册中心？"><a href="#什么是注册中心？" class="headerlink" title="什么是注册中心？"></a>什么是注册中心？</h2><p>在分布式架构中，服务以微服务的形式集群部署，同时为了容灾还有可能将服务异地部署，这么多服务调用方和被调用方是如何关联的？那么注册中心孕育而生，使用注册中心只需要关注服务名称而屏蔽了底层的真实服务地址。注册中心可以说是微服务架构中的”通讯录“，它记录了服务和服务地址一对多的映射关系。服务会注册到这里，当某个服务需要调用其它服务时，可以根据服务名，从服务节点集群中选取一台进行调用。</p>
+<p><img src="http://img.gorun996.com/images/%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83.png" alt="注册中心"></p>
+<p>举个现实生活中的例子，比如说，我们手机中的通讯录的两个使用场景：</p>
+<ol>
+<li>当我想给张三打电话时，那我需要在通讯录中按照名字找到张三，然后就可以找到他的手机号拨打电话。</li>
+<li>李四办了手机号，那么他把手机号告诉我，我把李四的号码存进通讯录，后续，我就可以从通讯录找到他。</li>
+</ol>
+<p>上述两个场景就是我们在微服务架构中常常提到的：</p>
+<ol>
+<li>服务注册</li>
+<li>服务发现</li>
+</ol>
+<h2 id="为什么需要注册中心？"><a href="#为什么需要注册中心？" class="headerlink" title="为什么需要注册中心？"></a>为什么需要注册中心？</h2><p>在分布式系统中，我们不仅仅是需要在注册中心找到服务和服务地址的映射关系这么简单，我们还需要考虑更多更复杂的问题：</p>
+<ol>
+<li>服务注册后，如何被及时发现</li>
+<li>服务宕机后，如何及时下线</li>
+<li>服务如何有效的水平扩展</li>
+<li>服务发现时，如何进行路由</li>
+<li>服务异常时，如何进行降级</li>
+<li>注册中心如何实现自身的高可用</li>
+</ol>
+<p>这里问题的解决都依赖于注册中心。简单看，注册中心的功能有点类似于DNS服务器或者负载均衡器，而实际上，注册中心作为微服务的基础组件，可能要更加复杂，也需要更多的灵活性和时效性。</p>
+<h2 id="注册中心的CAP理论"><a href="#注册中心的CAP理论" class="headerlink" title="注册中心的CAP理论"></a>注册中心的CAP理论</h2><h3 id="CAP理论概述"><a href="#CAP理论概述" class="headerlink" title="CAP理论概述"></a>CAP理论概述</h3><p>CAP理论：一个分布式系统最多只能同时满足<code>一致性（Consistency）</code>、<code>可用性（Availability）</code>和<code>分区容错性（Partition tolerance）</code>这三项中的两项。</p>
+<p><img src="http://img.gorun996.com/images/Teorema-CAP-2.png" alt="Teorema-CAP-2"></p>
+<h3 id="CAP的定义"><a href="#CAP的定义" class="headerlink" title="CAP的定义"></a>CAP的定义</h3><p><img src="http://img.gorun996.com/images/%E5%BE%AE%E6%9C%8D%E5%8A%A1CAP%E7%90%86%E8%AE%BA.jpg" alt="微服务CAP理论"></p>
+<p><strong>Consistency 一致性</strong></p>
+<p>一致性指“<code>all nodes see the same data at the same time</code>”，即更新操作成功并返回客户端完成后，所有节点在同一时间的数据完全一致，所以，一致性，说的就是数据一致性。</p>
+<p><strong>Availability 可用性</strong></p>
+<p>可用性指“<code>Reads and writes always succeed</code>”, 负载过大后，集群整体是否还能响应客户端的读写请求。（服务一直可用，而且是正常响应时间）</p>
+<p><strong>Partition Tolerance分区容错性</strong></p>
+<p>分区容错性指“<code>the system continues to operate despite arbitrary message loss or failure of part of the system</code>”，分区容忍性，就是高可用性，一个节点崩了，并不影响其它的节点（100个节点，挂了几个，不影响服务，越多机器越好）</p>
+<blockquote>
+<p>CAP理论就是说在分布式存储系统中，最多只能实现上面的两点。而由于当前的网络硬件肯定会出现延迟丢包等问题，所以分区容忍性是我们必须需要实现的。所以我们只能在一致性和可用性之间进行权衡</p>
+</blockquote>
+<h3 id="CAP选择"><a href="#CAP选择" class="headerlink" title="CAP选择"></a><strong>CAP选择</strong></h3><p><strong>CA without P</strong></p>
+<p>这种情况在分布式系统中几乎是不存在的。首先在分布式环境下，网络分区是一个自然的事实。因为分区是必然的，所以如果舍弃P，意味着要舍弃分布式系统。那也就没有必要再讨论CAP理论了。这也是为什么在前面的CAP证明中，我们以系统满足P为前提论述了无法同时满足C和A。</p>
+<p>比如我们熟知的关系型数据库，如MySql和Oracle就是保证了可用性和数据一致性，但是他并不是个分布式系统。一旦关系型数据库要考虑主备同步、集群部署等就必须要把P也考虑进来。</p>
+<p>其实，在CAP理论中。C，A，P三者并不是平等的，CAP之父在《Spanner，真时，CAP理论》一文中写到：</p>
+<blockquote>
+<p>如果说Spanner真有什么特别之处，那就是谷歌的广域网。Google通过建立私有网络以及强大的网络工程能力来保证P，在多年运营改进的基础上，在生产环境中可以最大程度的减少分区发生，从而实现高可用性。</p>
+</blockquote>
+<p>从Google的经验中可以得到的结论是，无法通过降低CA来提升P。要想提升系统的分区容错性，需要通过提升基础设施的稳定性来保障。</p>
+<p>所以，对于一个分布式系统来说。P是一个基本要求，CAP三者中，只能在CA两者之间做权衡，并且要想尽办法提升P。</p>
+<p><strong>CP without A</strong></p>
+<blockquote>
+<p>如果一个分布式系统不要求强的可用性，即容许系统停机或者长时间无响应的话，就可以在CAP三者中保障CP而舍弃A。</p>
+<p>一个保证了CP而一个舍弃了A的分布式系统，一旦发生网络故障或者消息丢失等情况，就要牺牲用户的体验，等待所有数据全部一致了之后再让用户访问系统。</p>
+</blockquote>
+<p>设计成CP的系统其实也不少，其中最典型的就是很多分布式数据库，他们都是设计成CP的。在发生极端情况时，优先保证数据的强一致性，代价就是舍弃系统的可用性。如Redis、HBase等，还有分布式系统中常用的Zookeeper也是在CAP三者之中选择优先保证CP的。</p>
+<p>无论是像Redis、HBase这种分布式存储系统，还是像Zookeeper这种分布式协调组件。数据的一致性是他们最最基本的要求。一个连数据一致性都保证不了的分布式存储要他有何用？</p>
+<p>ZooKeeper是个CP（一致性+分区容错性）的，即任何时刻对ZooKeeper的访问请求能得到一致的数据结果，同时系统对网络分割具备容错性。但是它不能保证每次服务请求的可用性，也就是在极端环境下，ZooKeeper可能会丢弃一些请求，消费者程序需要重新请求才能获得结果。ZooKeeper是分布式协调服务，它的职责是保证数据在其管辖下的所有服务之间保持同步、一致。所以就不难理解为什么ZooKeeper被设计成CP而不是AP特性的了。</p>
+<p><strong>AP wihtout C</strong></p>
+<blockquote>
+<p>要高可用并允许分区，则需放弃一致性。一旦网络问题发生，节点之间可能会失去联系。为了保证高可用，需要在用户访问时可以马上得到返回，则每个节点只能用本地数据提供服务，而这样会导致全局数据的不一致性。</p>
+</blockquote>
+<p>这种舍弃强一致性而保证系统的分区容错性和可用性的场景和案例非常多。前面我们介绍可用性的时候说到过，很多系统在可用性方面会做很多事情来保证系统的全年可用性可以达到N个9，所以，对于很多业务系统来说，比如淘宝的购物，12306的买票。都是在可用性和一致性之间舍弃了一致性而选择可用性。</p>
+<p>你在12306买票的时候肯定遇到过这种场景，当你购买的时候提示你是有票的（但是可能实际已经没票了），你也正常的去输入验证码，下单了。但是过了一会系统提示你下单失败，余票不足。这其实就是先在可用性方面保证系统可以正常的服务，然后在数据的一致性方面做了些牺牲，会影响一些用户体验，但是也不至于造成用户流程的严重阻塞。</p>
+<p>但是，我们说很多网站牺牲了一致性，选择了可用性，这其实也不准确的。就比如上面的买票的例子，其实舍弃的只是强一致性。退而求其次保证了最终一致性。也就是说，虽然下单的瞬间，关于车票的库存可能存在数据不一致的情况，但是过了一段时间，还是<code>要保证最终一致性</code>的。</p>
+<p>对于多数大型互联网应用的场景，主机众多、部署分散，而且现在的集群规模越来越大，所以节点故障、网络故障是常态，而且要保证服务可用性达到N个9，即保证P和A，舍弃C（退而求其次保证最终一致性）。虽然某些地方会影响客户体验，但没达到造成用户流程的严重程度。</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>分布式系统中P 肯定要满足，所以只能在CA中二选一<br>没有最好的选择，最好的选择是根据业务场景来进行架构设计<br>如果要求一致性，则选择zookeeper，如金融行业<br>如果要求可用性，则Eureka，Nacos 如电商系统</p>
+<h2 id="常见的注册中心介绍"><a href="#常见的注册中心介绍" class="headerlink" title="常见的注册中心介绍"></a>常见的注册中心介绍</h2><p><img src="http://img.gorun996.com/images/f22beabffa4646dab0497bfc6f2654f2.png" alt="2.png"></p>
+<h3 id="Spring-Cloud-Eureka-gt-AP"><a href="#Spring-Cloud-Eureka-gt-AP" class="headerlink" title="Spring Cloud Eureka -&gt; AP"></a>Spring Cloud Eureka -&gt; AP</h3><ul>
+<li><p>Spring Cloud Netflix 在设计 Eureka 时遵守的是AP原则</p>
+</li>
+<li><p>Eureka 基于C/S架构，Server端可以运行多个实例构建集群</p>
+</li>
+<li><p>Eureka 集群中无master/slave之分，每个节点是对等的，节点之前通过相互注册相互守望来提高可用性</p>
+</li>
+<li><p>默认情况下，如果 Eureka Server 在一定时间内没有接收到某个服务实例的心跳（默认周期为30秒），Eureka Server 将会注销该实例</p>
+</li>
+<li><p>当 Eureka Server 节点在短时间内丢失过多的心跳时，那么这个节点就会进入自我保护模式</p>
+</li>
+</ul>
+<h3 id="Apache-Zookeeper-gt-CP"><a href="#Apache-Zookeeper-gt-CP" class="headerlink" title="Apache Zookeeper -&gt; CP"></a>Apache Zookeeper -&gt; CP</h3><ul>
+<li>Apache Zookeeper 在设计时遵守的是CP原则</li>
+<li>任何时候对 Zookeeper 的访问请求能得到一致的数据结果</li>
+<li>Zookeeper集群区分master/slaver, 如果master宕机，集群将进入选举状态选举出新的master，将会导致服务短暂不可用</li>
+<li>Zookeeper集群中如果半数以上服务节点宕机，将无法处理请求</li>
+</ul>
+<h3 id="Alibaba-Nacos-gt-CP-AP"><a href="#Alibaba-Nacos-gt-CP-AP" class="headerlink" title="Alibaba Nacos -&gt; CP + AP"></a>Alibaba Nacos -&gt; CP + AP</h3><p>Nacos 即支持 CP也支持AP，但是两者不能同时存在，通过通过配置选择 CP 模式还是 AP 模式</p>
+<ul>
+<li><p>Nacos是阿里开源的，Nacos 支持基于 DNS 和基于 RPC 的服务发现</p>
+</li>
+<li><p>在Spring Cloud中使用Nacos，只需要先下载 Nacos 并启动 Nacos server，Nacos只需要简单的配置就可以完成服务的注册发现</p>
+</li>
+<li><p>Nacos除了服务的注册发现之外，还支持动态配置服务</p>
+</li>
+<li><p>动态配置服务可以让您以中心化、外部化和动态化的方式管理所有环境的应用配置和服务配置</p>
+</li>
+<li><p>动态配置消除了配置变更时重新部署应用和服务的需要，让配置管理变得更加高效和敏捷</p>
+</li>
+<li><p>配置中心化管理让实现无状态服务变得更简单，让服务按需弹性扩展变得更容易</p>
+</li>
+</ul>
+<p>一句话概括就是 Nacos = Spring Cloud 注册中心 + Spring Cloud 配置中心</p>
+<h2 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h2><p><a href="https://segmentfault.com/a/1190000016097418" target="_blank" rel="noopener">微服务架构基础之注册中心</a></p>
+<p><a href="http://www.hollischuang.com/archives/666" target="_blank" rel="noopener">分布式系统的CAP理论</a></p>
+<p><a href="https://developer.aliyun.com/article/738413" target="_blank" rel="noopener">主流微服务注册中心产品比较 Eureka、Consul、Nacos</a></p>
+]]></content>
+      <categories>
+        <category>SpringCloud 微服务系列</category>
+      </categories>
+      <tags>
+        <tag>SpringCloud</tag>
+        <tag>注册中心</tag>
+      </tags>
+  </entry>
 </search>
