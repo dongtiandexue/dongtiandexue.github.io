@@ -6,45 +6,61 @@
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","loop":true,"video":{"url":"https://music.163.com/#/mv?id=5404646","pic":"ttp://p1.music.126.net/T5u6tvoe6_AJkbOBP6jsIQ==/18635622580858178.jpg"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>]]></content>
   </entry>
   <entry>
-    <title>Mybatis Plus 系列之 MP 简介</title>
-    <url>/2020/05/12/Mybatis-Plus-%E7%B3%BB%E5%88%97%E4%B9%8B-MP-%E7%AE%80%E4%BB%8B/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="http://img.gorun996.com/images/relationship-with-mybatis.png" alt="relationship-with-mybatis"></p>
-<h2 id="Mybatis-Plus-是什么？"><a href="#Mybatis-Plus-是什么？" class="headerlink" title="Mybatis Plus 是什么？"></a>Mybatis Plus 是什么？</h2><p>Mybatis Plus 不是一个新的连接数据库的发明创造，它是在 Mybatis 的基础上的封装，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。它不是一个必选项，但使用它会让你更加容易进行项目开发。</p>
-<h2 id="Mybatis-Plus-使用感受"><a href="#Mybatis-Plus-使用感受" class="headerlink" title="Mybatis Plus 使用感受"></a>Mybatis Plus 使用感受</h2><p>Mybatis Plus 是基于 Mybatis 框架的封装，如果你的项目正在使用 Mybatis， 而且编写了大量的基础sql语句，那么你可以考虑使用 Mybatis Plus ，它可以帮助你 简化项目代码，完成 CRUD，分页查询等功能；而且不用修改之前代码，就可以接入Mybatis Plus 。让你的项目更简洁更优雅！</p>
-<p>Mybatis Plus 特性</p>
+    <title>Springboot2.X 基础篇之全局异常处理</title>
+    <url>/2020/06/07/springboot-exception/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="全局异常处理介绍"><a href="#全局异常处理介绍" class="headerlink" title="全局异常处理介绍"></a>全局异常处理介绍</h2><p>说到异常是项目开发中最熟悉不过的了，为了处理异常，我们往往会写很多类似于下面这样的代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 业务代码</span></span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样写出的代码包含了很多异常处理，不仅仅可读性差，而且包含了需要非业务相关的逻辑。</p>
+<p>在项目开发中我们应该将精力放在业务处理上，项目中除了业务相关的代码，最好不要存在其他无关的代码。</p>
+<p><strong>那么类似于异常这种项目中各个地方都存在的非业务代码如何处理呢？</strong></p>
+<p>首先，异常处理是必不可少的，除了不能影响用户体验和前后端交互，也是我们排查问题必不可少的关键信息。</p>
+<p>其次，我们关注的问题是何时何地处理异常。</p>
+<p><code>如果你感兴趣的话，花点时间看看下面内容吧！</code></p>
+<h2 id="全局异常处理实战"><a href="#全局异常处理实战" class="headerlink" title="全局异常处理实战"></a>全局异常处理实战</h2><p>首先抛出几个概念，方便大家对后面内容的理解</p>
 <ul>
-<li><strong>无侵入</strong>：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑</li>
-<li><strong>损耗小</strong>：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作</li>
-<li><strong>强大的 CRUD 操作</strong>：内置通用 Mapper、通用 Service，仅仅通过少量配置即可实现单表大部分 CRUD 操作，更有强大的条件构造器，满足各类使用需求</li>
-<li><strong>支持 Lambda 形式调用</strong>：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</li>
-<li><strong>支持主键自动生成</strong>：支持多达 4 种主键策略（内含分布式唯一 ID 生成器 - Sequence），可自由配置，完美解决主键问题</li>
-<li><strong>支持 ActiveRecord 模式</strong>：支持 ActiveRecord 形式调用，实体类只需继承 Model 类即可进行强大的 CRUD 操作</li>
-<li><strong>支持自定义全局通用操作</strong>：支持全局通用方法注入（ Write once, use anywhere ）</li>
-<li><strong>内置代码生成器</strong>：采用代码或者 Maven 插件可快速生成 Mapper 、 Model 、 Service 、 Controller 层代码，支持模板引擎，更有超多自定义配置等您来使用</li>
-<li><strong>内置分页插件</strong>：基于 MyBatis 物理分页，开发者无需关心具体操作，配置好插件之后，写分页等同于普通 List 查询</li>
-<li><strong>分页插件支持多种数据库</strong>：支持 MySQL、MariaDB、Oracle、DB2、H2、HSQL、SQLite、Postgre、SQLServer 等多种数据库</li>
-<li><strong>内置性能分析插件</strong>：可输出 Sql 语句以及其执行时间，建议开发测试时启用该功能，能快速揪出慢查询</li>
-<li><strong>内置全局拦截插件</strong>：提供全表 delete 、 update 操作智能分析阻断，也可自定义拦截规则，预防误操作</li>
+<li>采用的是SpringBoot 自带的异常处理机制</li>
+<li>对通过Controller接口访问产生的异常，统一处理，响应结果格式统一</li>
 </ul>
-<h2 id="Mybatis-Plus-原理分析"><a href="#Mybatis-Plus-原理分析" class="headerlink" title="Mybatis Plus 原理分析"></a>Mybatis Plus 原理分析</h2><h3 id="Mybatis-Plus-框架结构"><a href="#Mybatis-Plus-框架结构" class="headerlink" title="Mybatis Plus 框架结构"></a>Mybatis Plus 框架结构</h3><p><img src="http://img.gorun996.com/images/mybatis-plus-framework.jpg" alt="mybatis-plus-framework"></p>
-<p>先看这张图的右边，Mybatis Plus 的核心是由 annotation、extension、core、generator 四个部分组成。</p>
-<p>这张图的左边简单的说明了Mybatis Plus 的执行过程，</p>
+<h3 id="1、准备"><a href="#1、准备" class="headerlink" title="1、准备"></a>1、准备</h3><p>（1）创建一个SpringBoot项目，并对外暴露访问接口</p>
+<p>我准备了这样一个接口，并构造了一个 <code>/ by zero</code> 异常，浏览器访问结果：</p>
+<p><img src="http://img.gorun996.com/images/image-20200607101548334.png" alt="image-20200607101548334"></p>
+<p>这样的接口你要提供出去了，看前端小姐姐不打死你 。。。</p>
+<h3 id="2、配置全局异常通知"><a href="#2、配置全局异常通知" class="headerlink" title="2、配置全局异常通知"></a>2、配置全局异常通知</h3><p>在SpringBoot 2.X 版本中 <code>@ControllerAdvice</code> <code>@RestControllerAdvice</code> 注解，可以用于定义 <code>@ExceptionHandler</code>，并应用到配置了 <code>@RequestMapping</code> 的控制器中。</p>
 <ul>
-<li>扫描实体类</li>
-<li>解析数据表和字段名称，与实体类之间产生映射关系</li>
-<li>生成 CRUD sql语句</li>
-<li>执行 Mybatis 框架容器</li>
+<li>@ControllerAdvice 注解：是一个特殊的<code>@Component</code>，用于标识一个类，这个类中被以下三种注解标识的方法：<code>@ExceptionHandler</code>，<code>@InitBinder</code>，<code>@ModelAttribute</code>，将作用于所有的<code>@Controller</code>类的接口上。</li>
+<li>@RestControllerAdvice 注解：是 <code>@ControllerAdvice</code> + <code>@ResponseBody</code>的结合体</li>
+<li>@ExceptionHandler 注解：统一异常处理，也可以指定要处理的异常类型</li>
 </ul>
-<p>正常使用 Mybatis 框架，第一步到第三步都是需要我们自己处理的，现在使用 Mybatis Plus 帮我们处理了这些工作。</p>
-<p>同时，学习 Mybatis Plus 会用仅仅是基础，作为有理想的程序员，还需要知道 Mybatis Plus 是<code>如何映射数据表字段和实体类之间关系</code>，<code>如何生成sql语句</code></p>
-<p>如果大家感兴趣，下面的文章会带大家使用 Mybatis Plus 的各项功能，并努力学习里面的执行原理，最后会做一个小总结，回答上面两个问题。</p>
+<p>下面我们就实战一个简单的全局异常处理：</p>
+<p><img src="http://img.gorun996.com/images/image-20200607104120991.png" alt="image-20200607104120991"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="meta">@Log</span>4j2</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理任何 Exception 接口实现类异常</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(Exception<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Map</span> <span class="title">exceptionHandler</span>(<span class="title">HttpServletRequest</span> <span class="title">request</span>, <span class="title">Exception</span> <span class="title">exception</span>) <span class="title">throws</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">        log.error(<span class="string">"url:&#123;&#125;|errorMsg:&#123;&#125;"</span>, request.getRequestURI(), exception.getMessage(), exception);</span><br><span class="line">        Map&lt;String, Object&gt; result = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">        result.put(<span class="string">"code"</span>, <span class="number">500</span>);</span><br><span class="line">        result.put(<span class="string">"msg"</span>, exception.getMessage());</span><br><span class="line">        result.put(<span class="string">"url"</span>, request.getRequestURL().toString());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>再次访问我们的浏览器：</p>
+<p><code>刚才的报错页面现在就变成了这样</code></p>
+<p><img src="http://img.gorun996.com/images/image-20200607104203160.png" alt="image-20200607104203160"></p>
+<p>到此为止，一个简单的全局异常处理解决方式就完成了，是不是非常简单，当然这只是最最简单的版本，现实项目中远远比这个复杂，下面我们就来一个全套的项目中异常如何处理的。</p>
+<h2 id="全局异常处理实战进阶"><a href="#全局异常处理实战进阶" class="headerlink" title="全局异常处理实战进阶"></a>全局异常处理实战进阶</h2><p>在真实的项目开发中，前后端一般是分离的，就表示后端不管出现什么情况（成功、失败、异常），返回给前端的数据结构一定是统一的，这是约定大于编码思想的一种体现。</p>
+<h3 id="1、统一接口响应"><a href="#1、统一接口响应" class="headerlink" title="1、统一接口响应"></a>1、统一接口响应</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CommonResult</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应码</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> T data;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">CommonResult&lt;T&gt; <span class="title">success</span><span class="params">(T data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CommonResult(<span class="number">200</span>, <span class="string">"success"</span>, data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2、自定义异常"><a href="#2、自定义异常" class="headerlink" title="2、自定义异常"></a>2、自定义异常</h3><p>为什么要自定义异常呢？</p>
+<p>项目中为什么要自定义异常呢，首先如果是项目业务处理产生的异常，通过自定义异常可以知道是哪个项目产生的异常，而且对不同的异常也可以有不同的处理逻辑，也方便后续扩展</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomException</span> <span class="keyword">extends</span> <span class="title">RuntimeException</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//自定义错误码</span></span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//自定义构造器，只保留一个，让其必须输入错误码及内容</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CustomException</span><span class="params">(<span class="keyword">int</span> code, String msg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(msg);</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCode</span><span class="params">(Integer code)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3、改造全局异常处理代码"><a href="#3、改造全局异常处理代码" class="headerlink" title="3、改造全局异常处理代码"></a>3、改造全局异常处理代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="meta">@Log</span>4j2</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理CustomException 异常</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(CustomException<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Map</span> <span class="title">exceptionHandler</span>(<span class="title">HttpServletRequest</span> <span class="title">request</span>, <span class="title">CustomException</span> <span class="title">exception</span>) <span class="title">throws</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">        log.error(<span class="string">"url:&#123;&#125;|errorMsg:&#123;&#125;"</span>, request.getRequestURI(), exception.getMessage(), exception);</span><br><span class="line">        Map&lt;String, Object&gt; result = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">        result.put(<span class="string">"code"</span>, exception.getCode());</span><br><span class="line">        result.put(<span class="string">"msg"</span>, exception.getMessage());</span><br><span class="line">        result.put(<span class="string">"url"</span>, request.getRequestURL().toString());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理任何 Exception 接口实现类异常</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(Exception<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Map</span> <span class="title">exceptionHandler</span>(<span class="title">HttpServletRequest</span> <span class="title">request</span>, <span class="title">Exception</span> <span class="title">exception</span>) <span class="title">throws</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">        log.error(<span class="string">"url:&#123;&#125;|errorMsg:&#123;&#125;"</span>, request.getRequestURI(), exception.getMessage(), exception);</span><br><span class="line">        Map&lt;String, Object&gt; result = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">        result.put(<span class="string">"code"</span>, <span class="number">500</span>);</span><br><span class="line">        result.put(<span class="string">"msg"</span>, exception.getMessage());</span><br><span class="line">        result.put(<span class="string">"url"</span>, request.getRequestURL().toString());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>数据存储</category>
+        <category>SpringBoot2.x 系列</category>
       </categories>
       <tags>
-        <tag>Mybatis</tag>
-        <tag>Mybatis Plus</tag>
+        <tag>SpringBoot2.x</tag>
+        <tag>全局异常处理</tag>
       </tags>
   </entry>
   <entry>
@@ -134,6 +150,48 @@
       </tags>
   </entry>
   <entry>
+    <title>Mybatis Plus 系列之 MP 简介</title>
+    <url>/2020/05/12/Mybatis-Plus-%E7%B3%BB%E5%88%97%E4%B9%8B-MP-%E7%AE%80%E4%BB%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="http://img.gorun996.com/images/relationship-with-mybatis.png" alt="relationship-with-mybatis"></p>
+<h2 id="Mybatis-Plus-是什么？"><a href="#Mybatis-Plus-是什么？" class="headerlink" title="Mybatis Plus 是什么？"></a>Mybatis Plus 是什么？</h2><p>Mybatis Plus 不是一个新的连接数据库的发明创造，它是在 Mybatis 的基础上的封装，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。它不是一个必选项，但使用它会让你更加容易进行项目开发。</p>
+<h2 id="Mybatis-Plus-使用感受"><a href="#Mybatis-Plus-使用感受" class="headerlink" title="Mybatis Plus 使用感受"></a>Mybatis Plus 使用感受</h2><p>Mybatis Plus 是基于 Mybatis 框架的封装，如果你的项目正在使用 Mybatis， 而且编写了大量的基础sql语句，那么你可以考虑使用 Mybatis Plus ，它可以帮助你 简化项目代码，完成 CRUD，分页查询等功能；而且不用修改之前代码，就可以接入Mybatis Plus 。让你的项目更简洁更优雅！</p>
+<p>Mybatis Plus 特性</p>
+<ul>
+<li><strong>无侵入</strong>：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑</li>
+<li><strong>损耗小</strong>：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作</li>
+<li><strong>强大的 CRUD 操作</strong>：内置通用 Mapper、通用 Service，仅仅通过少量配置即可实现单表大部分 CRUD 操作，更有强大的条件构造器，满足各类使用需求</li>
+<li><strong>支持 Lambda 形式调用</strong>：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错</li>
+<li><strong>支持主键自动生成</strong>：支持多达 4 种主键策略（内含分布式唯一 ID 生成器 - Sequence），可自由配置，完美解决主键问题</li>
+<li><strong>支持 ActiveRecord 模式</strong>：支持 ActiveRecord 形式调用，实体类只需继承 Model 类即可进行强大的 CRUD 操作</li>
+<li><strong>支持自定义全局通用操作</strong>：支持全局通用方法注入（ Write once, use anywhere ）</li>
+<li><strong>内置代码生成器</strong>：采用代码或者 Maven 插件可快速生成 Mapper 、 Model 、 Service 、 Controller 层代码，支持模板引擎，更有超多自定义配置等您来使用</li>
+<li><strong>内置分页插件</strong>：基于 MyBatis 物理分页，开发者无需关心具体操作，配置好插件之后，写分页等同于普通 List 查询</li>
+<li><strong>分页插件支持多种数据库</strong>：支持 MySQL、MariaDB、Oracle、DB2、H2、HSQL、SQLite、Postgre、SQLServer 等多种数据库</li>
+<li><strong>内置性能分析插件</strong>：可输出 Sql 语句以及其执行时间，建议开发测试时启用该功能，能快速揪出慢查询</li>
+<li><strong>内置全局拦截插件</strong>：提供全表 delete 、 update 操作智能分析阻断，也可自定义拦截规则，预防误操作</li>
+</ul>
+<h2 id="Mybatis-Plus-原理分析"><a href="#Mybatis-Plus-原理分析" class="headerlink" title="Mybatis Plus 原理分析"></a>Mybatis Plus 原理分析</h2><h3 id="Mybatis-Plus-框架结构"><a href="#Mybatis-Plus-框架结构" class="headerlink" title="Mybatis Plus 框架结构"></a>Mybatis Plus 框架结构</h3><p><img src="http://img.gorun996.com/images/mybatis-plus-framework.jpg" alt="mybatis-plus-framework"></p>
+<p>先看这张图的右边，Mybatis Plus 的核心是由 annotation、extension、core、generator 四个部分组成。</p>
+<p>这张图的左边简单的说明了Mybatis Plus 的执行过程，</p>
+<ul>
+<li>扫描实体类</li>
+<li>解析数据表和字段名称，与实体类之间产生映射关系</li>
+<li>生成 CRUD sql语句</li>
+<li>执行 Mybatis 框架容器</li>
+</ul>
+<p>正常使用 Mybatis 框架，第一步到第三步都是需要我们自己处理的，现在使用 Mybatis Plus 帮我们处理了这些工作。</p>
+<p>同时，学习 Mybatis Plus 会用仅仅是基础，作为有理想的程序员，还需要知道 Mybatis Plus 是<code>如何映射数据表字段和实体类之间关系</code>，<code>如何生成sql语句</code></p>
+<p>如果大家感兴趣，下面的文章会带大家使用 Mybatis Plus 的各项功能，并努力学习里面的执行原理，最后会做一个小总结，回答上面两个问题。</p>
+]]></content>
+      <categories>
+        <category>数据存储</category>
+      </categories>
+      <tags>
+        <tag>Mybatis</tag>
+        <tag>Mybatis Plus</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2020/05/10/hello-world/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
@@ -150,64 +208,6 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>Springboot2.X 基础篇之全局异常处理</title>
-    <url>/2020/06/07/springboot-exception/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="全局异常处理介绍"><a href="#全局异常处理介绍" class="headerlink" title="全局异常处理介绍"></a>全局异常处理介绍</h2><p>说到异常是项目开发中最熟悉不过的了，为了处理异常，我们往往会写很多类似于下面这样的代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 业务代码</span></span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这样写出的代码包含了很多异常处理，不仅仅可读性差，而且包含了需要非业务相关的逻辑。</p>
-<p>在项目开发中我们应该将精力放在业务处理上，项目中除了业务相关的代码，最好不要存在其他无关的代码。</p>
-<p><strong>那么类似于异常这种项目中各个地方都存在的非业务代码如何处理呢？</strong></p>
-<p>首先，异常处理是必不可少的，除了不能影响用户体验和前后端交互，也是我们排查问题必不可少的关键信息。</p>
-<p>其次，我们关注的问题是何时何地处理异常。</p>
-<p><code>如果你感兴趣的话，花点时间看看下面内容吧！</code></p>
-<h2 id="全局异常处理实战"><a href="#全局异常处理实战" class="headerlink" title="全局异常处理实战"></a>全局异常处理实战</h2><p>首先抛出几个概念，方便大家对后面内容的理解</p>
-<ul>
-<li>采用的是SpringBoot 自带的异常处理机制</li>
-<li>对通过Controller接口访问产生的异常，统一处理，响应结果格式统一</li>
-</ul>
-<h3 id="1、准备"><a href="#1、准备" class="headerlink" title="1、准备"></a>1、准备</h3><p>（1）创建一个SpringBoot项目，并对外暴露访问接口</p>
-<p>我准备了这样一个接口，并构造了一个 <code>/ by zero</code> 异常，浏览器访问结果：</p>
-<p><img src="http://img.gorun996.com/images/image-20200607101548334.png" alt="image-20200607101548334"></p>
-<p>这样的接口你要提供出去了，看前端小姐姐不打死你 。。。</p>
-<h3 id="2、配置全局异常通知"><a href="#2、配置全局异常通知" class="headerlink" title="2、配置全局异常通知"></a>2、配置全局异常通知</h3><p>在SpringBoot 2.X 版本中 <code>@ControllerAdvice</code> <code>@RestControllerAdvice</code> 注解，可以用于定义 <code>@ExceptionHandler</code>，并应用到配置了 <code>@RequestMapping</code> 的控制器中。</p>
-<ul>
-<li>@ControllerAdvice 注解：是一个特殊的<code>@Component</code>，用于标识一个类，这个类中被以下三种注解标识的方法：<code>@ExceptionHandler</code>，<code>@InitBinder</code>，<code>@ModelAttribute</code>，将作用于所有的<code>@Controller</code>类的接口上。</li>
-<li>@RestControllerAdvice 注解：是 <code>@ControllerAdvice</code> + <code>@ResponseBody</code>的结合体</li>
-<li>@ExceptionHandler 注解：统一异常处理，也可以指定要处理的异常类型</li>
-</ul>
-<p>下面我们就实战一个简单的全局异常处理：</p>
-<p><img src="http://img.gorun996.com/images/image-20200607104120991.png" alt="image-20200607104120991"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="meta">@Log</span>4j2</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理任何 Exception 接口实现类异常</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(Exception<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Map</span> <span class="title">exceptionHandler</span>(<span class="title">HttpServletRequest</span> <span class="title">request</span>, <span class="title">Exception</span> <span class="title">exception</span>) <span class="title">throws</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">        log.error(<span class="string">"url:&#123;&#125;|errorMsg:&#123;&#125;"</span>, request.getRequestURI(), exception.getMessage(), exception);</span><br><span class="line">        Map&lt;String, Object&gt; result = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">        result.put(<span class="string">"code"</span>, <span class="number">500</span>);</span><br><span class="line">        result.put(<span class="string">"msg"</span>, exception.getMessage());</span><br><span class="line">        result.put(<span class="string">"url"</span>, request.getRequestURL().toString());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>再次访问我们的浏览器：</p>
-<p><code>刚才的报错页面现在就变成了这样</code></p>
-<p><img src="http://img.gorun996.com/images/image-20200607104203160.png" alt="image-20200607104203160"></p>
-<p>到此为止，一个简单的全局异常处理解决方式就完成了，是不是非常简单，当然这只是最最简单的版本，现实项目中远远比这个复杂，下面我们就来一个全套的项目中异常如何处理的。</p>
-<h2 id="全局异常处理实战进阶"><a href="#全局异常处理实战进阶" class="headerlink" title="全局异常处理实战进阶"></a>全局异常处理实战进阶</h2><p>在真实的项目开发中，前后端一般是分离的，就表示后端不管出现什么情况（成功、失败、异常），返回给前端的数据结构一定是统一的，这是约定大于编码思想的一种体现。</p>
-<h3 id="1、统一接口响应"><a href="#1、统一接口响应" class="headerlink" title="1、统一接口响应"></a>1、统一接口响应</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CommonResult</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应码</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> T data;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">CommonResult&lt;T&gt; <span class="title">success</span><span class="params">(T data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CommonResult(<span class="number">200</span>, <span class="string">"success"</span>, data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="2、自定义异常"><a href="#2、自定义异常" class="headerlink" title="2、自定义异常"></a>2、自定义异常</h3><p>为什么要自定义异常呢？</p>
-<p>项目中为什么要自定义异常呢，首先如果是项目业务处理产生的异常，通过自定义异常可以知道是哪个项目产生的异常，而且对不同的异常也可以有不同的处理逻辑，也方便后续扩展</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomException</span> <span class="keyword">extends</span> <span class="title">RuntimeException</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//自定义错误码</span></span><br><span class="line">    <span class="keyword">private</span> Integer code;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//自定义构造器，只保留一个，让其必须输入错误码及内容</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CustomException</span><span class="params">(<span class="keyword">int</span> code, String msg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(msg);</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCode</span><span class="params">(Integer code)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.code = code;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="3、改造全局异常处理代码"><a href="#3、改造全局异常处理代码" class="headerlink" title="3、改造全局异常处理代码"></a>3、改造全局异常处理代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestControllerAdvice</span></span><br><span class="line"><span class="meta">@Log</span>4j2</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalExceptionHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理CustomException 异常</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(CustomException<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Map</span> <span class="title">exceptionHandler</span>(<span class="title">HttpServletRequest</span> <span class="title">request</span>, <span class="title">CustomException</span> <span class="title">exception</span>) <span class="title">throws</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">        log.error(<span class="string">"url:&#123;&#125;|errorMsg:&#123;&#125;"</span>, request.getRequestURI(), exception.getMessage(), exception);</span><br><span class="line">        Map&lt;String, Object&gt; result = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">        result.put(<span class="string">"code"</span>, exception.getCode());</span><br><span class="line">        result.put(<span class="string">"msg"</span>, exception.getMessage());</span><br><span class="line">        result.put(<span class="string">"url"</span>, request.getRequestURL().toString());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理任何 Exception 接口实现类异常</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> exception</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@ExceptionHandler</span>(Exception<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">Map</span> <span class="title">exceptionHandler</span>(<span class="title">HttpServletRequest</span> <span class="title">request</span>, <span class="title">Exception</span> <span class="title">exception</span>) <span class="title">throws</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">        log.error(<span class="string">"url:&#123;&#125;|errorMsg:&#123;&#125;"</span>, request.getRequestURI(), exception.getMessage(), exception);</span><br><span class="line">        Map&lt;String, Object&gt; result = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">3</span>);</span><br><span class="line">        result.put(<span class="string">"code"</span>, <span class="number">500</span>);</span><br><span class="line">        result.put(<span class="string">"msg"</span>, exception.getMessage());</span><br><span class="line">        result.put(<span class="string">"url"</span>, request.getRequestURL().toString());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>SpringBoot2.x 系列</category>
-      </categories>
-      <tags>
-        <tag>SpringBoot2.x</tag>
-        <tag>全局异常处理</tag>
-      </tags>
   </entry>
   <entry>
     <title>关于程序员人生的一些思考</title>
@@ -556,6 +556,150 @@
       </tags>
   </entry>
   <entry>
+    <title>SpringCloud (一)  微服务入门</title>
+    <url>/2020/07/26/springcloud-first/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>SpringCloud 是目前主流的 Java 开发框架，平时一直在用 SpringCloud 开发项目，所以花点时间把 SpringCloud 相关知识整理一下，没有其他目的就是喜欢。</p>
+<p>不要求写的有多好，但是别留坑！</p>
+</blockquote>
+<h2 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h2><p>以下所有的 SpringCloud 项目均基于以下环境：</p>
+<ul>
+<li>Jdk版本：1.8</li>
+<li>maven版本：3.6.0</li>
+<li>开发工具：idea 2019.3.3 版本</li>
+</ul>
+<h2 id="SpringCloud-是什么？"><a href="#SpringCloud-是什么？" class="headerlink" title="SpringCloud 是什么？"></a>SpringCloud 是什么？</h2><p>SpringCloud 是一系列框架的有序集合。它利用 SpringBoot 的开发便利性巧妙地简化了分布式系统基础设施的开发，如服务发现注册、配置中心、消息总线、负载均衡、断路器、数据监控等，都可以用 SpringBoot 的开发风格做到一键启动和部署。Spring并没有重复制造轮子，它只是将目前各家公司开发的比较成熟、经得起实际考验的服务框架组合起来，通过 SpringBoot 风格进行再封装屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、易部署和易维护的分布式系统开发工具包。</p>
+<p>微服务是可以独立部署、水平扩展、独立访问（或者有独立的数据库）的服务单元，SpringCloud 就是这些微服务的大管家，采用了微服务这种架构之后，项目的数量会非常多，SpringCloud 做为大管家就需要提供各种方案来维护整个生态。</p>
+<p>SpringCloud 就是一套分布式服务治理的框架，既然它是一套服务治理的框架，那么它本身不会提供具体功能性的操作，更专注于服务之间的通讯、熔断、监控等。</p>
+<blockquote>
+<p>使用 SpringCloud 开发项目，必须认同它的开发理念和思想，SpringCloud 本身并不是一款框架，而是基于 SpringBoot 的一系列微服务框架的集合，SpringCloud 中最重要的就是整合一系列组件实现 服务调用、熔断降级、监控等功能</p>
+</blockquote>
+<h2 id="SpringCloud-搭建架构"><a href="#SpringCloud-搭建架构" class="headerlink" title="SpringCloud 搭建架构"></a>SpringCloud 搭建架构</h2><p><img src="http://img.gorun996.com/images/20180815110816876.png" alt="這裡寫圖片描述"></p>
+<p>这是一张比较完整的 SpringCloud 分布式服务架构图，从上到下分析一下：</p>
+<p>1、首先客户端通过域名访问服务端，通过 DNS + Nginx 实现服务端负载均衡方式对外提供服务</p>
+<p>2、然后到达服务网关集群，服务网关集群对请求进行一些 鉴权、限流、路由转发 等进一步处理，过滤掉一些无效请求，保证服务高可用</p>
+<p>3、业务服务进行集群部署，处理业务请求</p>
+<p>4、提供一些中间件处理数据和服务调用，例如 消息中间件、大数据中间件 等</p>
+<p>5、在数据库层提供 Mysql集群、Redis集群、MQ集群等，保障数据存储和性能</p>
+<p>6、SpingCloud 搭建的分布式微服务，扩展以后往往是庞大的，为了保证服务的高可用和性能，SpringCloud 提供注册中心进行服务治理，提供配置中心对配置进行统一管理和动态修改，提供链路追踪对调用链路进行分析发现耗时服务，提供熔断降级防止因为某些微服务不可用导致整个系统雪崩</p>
+<h2 id="SpringCloud-项目搭建"><a href="#SpringCloud-项目搭建" class="headerlink" title="SpringCloud 项目搭建"></a>SpringCloud 项目搭建</h2><p>前面我们介绍了 <code>SringCloud 是什么</code>、<code>SpringCloud 项目架构</code>,下面带大家搭建使用 SpringCloud 作为项目架构的分布式系统，后面的一系列课程都是基于这个项目。</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p><strong>开发工具</strong></p>
+<p>IDEA 2019.3.3 版本</p>
+<p><strong>SpringCloud 和 SpringBoot 版本依赖说明</strong></p>
+<p>在搭建SpringCloud项目时，由于其基于SpringBoot所以两者版本依赖关系必须要了解。</p>
+<p>了解的途径：<a href="https://spring.io/projects/spring-cloud" target="_blank" rel="noopener">https://spring.io/projects/spring-cloud</a> </p>
+<p>打开上面的地址，然后往下翻，或者 Ctrl + F 然后搜索 <code>Release Trains</code>,就能看到 SpringCloud 和 SpringBoot  版本依赖关系了</p>
+<p><img src="http://img.gorun996.com/images/image-20200726095826616.png" alt="image-20200726095826616"></p>
+<h3 id="搭建父工程"><a href="#搭建父工程" class="headerlink" title="搭建父工程"></a>搭建父工程</h3><h4 id="1、创建项目"><a href="#1、创建项目" class="headerlink" title="1、创建项目"></a>1、创建项目</h4><p>使用 idea 工具可以很方便的创建 Spring project，首先进入 New Project 界面，选择 Spring Initiallizr</p>
+<p><img src="http://img.gorun996.com/images/image-20200726104733667.png" alt="image-20200726104733667"></p>
+<p>点击 Next</p>
+<p><img src="http://img.gorun996.com/images/image-20200726105201763.png" alt="image-20200726105201763"></p>
+<p>完成后，继续 Next</p>
+<p><img src="http://img.gorun996.com/images/image-20200726105521466.png" alt="image-20200726105521466"></p>
+<p>然后选择代码的存放位置</p>
+<p><img src="http://img.gorun996.com/images/image-20200726105857814.png" alt="image-20200726105857814"></p>
+<p>使用 idea 工具创建 project，由于我们的项目使用 maven 进行依赖管理，所以这里选择 Maven </p>
+<p><img src="http://img.gorun996.com/images/image-20200726100744014.png" alt="image-20200726100744014"></p>
+<h4 id="2、修改-pom"><a href="#2、修改-pom" class="headerlink" title="2、修改 pom"></a>2、修改 pom</h4><p>以下文件是修改后的，并对位置做了一些调整，其中包含：</p>
+<p>1、统一管理jar包版本</p>
+<p>2、统一依赖管理</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.gorun<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cloud2020<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>cloud2020<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- 统一管理jar包版本 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">spring-boot.version</span>&gt;</span>2.3.1.RELEASE<span class="tag">&lt;/<span class="name">spring-boot.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">spring-cloud.version</span>&gt;</span>Greenwich.SR6<span class="tag">&lt;/<span class="name">spring-cloud.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 子模块继承之后，提供作用：锁定版本+子modlue不用写groupId和version  --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- spring boot --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring-boot.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- spring cloud --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring-cloud.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring-boot.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">fork</span>&gt;</span>true<span class="tag">&lt;/<span class="name">fork</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">addResources</span>&gt;</span>true<span class="tag">&lt;/<span class="name">addResources</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="搭建子module"><a href="#搭建子module" class="headerlink" title="搭建子module"></a>搭建子module</h3><p>接下来我们新建一个基于 Eureka 注册中心的服务端</p>
+<h4 id="1、创建-module"><a href="#1、创建-module" class="headerlink" title="1、创建 module"></a>1、创建 module</h4><p><img src="http://img.gorun996.com/images/image-20200726113601463.png" alt="image-20200726113601463"></p>
+<p><img src="http://img.gorun996.com/images/image-20200726113951120.png" alt="image-20200726113951120"></p>
+<p><img src="http://img.gorun996.com/images/image-20200726114115768.png" alt="image-20200726114115768"></p>
+<p>此时创建的项目是这样的，和我们的父工程没有关系</p>
+<p><img src="http://img.gorun996.com/images/image-20200726114202079.png" alt="image-20200726114202079"></p>
+<h4 id="2、修改-pom-1"><a href="#2、修改-pom-1" class="headerlink" title="2、修改 pom"></a>2、修改 pom</h4><p>修改父工程pom，将刚才新建的子module 纳入管理</p>
+<p><img src="F:%5C%E5%8D%9A%E5%AE%A2%E5%8F%91%E5%B8%83%5CSpringCloud%E5%BE%AE%E6%9C%8D%E5%8A%A1%5Cimage-20200726114428267.png" alt="image-20200726114428267"></p>
+<p>修改子module pom，修改点如下</p>
+<p>1、将parent替换为父工程</p>
+<p>2、删除无用的依赖管理，插件管理</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.gorun<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cloud2020<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cloud-eureka-server-8761<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.junit.vintage<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit-vintage-engine<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3、修改-application-properties"><a href="#3、修改-application-properties" class="headerlink" title="3、修改 application.properties"></a>3、修改 application.properties</h4><p>由于我们的子module是搭建 Eureka Server，为了项目可以正常启动，需要修改 application.propertes 文件，修改 Eureka 相关配置</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">server.port</span>=<span class="string">8761</span></span><br><span class="line"><span class="meta">eureka.instance.hostname</span>=<span class="string">localhost</span></span><br><span class="line"><span class="meta">eureka.client.registerWithEureka</span>=<span class="string">false</span></span><br><span class="line"><span class="meta">eureka.client.fetchRegistry</span>=<span class="string">false</span></span><br><span class="line"><span class="meta">eureka.client.serviceUrl.defaultZone</span>=<span class="string">http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/</span></span><br><span class="line"><span class="meta">spring.application.name</span>=<span class="string">eureka-server</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4、主启动类添加-EnableEurekaServer-注解"><a href="#4、主启动类添加-EnableEurekaServer-注解" class="headerlink" title="4、主启动类添加 @EnableEurekaServer 注解"></a>4、主启动类添加 @EnableEurekaServer 注解</h4><h4 id="5、测试"><a href="#5、测试" class="headerlink" title="5、测试"></a>5、测试</h4><p>启动项目，访问 <a href="http://localhost:8761/" target="_blank" rel="noopener">http://localhost:8761/</a></p>
+<p><img src="http://img.gorun996.com/images/image-20200726132328432.png" alt="image-20200726132328432"></p>
+<h2 id="SpringCloud-组件及功能介绍"><a href="#SpringCloud-组件及功能介绍" class="headerlink" title="SpringCloud 组件及功能介绍"></a>SpringCloud 组件及功能介绍</h2><h3 id="Spring-Cloud-新旧组件一览"><a href="#Spring-Cloud-新旧组件一览" class="headerlink" title="Spring Cloud 新旧组件一览"></a>Spring Cloud 新旧组件一览</h3><p>SpringCloud 整合了目前各家公司开发的比较成熟、经得起实际考验的服务框架，经过进一步的封装，纳入了 SpringCloud 社区形成各种组件。其中某些组件已经停止更新维护了，大家要对这些有一定的了解，在项目中谨慎使用，当然 SpringCloud 也提供了更好的替代者，如下图所示：</p>
+<p><img src="http://img.gorun996.com/images/1220447-20200408163240845-145559473.png" alt="img"></p>
+<h3 id="Spring-Cloud-Netflix"><a href="#Spring-Cloud-Netflix" class="headerlink" title="Spring Cloud Netflix"></a>Spring Cloud Netflix</h3><p><strong>简单介绍</strong></p>
+<p>Spring Cloud Netflix通过自动配置并绑定到Spring Environment和其他Spring编程模型习惯用法，为Spring Boot应用程序提供Netflix OSS集成。使用一些简单的批注，您可以快速启用和配置应用程序内部的通用模式，并使用经过测试的Netflix组件构建大型分布式系统。提供的模式包括服务发现（Eureka），断路器（Hystrix），智能路由（Zuul）和客户端负载平衡（Ribbon）。</p>
+<p><strong>特性</strong></p>
+<p>Spring Cloud Netflix功能：</p>
+<ul>
+<li>服务发现：可以注册Eureka实例，并且客户端可以使用Spring托管的Bean发现实例</li>
+<li>服务发现：可以使用声明性Java配置创建嵌入式Eureka服务器</li>
+<li>断路器：Hystrix客户端可以使用简单的注释驱动的方法装饰器构建</li>
+<li>断路器：具有声明性Java配置的嵌入式Hystrix仪表板</li>
+<li>声明式REST客户端：Feign创建一个用JAX-RS或Spring MVC注释修饰的接口的动态实现。</li>
+<li>客户端负载均衡器：功能区</li>
+<li>外部配置：从Spring Environment到Archaius的桥梁（使用Spring Boot约定启用Netflix组件的本机配置）</li>
+<li>路由器和过滤器：Zuul过滤器的自动注册，以及用于反向代理创建的简单配置约定</li>
+</ul>
+<h3 id="Spring-Cloud-Alibaba"><a href="#Spring-Cloud-Alibaba" class="headerlink" title="Spring Cloud Alibaba"></a>Spring Cloud Alibaba</h3><p><strong>简单介绍</strong></p>
+<p>Spring Cloud Alibaba为分布式应用程序开发提供了一站式解决方案。它包含开发分布式应用程序所需的所有组件，使您可以轻松地使用Spring Cloud开发应用程序。</p>
+<p>使用Spring Cloud Alibaba，您只需要添加一些注释和少量配置即可将Spring Cloud应用程序连接到Alibaba的分布式解决方案，并使用Alibaba中间件构建分布式应用程序系统。</p>
+<p><strong>特性</strong></p>
+<ul>
+<li><strong>流量控制和服务降级</strong>：使用<a href="https://github.com/alibaba/Sentinel/" target="_blank" rel="noopener">阿里巴巴Sentinel进行</a>流量控制，断路和系统自适应保护</li>
+<li><strong>服务注册和发现</strong>：实例可以在<a href="https://github.com/alibaba/nacos/" target="_blank" rel="noopener">Alibaba Nacos</a>上注册，客户可以使用Spring管理的bean发现实例。通过Spring Cloud Netflix支持Ribbon，客户端负载均衡器</li>
+<li><strong>分布式配置</strong>：使用<a href="https://github.com/alibaba/nacos/" target="_blank" rel="noopener">阿里巴巴Nacos</a>作为数据存储</li>
+<li><strong>事件驱动</strong>：构建与Spring Cloud Stream <a href="https://rocketmq.apache.org/" target="_blank" rel="noopener">RocketMQ</a> Binder 连接的高度可扩展的事件驱动微服务</li>
+<li><strong>消息总线</strong>：使用Spring Cloud Bus RocketMQ链接分布式系统的节点</li>
+<li><strong>分布式事务</strong>：支持高性能且易于使用的<a href="https://github.com/seata/seata" target="_blank" rel="noopener">Seata</a>分布式事务解决方案</li>
+<li><strong>Dubbo RPC</strong>：通过<a href="https://dubbo.apache.org/en-us/" target="_blank" rel="noopener">Apache Dubbo RPC</a>扩展Spring Cloud服务间调用的通信协议</li>
+</ul>
+<p><strong>如何使用</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>&#123;project-version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Spring-Cloud-Security"><a href="#Spring-Cloud-Security" class="headerlink" title="Spring Cloud Security"></a>Spring Cloud Security</h3><p><strong>简单介绍</strong></p>
+<p>Spring Cloud Security提供了一组原语，用于以最少的麻烦构建安全的应用程序和服务。可以在外部（或中央）进行大量配置的声明式模型通常可以通过中央身份管理服务来实现大型的，相互协作的远程组件系统。在Cloud Foundry等服务平台中使用它也非常容易。在Spring Boot和Spring Security OAuth2的基础上，我们可以快速创建实现常见模式（如单点登录，令牌中继和令牌交换）的系统。</p>
+<p><strong>如何使用</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-security<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Spring-Cloud-Stream"><a href="#Spring-Cloud-Stream" class="headerlink" title="Spring Cloud Stream"></a>Spring Cloud Stream</h3><p><strong>简单介绍</strong></p>
+<p>Spring Cloud Stream是一个框架，用于构建与共享消息传递系统连接的高度可扩展的事件驱动型微服务。</p>
+<p>该框架提供了一个灵活的编程模型，该模型建立在已经建立并熟悉的Spring习惯用法和最佳实践的基础上，包括对持久性pub / sub语义，使用者组和有状态分区的支持。</p>
+<p><strong>如何使用</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-stream-kafka<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Spring-Cloud-Gateway"><a href="#Spring-Cloud-Gateway" class="headerlink" title="Spring Cloud Gateway"></a>Spring Cloud Gateway</h3><p><strong>简单介绍</strong></p>
+<p>Spring Cloud Gateway 提供了一个用于在Spring MVC之上构建API网关的库。Spring Cloud Gateway旨在提供一种简单而有效的方法来路由到API，并为它们提供跨领域的关注，例如：安全性，监视/指标和弹性。</p>
+<p><strong>如何使用</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.cloud&lt;&#x2F;groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-cloud-starter-gateway&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Spring-Cloud-OpenFeign"><a href="#Spring-Cloud-OpenFeign" class="headerlink" title="Spring Cloud OpenFeign"></a>Spring Cloud OpenFeign</h3><p><strong>简单介绍</strong></p>
+<p>Spring Cloud OpenFeign以将OpenFeign集成到Spring Boot应用中的方式，为微服务架构下服务之间的调用提供了解决方案。首先，利用了OpenFeign的声明式方式定义Web服务客户端；其次还更进一步，通过集成Ribbon或Eureka实现负载均衡的HTTP客户端。</p>
+<p><strong>如何使用</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.1.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://spring.io/projects/spring-cloud" target="_blank" rel="noopener">https://spring.io/projects/spring-cloud</a></p>
+]]></content>
+      <categories>
+        <category>SpringCloud 微服务系列</category>
+      </categories>
+      <tags>
+        <tag>SpringCloud</tag>
+        <tag>SpringCloud 入门</tag>
+        <tag>微服务</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringCloud 微服务系列之注册中心</title>
     <url>/2020/06/10/springcloud-service-registry/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="http://img.gorun996.com/images/%E4%B8%8B%E8%BD%BD.jpg" alt="下载"></p>
@@ -901,150 +1045,6 @@
       <tags>
         <tag>SpringBoot2.x</tag>
         <tag>过滤器 和 拦截器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringCloud (一)  微服务入门</title>
-    <url>/2020/07/26/springcloud-first/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>SpringCloud 是目前主流的 Java 开发框架，平时一直在用 SpringCloud 开发项目，所以花点时间把 SpringCloud 相关知识整理一下，没有其他目的就是喜欢。</p>
-<p>不要求写的有多好，但是别留坑！</p>
-</blockquote>
-<h2 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h2><p>以下所有的 SpringCloud 项目均基于以下环境：</p>
-<ul>
-<li>Jdk版本：1.8</li>
-<li>maven版本：3.6.0</li>
-<li>开发工具：idea 2019.3.3 版本</li>
-</ul>
-<h2 id="SpringCloud-是什么？"><a href="#SpringCloud-是什么？" class="headerlink" title="SpringCloud 是什么？"></a>SpringCloud 是什么？</h2><p>SpringCloud 是一系列框架的有序集合。它利用 SpringBoot 的开发便利性巧妙地简化了分布式系统基础设施的开发，如服务发现注册、配置中心、消息总线、负载均衡、断路器、数据监控等，都可以用 SpringBoot 的开发风格做到一键启动和部署。Spring并没有重复制造轮子，它只是将目前各家公司开发的比较成熟、经得起实际考验的服务框架组合起来，通过 SpringBoot 风格进行再封装屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、易部署和易维护的分布式系统开发工具包。</p>
-<p>微服务是可以独立部署、水平扩展、独立访问（或者有独立的数据库）的服务单元，SpringCloud 就是这些微服务的大管家，采用了微服务这种架构之后，项目的数量会非常多，SpringCloud 做为大管家就需要提供各种方案来维护整个生态。</p>
-<p>SpringCloud 就是一套分布式服务治理的框架，既然它是一套服务治理的框架，那么它本身不会提供具体功能性的操作，更专注于服务之间的通讯、熔断、监控等。</p>
-<blockquote>
-<p>使用 SpringCloud 开发项目，必须认同它的开发理念和思想，SpringCloud 本身并不是一款框架，而是基于 SpringBoot 的一系列微服务框架的集合，SpringCloud 中最重要的就是整合一系列组件实现 服务调用、熔断降级、监控等功能</p>
-</blockquote>
-<h2 id="SpringCloud-搭建架构"><a href="#SpringCloud-搭建架构" class="headerlink" title="SpringCloud 搭建架构"></a>SpringCloud 搭建架构</h2><p><img src="http://img.gorun996.com/images/20180815110816876.png" alt="這裡寫圖片描述"></p>
-<p>这是一张比较完整的 SpringCloud 分布式服务架构图，从上到下分析一下：</p>
-<p>1、首先客户端通过域名访问服务端，通过 DNS + Nginx 实现服务端负载均衡方式对外提供服务</p>
-<p>2、然后到达服务网关集群，服务网关集群对请求进行一些 鉴权、限流、路由转发 等进一步处理，过滤掉一些无效请求，保证服务高可用</p>
-<p>3、业务服务进行集群部署，处理业务请求</p>
-<p>4、提供一些中间件处理数据和服务调用，例如 消息中间件、大数据中间件 等</p>
-<p>5、在数据库层提供 Mysql集群、Redis集群、MQ集群等，保障数据存储和性能</p>
-<p>6、SpingCloud 搭建的分布式微服务，扩展以后往往是庞大的，为了保证服务的高可用和性能，SpringCloud 提供注册中心进行服务治理，提供配置中心对配置进行统一管理和动态修改，提供链路追踪对调用链路进行分析发现耗时服务，提供熔断降级防止因为某些微服务不可用导致整个系统雪崩</p>
-<h2 id="SpringCloud-项目搭建"><a href="#SpringCloud-项目搭建" class="headerlink" title="SpringCloud 项目搭建"></a>SpringCloud 项目搭建</h2><p>前面我们介绍了 <code>SringCloud 是什么</code>、<code>SpringCloud 项目架构</code>,下面带大家搭建使用 SpringCloud 作为项目架构的分布式系统，后面的一系列课程都是基于这个项目。</p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p><strong>开发工具</strong></p>
-<p>IDEA 2019.3.3 版本</p>
-<p><strong>SpringCloud 和 SpringBoot 版本依赖说明</strong></p>
-<p>在搭建SpringCloud项目时，由于其基于SpringBoot所以两者版本依赖关系必须要了解。</p>
-<p>了解的途径：<a href="https://spring.io/projects/spring-cloud" target="_blank" rel="noopener">https://spring.io/projects/spring-cloud</a> </p>
-<p>打开上面的地址，然后往下翻，或者 Ctrl + F 然后搜索 <code>Release Trains</code>,就能看到 SpringCloud 和 SpringBoot  版本依赖关系了</p>
-<p><img src="http://img.gorun996.com/images/image-20200726095826616.png" alt="image-20200726095826616"></p>
-<h3 id="搭建父工程"><a href="#搭建父工程" class="headerlink" title="搭建父工程"></a>搭建父工程</h3><h4 id="1、创建项目"><a href="#1、创建项目" class="headerlink" title="1、创建项目"></a>1、创建项目</h4><p>使用 idea 工具可以很方便的创建 Spring project，首先进入 New Project 界面，选择 Spring Initiallizr</p>
-<p><img src="http://img.gorun996.com/images/image-20200726104733667.png" alt="image-20200726104733667"></p>
-<p>点击 Next</p>
-<p><img src="http://img.gorun996.com/images/image-20200726105201763.png" alt="image-20200726105201763"></p>
-<p>完成后，继续 Next</p>
-<p><img src="http://img.gorun996.com/images/image-20200726105521466.png" alt="image-20200726105521466"></p>
-<p>然后选择代码的存放位置</p>
-<p><img src="http://img.gorun996.com/images/image-20200726105857814.png" alt="image-20200726105857814"></p>
-<p>使用 idea 工具创建 project，由于我们的项目使用 maven 进行依赖管理，所以这里选择 Maven </p>
-<p><img src="http://img.gorun996.com/images/image-20200726100744014.png" alt="image-20200726100744014"></p>
-<h4 id="2、修改-pom"><a href="#2、修改-pom" class="headerlink" title="2、修改 pom"></a>2、修改 pom</h4><p>以下文件是修改后的，并对位置做了一些调整，其中包含：</p>
-<p>1、统一管理jar包版本</p>
-<p>2、统一依赖管理</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.gorun<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cloud2020<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>cloud2020<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- 统一管理jar包版本 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">spring-boot.version</span>&gt;</span>2.3.1.RELEASE<span class="tag">&lt;/<span class="name">spring-boot.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">spring-cloud.version</span>&gt;</span>Greenwich.SR6<span class="tag">&lt;/<span class="name">spring-cloud.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 子模块继承之后，提供作用：锁定版本+子modlue不用写groupId和version  --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- spring boot --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring-boot.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- spring cloud --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring-cloud.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring-boot.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">fork</span>&gt;</span>true<span class="tag">&lt;/<span class="name">fork</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">addResources</span>&gt;</span>true<span class="tag">&lt;/<span class="name">addResources</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="搭建子module"><a href="#搭建子module" class="headerlink" title="搭建子module"></a>搭建子module</h3><p>接下来我们新建一个基于 Eureka 注册中心的服务端</p>
-<h4 id="1、创建-module"><a href="#1、创建-module" class="headerlink" title="1、创建 module"></a>1、创建 module</h4><p><img src="http://img.gorun996.com/images/image-20200726113601463.png" alt="image-20200726113601463"></p>
-<p><img src="http://img.gorun996.com/images/image-20200726113951120.png" alt="image-20200726113951120"></p>
-<p><img src="http://img.gorun996.com/images/image-20200726114115768.png" alt="image-20200726114115768"></p>
-<p>此时创建的项目是这样的，和我们的父工程没有关系</p>
-<p><img src="http://img.gorun996.com/images/image-20200726114202079.png" alt="image-20200726114202079"></p>
-<h4 id="2、修改-pom-1"><a href="#2、修改-pom-1" class="headerlink" title="2、修改 pom"></a>2、修改 pom</h4><p>修改父工程pom，将刚才新建的子module 纳入管理</p>
-<p><img src="F:%5C%E5%8D%9A%E5%AE%A2%E5%8F%91%E5%B8%83%5CSpringCloud%E5%BE%AE%E6%9C%8D%E5%8A%A1%5Cimage-20200726114428267.png" alt="image-20200726114428267"></p>
-<p>修改子module pom，修改点如下</p>
-<p>1、将parent替换为父工程</p>
-<p>2、删除无用的依赖管理，插件管理</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.gorun<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cloud2020<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cloud-eureka-server-8761<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.junit.vintage<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit-vintage-engine<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="3、修改-application-properties"><a href="#3、修改-application-properties" class="headerlink" title="3、修改 application.properties"></a>3、修改 application.properties</h4><p>由于我们的子module是搭建 Eureka Server，为了项目可以正常启动，需要修改 application.propertes 文件，修改 Eureka 相关配置</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">server.port</span>=<span class="string">8761</span></span><br><span class="line"><span class="meta">eureka.instance.hostname</span>=<span class="string">localhost</span></span><br><span class="line"><span class="meta">eureka.client.registerWithEureka</span>=<span class="string">false</span></span><br><span class="line"><span class="meta">eureka.client.fetchRegistry</span>=<span class="string">false</span></span><br><span class="line"><span class="meta">eureka.client.serviceUrl.defaultZone</span>=<span class="string">http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/</span></span><br><span class="line"><span class="meta">spring.application.name</span>=<span class="string">eureka-server</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="4、主启动类添加-EnableEurekaServer-注解"><a href="#4、主启动类添加-EnableEurekaServer-注解" class="headerlink" title="4、主启动类添加 @EnableEurekaServer 注解"></a>4、主启动类添加 @EnableEurekaServer 注解</h4><h4 id="5、测试"><a href="#5、测试" class="headerlink" title="5、测试"></a>5、测试</h4><p>启动项目，访问 <a href="http://localhost:8761/" target="_blank" rel="noopener">http://localhost:8761/</a></p>
-<p><img src="http://img.gorun996.com/images/image-20200726132328432.png" alt="image-20200726132328432"></p>
-<h2 id="SpringCloud-组件及功能介绍"><a href="#SpringCloud-组件及功能介绍" class="headerlink" title="SpringCloud 组件及功能介绍"></a>SpringCloud 组件及功能介绍</h2><h3 id="Spring-Cloud-新旧组件一览"><a href="#Spring-Cloud-新旧组件一览" class="headerlink" title="Spring Cloud 新旧组件一览"></a>Spring Cloud 新旧组件一览</h3><p>SpringCloud 整合了目前各家公司开发的比较成熟、经得起实际考验的服务框架，经过进一步的封装，纳入了 SpringCloud 社区形成各种组件。其中某些组件已经停止更新维护了，大家要对这些有一定的了解，在项目中谨慎使用，当然 SpringCloud 也提供了更好的替代者，如下图所示：</p>
-<p><img src="http://img.gorun996.com/images/1220447-20200408163240845-145559473.png" alt="img"></p>
-<h3 id="Spring-Cloud-Netflix"><a href="#Spring-Cloud-Netflix" class="headerlink" title="Spring Cloud Netflix"></a>Spring Cloud Netflix</h3><p><strong>简单介绍</strong></p>
-<p>Spring Cloud Netflix通过自动配置并绑定到Spring Environment和其他Spring编程模型习惯用法，为Spring Boot应用程序提供Netflix OSS集成。使用一些简单的批注，您可以快速启用和配置应用程序内部的通用模式，并使用经过测试的Netflix组件构建大型分布式系统。提供的模式包括服务发现（Eureka），断路器（Hystrix），智能路由（Zuul）和客户端负载平衡（Ribbon）。</p>
-<p><strong>特性</strong></p>
-<p>Spring Cloud Netflix功能：</p>
-<ul>
-<li>服务发现：可以注册Eureka实例，并且客户端可以使用Spring托管的Bean发现实例</li>
-<li>服务发现：可以使用声明性Java配置创建嵌入式Eureka服务器</li>
-<li>断路器：Hystrix客户端可以使用简单的注释驱动的方法装饰器构建</li>
-<li>断路器：具有声明性Java配置的嵌入式Hystrix仪表板</li>
-<li>声明式REST客户端：Feign创建一个用JAX-RS或Spring MVC注释修饰的接口的动态实现。</li>
-<li>客户端负载均衡器：功能区</li>
-<li>外部配置：从Spring Environment到Archaius的桥梁（使用Spring Boot约定启用Netflix组件的本机配置）</li>
-<li>路由器和过滤器：Zuul过滤器的自动注册，以及用于反向代理创建的简单配置约定</li>
-</ul>
-<h3 id="Spring-Cloud-Alibaba"><a href="#Spring-Cloud-Alibaba" class="headerlink" title="Spring Cloud Alibaba"></a>Spring Cloud Alibaba</h3><p><strong>简单介绍</strong></p>
-<p>Spring Cloud Alibaba为分布式应用程序开发提供了一站式解决方案。它包含开发分布式应用程序所需的所有组件，使您可以轻松地使用Spring Cloud开发应用程序。</p>
-<p>使用Spring Cloud Alibaba，您只需要添加一些注释和少量配置即可将Spring Cloud应用程序连接到Alibaba的分布式解决方案，并使用Alibaba中间件构建分布式应用程序系统。</p>
-<p><strong>特性</strong></p>
-<ul>
-<li><strong>流量控制和服务降级</strong>：使用<a href="https://github.com/alibaba/Sentinel/" target="_blank" rel="noopener">阿里巴巴Sentinel进行</a>流量控制，断路和系统自适应保护</li>
-<li><strong>服务注册和发现</strong>：实例可以在<a href="https://github.com/alibaba/nacos/" target="_blank" rel="noopener">Alibaba Nacos</a>上注册，客户可以使用Spring管理的bean发现实例。通过Spring Cloud Netflix支持Ribbon，客户端负载均衡器</li>
-<li><strong>分布式配置</strong>：使用<a href="https://github.com/alibaba/nacos/" target="_blank" rel="noopener">阿里巴巴Nacos</a>作为数据存储</li>
-<li><strong>事件驱动</strong>：构建与Spring Cloud Stream <a href="https://rocketmq.apache.org/" target="_blank" rel="noopener">RocketMQ</a> Binder 连接的高度可扩展的事件驱动微服务</li>
-<li><strong>消息总线</strong>：使用Spring Cloud Bus RocketMQ链接分布式系统的节点</li>
-<li><strong>分布式事务</strong>：支持高性能且易于使用的<a href="https://github.com/seata/seata" target="_blank" rel="noopener">Seata</a>分布式事务解决方案</li>
-<li><strong>Dubbo RPC</strong>：通过<a href="https://dubbo.apache.org/en-us/" target="_blank" rel="noopener">Apache Dubbo RPC</a>扩展Spring Cloud服务间调用的通信协议</li>
-</ul>
-<p><strong>如何使用</strong></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>&#123;project-version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Spring-Cloud-Security"><a href="#Spring-Cloud-Security" class="headerlink" title="Spring Cloud Security"></a>Spring Cloud Security</h3><p><strong>简单介绍</strong></p>
-<p>Spring Cloud Security提供了一组原语，用于以最少的麻烦构建安全的应用程序和服务。可以在外部（或中央）进行大量配置的声明式模型通常可以通过中央身份管理服务来实现大型的，相互协作的远程组件系统。在Cloud Foundry等服务平台中使用它也非常容易。在Spring Boot和Spring Security OAuth2的基础上，我们可以快速创建实现常见模式（如单点登录，令牌中继和令牌交换）的系统。</p>
-<p><strong>如何使用</strong></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-security<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Spring-Cloud-Stream"><a href="#Spring-Cloud-Stream" class="headerlink" title="Spring Cloud Stream"></a>Spring Cloud Stream</h3><p><strong>简单介绍</strong></p>
-<p>Spring Cloud Stream是一个框架，用于构建与共享消息传递系统连接的高度可扩展的事件驱动型微服务。</p>
-<p>该框架提供了一个灵活的编程模型，该模型建立在已经建立并熟悉的Spring习惯用法和最佳实践的基础上，包括对持久性pub / sub语义，使用者组和有状态分区的支持。</p>
-<p><strong>如何使用</strong></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-stream-kafka<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Spring-Cloud-Gateway"><a href="#Spring-Cloud-Gateway" class="headerlink" title="Spring Cloud Gateway"></a>Spring Cloud Gateway</h3><p><strong>简单介绍</strong></p>
-<p>Spring Cloud Gateway 提供了一个用于在Spring MVC之上构建API网关的库。Spring Cloud Gateway旨在提供一种简单而有效的方法来路由到API，并为它们提供跨领域的关注，例如：安全性，监视/指标和弹性。</p>
-<p><strong>如何使用</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.cloud&lt;&#x2F;groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-cloud-starter-gateway&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Spring-Cloud-OpenFeign"><a href="#Spring-Cloud-OpenFeign" class="headerlink" title="Spring Cloud OpenFeign"></a>Spring Cloud OpenFeign</h3><p><strong>简单介绍</strong></p>
-<p>Spring Cloud OpenFeign以将OpenFeign集成到Spring Boot应用中的方式，为微服务架构下服务之间的调用提供了解决方案。首先，利用了OpenFeign的声明式方式定义Web服务客户端；其次还更进一步，通过集成Ribbon或Eureka实现负载均衡的HTTP客户端。</p>
-<p><strong>如何使用</strong></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.1.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://spring.io/projects/spring-cloud" target="_blank" rel="noopener">https://spring.io/projects/spring-cloud</a></p>
-]]></content>
-      <categories>
-        <category>SpringCloud 微服务系列</category>
-      </categories>
-      <tags>
-        <tag>SpringCloud</tag>
-        <tag>SpringCloud 入门</tag>
-        <tag>微服务</tag>
       </tags>
   </entry>
 </search>
